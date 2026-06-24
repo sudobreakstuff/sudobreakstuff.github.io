@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shahid Singh — Systems Developer</title>
-<meta name="description" content="Shahid Singh — Systems Developer, Automation Engineer, full-stack and embedded developer from Newcastle, South Africa.">
+<meta name="description" content="Shahid Singh — Systems Developer building automation workflows, Chrome extensions, and embedded systems.">
+<meta property="og:title" content="Shahid Singh — Systems Developer">
+<meta property="og:description" content="I build systems that make other systems work better. Automation, extensions, embedded. CompTIA A+, Network+.">
+<meta property="og:url" content="https://sudobreakstuff.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shahid Singh — Systems Developer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -780,6 +786,154 @@ body{
 .cmd-result-item:hover{background:rgba(108,92,231,0.08)}
 .cmd-result-item.active{background:rgba(108,92,231,0.12)}
 
+/* ===== GHOST CHAT ===== */
+.ghost-btn{
+  position:fixed;
+  bottom:24px;right:24px;
+  width:52px;height:52px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--cyan));
+  border:none;
+  color:var(--bg);
+  font-family:var(--mono);
+  font-size:1.3rem;
+  font-weight:700;
+  cursor:pointer;
+  z-index:9997;
+  box-shadow:0 4px 20px rgba(108,92,231,0.4);
+  transition:all .3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.ghost-btn:hover{transform:scale(1.08);box-shadow:0 6px 30px rgba(108,92,231,0.5)}
+.ghost-btn .pulse{
+  position:absolute;
+  width:100%;height:100%;
+  border-radius:50%;
+  border:2px solid var(--accent);
+  animation:ghostPulse 2s ease-out infinite;
+}
+@keyframes ghostPulse{
+  0%{transform:scale(1);opacity:0.6}
+  100%{transform:scale(1.6);opacity:0}
+}
+.ghost-panel{
+  position:fixed;
+  bottom:88px;right:24px;
+  width:380px;height:520px;
+  background:var(--bg2);
+  border:1px solid rgba(108,92,231,0.25);
+  border-radius:12px;
+  z-index:9997;
+  display:none;
+  flex-direction:column;
+  box-shadow:0 12px 50px rgba(0,0,0,0.6);
+  overflow:hidden;
+}
+.ghost-panel.open{display:flex;animation:slideUp .25s ease-out}
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(16px) scale(0.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.ghost-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  background:var(--bg3);
+}
+.ghost-status{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(0,184,148,0.5)}
+.ghost-header h3{font-size:0.9rem;font-weight:600;font-family:var(--space)}
+.ghost-header span{font-size:0.7rem;color:var(--text3);margin-left:auto}
+.ghost-msgs{
+  flex:1;
+  overflow-y:auto;
+  padding:12px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.ghost-msg,.ghost-user{
+  max-width:85%;
+  padding:8px 14px;
+  border-radius:8px;
+  font-size:0.8rem;
+  line-height:1.5;
+  animation:msgIn .2s ease-out;
+}
+@keyframes msgIn{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.ghost-msg{
+  background:rgba(108,92,231,0.1);
+  border:1px solid rgba(108,92,231,0.1);
+  color:var(--text2);
+  align-self:flex-start;
+  font-family:var(--mono);
+}
+.ghost-user{
+  background:rgba(0,206,201,0.08);
+  border:1px solid rgba(0,206,201,0.1);
+  color:var(--text);
+  align-self:flex-end;
+}
+.ghost-input-wrap{
+  display:flex;
+  gap:8px;
+  padding:10px 14px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.ghost-input{
+  flex:1;
+  background:var(--bg);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px;
+  padding:8px 12px;
+  color:var(--text);
+  font-family:var(--mono);
+  font-size:0.8rem;
+  outline:none;
+}
+.ghost-input:focus{border-color:rgba(108,92,231,0.3)}
+.ghost-send{
+  background:var(--accent);
+  border:none;
+  border-radius:6px;
+  color:var(--bg);
+  width:36px;
+  height:36px;
+  cursor:pointer;
+  font-size:1rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .2s;
+}
+.ghost-send:hover{background:var(--accent2)}
+.ghost-typing{
+  display:flex;
+  gap:4px;
+  padding:8px 14px;
+  align-self:flex-start;
+  background:rgba(108,92,231,0.06);
+  border-radius:8px;
+}
+.ghost-typing span{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--text3);
+  animation:ghostDot 1.2s ease-in-out infinite;
+}
+.ghost-typing span:nth-child(2){animation-delay:0.2s}
+.ghost-typing span:nth-child(3){animation-delay:0.4s}
+@keyframes ghostDot{
+  0%,60%,100%{opacity:0.3;transform:translateY(0)}
+  30%{opacity:1;transform:translateY(-4px)}
+}
+
 /* ===== PROJECT MODAL ===== */
 .project-modal-overlay{
   display:none;
@@ -831,7 +985,8 @@ body{
   }
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   html{font-size:8.5pt}
-  #particles-canvas,.cmd-overlay,.project-modal-overlay,.no-print,.terminal-cursor,.typewriter-text,.download-btn,.cmd-toggle-hint{display:none!important}
+  #particles-canvas,.cmd-overlay,.project-modal-overlay,.ghost-btn,.ghost-panel,.no-print,.terminal-cursor,.typewriter-text,.download-btn,.cmd-toggle-hint{display:none!important}
+  .terminal-window::after{display:none!important}
   .container{max-width:100%!important;padding:0!important}
 
   .section{padding:6px 0!important;border-top:none!important}
@@ -921,6 +1076,8 @@ body{
   .cert-grid{grid-template-columns:1fr}
   .stat-item{padding:8px}
   .stat-number{font-size:1.2rem}
+  .ghost-panel{width:calc(100vw - 32px);right:16px;bottom:80px;height:60vh}
+  .ghost-btn{bottom:16px;right:16px;width:46px;height:46px}
 }
 </style>
 </head>
@@ -1794,6 +1951,161 @@ document.addEventListener('keydown',e=>{
     Array.from(children).forEach((c,i)=>{if(i<2){c.style.opacity='1';c.style.transform='translateY(0)'}});
   });
 })();
+</script>
+
+<!-- GHOST Chat -->
+<button class="ghost-btn" id="ghost-btn" onclick="toggleGhost()">
+  <span class="pulse"></span>
+  &gt;
+</button>
+<div class="ghost-panel" id="ghost-panel">
+  <div class="ghost-header">
+    <div class="ghost-status"></div>
+    <h3>GHOST</h3>
+    <span>Shahid's assistant</span>
+  </div>
+  <div class="ghost-msgs" id="ghost-msgs"></div>
+  <div class="ghost-input-wrap">
+    <input class="ghost-input" id="ghost-input" type="text" placeholder="Ask about Shahid..." autocomplete="off">
+    <button class="ghost-send" onclick="sendGhost()">&rarr;</button>
+  </div>
+</div>
+
+<script>
+// ===== GHOST KNOWLEDGE ENGINE =====
+const ghostQA = [
+  // === ABOUT SHAHID ===
+  {q:'who are you',a:"I'm GHOST — Shahid's digital assistant. I can answer questions about his experience, skills, projects, certifications, and anything else an employer might want to know. Ask away."},
+  {q:['how old','age','year born','birth year'],a:'Shahid was born in 2004, so he is 22 years old. Young, but he has been in the IT industry since 2022.'},
+  {q:['where based','location','live','city','town','newcastle'],a:'Newcastle, KwaZulu-Natal, South Africa. He has a Code 8 driver\'s license and his own car — fully mobile for work, interviews, or on-site visits.'},
+  {q:['contact','email','reach','hire'],a:'shahidsingh1zn@gmail.com — straightforward and professional. He usually responds within a few hours.'},
+  {q:['github','code','repos'],a:'github.com/sudobreakstuff — all his projects are open source, MIT licensed. The code speaks for itself.'},
+  {q:['license','car','drive','transport'],a:'Code 8 license with his own car. No transport dependencies — he can be anywhere he needs to be.'},
+  {q:['hobbies','free time','outside work','cricket','fishing'],a:'Cricket, fishing, and hiking. He says the best ideas come when you\'re not staring at a screen.'},
+
+  // === CURRENT ROLE ===
+  {q:['what do you do','what is your role','what is your job','current position','systems developer','job title'],a:"Shahid is a Systems Developer at Jenny Internet. Full job title: Systems Developer, reporting to Juan Kahts. His day job is building automation workflows, Chrome extensions, and internal tools that keep support teams running efficiently."},
+  {q:['tell me about jenny','jenny internet','what is jenny','who is jenny'],a:'Jenny Internet is an ISP based in Newcastle serving corporate clients across South Africa — retail chains, warehouses, logistics companies. Shahid builds the internal software that powers their support operations, from ticketing to file management to agent productivity tools.'},
+  {q:['automation','workflow','dfe','heimdall','sendactions'],a:"Shahid has built 20+ production DFE ticket workflow templates at Jenny Internet — things like Wireless Support triage, Customer Callout AI, Equipment Orders, Overtime approvals, Vehicle Management, Expenses, Site Rental, and Admin requests. He also integrated Rocket.Chat alerting across multiple departments."},
+
+  // === SKILLS ===
+  {q:['strongest skill','best at','what are you good at','expert'],a:'Workflow automation. Shahid has built over 20 production ticket flow templates that run Jenny Internet\'s entire support operation. If it\'s repetitive, he automates it. If a system doesn\'t talk to another system, he builds the bridge.'},
+  {q:['languages','programming','code','technologies','tech stack'],a:'React, TypeScript, Python, Dart/Flutter, C++, JavaScript, Bash. Also: HTML/CSS, JSON, SQLite. He picks up what the job requires.'},
+  {q:['frontend','react','typescript','extension','chrome'],a:'Built two production Chrome extensions (Jenny Screenshot Assistant and Jenny Vault). React, TypeScript, Manifest V3, Tesseract OCR, local encryption. Privacy-first architecture — no uploads by default.'},
+  {q:['embedded','hardware','esp32','arduino','iot'],a:'SudoDeck — a custom wireless BLE macro keyboard sold in South Africa for R1,099. Also built RFID tools, ESP32 touchscreen controllers, and custom Linux kernels for ARM64 handhelds. Hardware is a hobby that became a skillset.'},
+  {q:['mobile','flutter','dart','android','app'],a:'Flutter + Dart with Riverpod, SQLite, Supabase, Drift. Built SpiceDesk (business management suite — POS, inventory, CRM) and Family Tree App (interactive family tree builder). Cross-platform: Windows, Linux, Android.'},
+  {q:['backend','python','api','docker','linux'],a:'Python, FastAPI, Docker, Linux administration. He\'s comfortable with the full stack — from kernel configs to REST APIs to CI/CD.'},
+  {q:['networking','mikrotik','tcp','security'],a:'CompTIA Network+ certified. Hands-on with MikroTik, TCP/IP, firewalls, CCTV, VoIP. Previously deployed physical network infrastructure for corporate clients including Ackermans and Pick n Pay.'},
+
+  // === EXPERIENCE ===
+  {q:['experience','work history','past jobs','career','where have you worked'],a:"Starting as a Junior Technician at Khuphula Solutions (2023–2025) installing server cabinets, biometrics, CCTV, VoIP for major retail clients. Then IT Support Agent at Jenny Internet (2025–2026). Promoted to Systems Developer (2026–Present). Also a learnership at ArcelorMittal South Africa."},
+  {q:['tell me about a project','challenging project','proud of'],a:"SudoDeck — a wireless BLE macro keyboard he designed, built, and now sells in South Africa. ESP32+ILI9341 touchscreen, BLE HID, multi-page grid, 30 buttons per page, live widgets, Web Serial config. He went from idea to shipped product to R1,099 retail price entirely on his own."},
+  {q:['process automation','ticket','helpdesk flow'],a:'Designed guided troubleshooting flows, Quick Navigate ticket menus, pre-escalation checklists, customer-in-pain detection, and cross-ticket automation pipelines. Also wrote internal wiki docs, beginner guides, and wireless troubleshooting playbooks for the entire support team.'},
+
+  // === EDUCATION & CERTS ===
+  {q:['education','study','college','qualification'],a:'National Computer College (2022–2025) — IT Engineering with CompTIA A+, Network+, Security+, Cloud+ curricula. Boston City Campus (2025–Present) — Diploma in Information Technology: Systems Development. Newcastle High School — Matric with Bachelor\'s Pass.'},
+  {q:['certifications','certs','comptia','a+','network+'],a:"CompTIA A+ (Completed) — Hardware, OS, troubleshooting. CompTIA Network+ (Completed) — Networking, TCP/IP, routing. CompTIA Security+ (In progress) — Security fundamentals. CompTIA Cloud+ (In progress) — Cloud infrastructure. Also: Alison Cybersecurity & Ethical Hacking, cPanel, Cisco Network Security, QuickBooks, MS Office."},
+
+  // === INTERVIEW QUESTIONS ===
+  {q:['why hire','why should we','hire you','reasons'],a:'\"I build systems that make other systems work better\" — that\'s not a tagline, it\'s what he does. Shahid doesn\'t just write code; he identifies bottlenecks, eliminates busywork, and creates tools that make entire teams more effective. He ships production software, sells hardware products, and maintains networks. He\'s a builder, not just a developer.'},
+  {q:['strength','strongest','best quality'],a:'\"If it\'s repetitive, I automate it. If it doesn\'t exist yet, I build it.\" Shahid\'s ability to see automation opportunities where others see routine work is what sets him apart. He builds tools that pay for themselves in time saved.'},
+  {q:['weakness','weaknesses','improve','grow'],a:"He admits he sometimes over-engineers solutions — building robust systems when a simple script would do. But he's learning to match the solution to the problem. 'Good code is like a clean workshop: organized, efficient, ready for the next job.'"},
+  {q:['5 years','future','where do you see','goals'],a:'\"Leading automation and systems development for a tech-forward company. I want to be the person who designs the systems that make other systems work better at scale.\" He\'s investing in skills — Flutter, embedded systems, Linux — that align with where the industry is going.'},
+  {q:['motivates','drive','passion','why do you do this'],a:"\"Eliminating busywork. Every minute someone spends on a manual ticket, a repetitive form, a copy-paste task — that's a minute they could spend solving real problems. I build software that gives those minutes back.\""},
+  {q:['teamwork','team','collaborate','work with others'],a:'\"The best tools I\'ve built came from watching how my teammates work and asking \'what if this just did it for you?\'\" He built extensions, templates, and documentation that the entire support team uses daily — and actively iterates based on their feedback.'},
+  {q:['deadlines','pressure','stress','time management'],a:'\"I automated my routine tasks first so I could focus entirely on deadline work. When you\'re not buried in busywork, deadlines become targets instead of threats.\" His workflow templates run entire departments, freeing up mental bandwidth for what matters.'},
+  {q:['why shahid','stand out','unique','different'],a:'Most developers write code. Shahid builds systems — from Chrome extensions to BLE keyboards to Linux kernels. He ships products (SudoDeck retails at R1,099). He\'s CompTIA certified. He\'s deployed cable and crimped RJ45s. He understands the full stack from Layer 1 to the UI. That breadth is rare.'},
+
+  // === PHILOSOPHY ===
+  {q:['philosophy','approach','how you build','development style'],a:'\"Good code is like a clean workshop — organized, efficient, and ready for the next job.\" Shahid favors simplicity, transparency, and tools that solve one problem well. If a system needs to change, it should be obvious how.'},
+  {q:['open source','contribute','mit','license'],a:'All of Shahid\'s projects on GitHub are open source, most under MIT license. He believes code should be shared and improved — not locked away.'},
+  {q:['tools','editor','setup','workflow'],a:'VS Code, Docker, Git, Ollama, PlatformIO, Arduino IDE, Python, Chrome DevTools. Terminal-first workflow. His setup is optimized for speed — minimal mouse, maximum keyboard.'},
+
+  // === GREETINGS / META ===
+  {q:['hello','hi','hey','howdy','sup'],a:'Hello. I\'m GHOST — Shahid\'s knowledge assistant. Ask me anything about his skills, experience, projects, or certifications.'},
+  {q:['thanks','thank you','appreciate'],a:'You\'re welcome. If you have more questions, I\'m here. Shahid is also available directly at shahidsingh1zn@gmail.com.'},
+  {q:['bye','goodbye','see you','later'],a:'Good luck with your decision. Shahid is ready when you are — and his code speaks for itself.'},
+  {q:['who created','who built','who made'],a:'I was built by Shahid as part of his resume site. I\'m a curated knowledge engine, not real AI — just smart matching against what Shahid knows and does.'},
+  {q:['joke','funny','humor'],a:'Why do Systems Developers prefer dark mode? Because light attracts bugs. (Shahid\'s site is dark mode too — coincidence? Probably not.)'},
+];
+
+// Matching engine
+function normalize(s){return s.toLowerCase().replace(/[^a-z0-9 ]/g,'').trim()}
+function keywords(s){return normalize(s).split(/\s+/).filter(w=>w.length>2)}
+function matchQuestion(input){
+  const inputKeywords = keywords(input);
+  const inputNorm = normalize(input);
+  let best = {score:0,answer:ghostQA[0].a};
+  for(let pair of ghostQA){
+    const questions = Array.isArray(pair.q)?pair.q:[pair.q];
+    for(let q of questions){
+      let score = 0;
+      const qNorm = normalize(q);
+      const qKeywords = keywords(q);
+      if(inputNorm===qNorm){score=100;best={score,answer:pair.a};break}
+      if(inputNorm.includes(qNorm)||qNorm.includes(inputNorm)){score=80}
+      for(let kw of inputKeywords){
+        if(qNorm.includes(kw)) score+=15;
+      }
+      for(let kw of qKeywords){
+        if(inputNorm.includes(kw)) score+=10;
+      }
+      if(score>best.score){best={score,answer:pair.a}}
+    }
+    if(best.score>=100)break;
+  }
+  if(best.score<15){
+    return "I don't have a good answer for that. Try asking about Shahid's skills, experience, projects, certifications, or what makes him different.";
+  }
+  return best.answer;
+}
+
+// UI
+let ghostOpen = false;
+function toggleGhost(){
+  const panel = document.getElementById('ghost-panel');
+  ghostOpen = !ghostOpen;
+  panel.classList.toggle('open',ghostOpen);
+  if(ghostOpen){
+    const msgs = document.getElementById('ghost-msgs');
+    if(msgs.children.length===0){
+      msgs.innerHTML='<div class="ghost-msg">> Hello. I\'m GHOST — Shahid\'s digital assistant. Ask me anything about his skills, experience, projects, or what makes him stand out.</div>';
+    }
+    setTimeout(()=>document.getElementById('ghost-input')?.focus(),300);
+  }
+}
+function sendGhost(){
+  const input = document.getElementById('ghost-input');
+  const msgs = document.getElementById('ghost-msgs');
+  const text = input.value.trim();
+  if(!text) return;
+  input.value='';
+  msgs.innerHTML+=`<div class="ghost-user">${text}</div>`;
+  msgs.scrollTop = msgs.scrollHeight;
+  const typing = document.createElement('div');
+  typing.className='ghost-typing';
+  typing.innerHTML='<span></span><span></span><span></span>';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(()=>{
+    typing.remove();
+    const answer = matchQuestion(text);
+    const msg = document.createElement('div');
+    msg.className='ghost-msg';
+    msgs.appendChild(msg);
+    let i=0;
+    function typeChar(){
+      if(i<answer.length){
+        msg.textContent+=answer.charAt(i);
+        i++;
+        msgs.scrollTop = msgs.scrollHeight;
+        setTimeout(typeChar,10+Math.random()*15);
+      }
+    }
+    typeChar();
+  },500+Math.random()*400);
+}
+document.getElementById('ghost-input')?.addEventListener('keydown',e=>{if(e.key==='Enter')sendGhost()});
 </script>
 </body>
 </html>

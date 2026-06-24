@@ -790,13 +790,13 @@ body{
 .ghost-btn{
   position:fixed;
   bottom:24px;right:24px;
-  width:52px;height:52px;
-  border-radius:50%;
+  height:52px;
+  border-radius:26px;
   background:linear-gradient(135deg,var(--accent),var(--cyan));
   border:none;
   color:var(--bg);
   font-family:var(--mono);
-  font-size:1.3rem;
+  font-size:0.85rem;
   font-weight:700;
   cursor:pointer;
   z-index:9997;
@@ -804,19 +804,71 @@ body{
   transition:all .3s;
   display:flex;
   align-items:center;
-  justify-content:center;
+  gap:8px;
+  padding:0 18px;
+  letter-spacing:0.5px;
 }
-.ghost-btn:hover{transform:scale(1.08);box-shadow:0 6px 30px rgba(108,92,231,0.5)}
+.ghost-btn:hover{transform:scale(1.05);box-shadow:0 6px 30px rgba(108,92,231,0.5)}
 .ghost-btn .pulse{
   position:absolute;
   width:100%;height:100%;
-  border-radius:50%;
+  border-radius:26px;
   border:2px solid var(--accent);
   animation:ghostPulse 2s ease-out infinite;
+  pointer-events:none;
 }
 @keyframes ghostPulse{
   0%{transform:scale(1);opacity:0.6}
-  100%{transform:scale(1.6);opacity:0}
+  100%{transform:scale(1.2);opacity:0}
+}
+.ghost-btn-icon{
+  width:18px;height:18px;
+  border:2px solid var(--bg);
+  border-radius:4px;
+  position:relative;
+  flex-shrink:0;
+}
+.ghost-btn-icon::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;right:-2px;
+  width:6px;height:6px;
+  background:var(--bg);
+  clip-path:polygon(0 0,100% 0,100% 100%);
+}
+.ghost-btn-label{
+  white-space:nowrap;
+  position:relative;
+  z-index:1;
+}
+.ghost-btn-hint{
+  position:fixed;
+  bottom:40px;right:calc(24px + 120px + 12px);
+  font-family:var(--mono);
+  font-size:0.7rem;
+  color:var(--text3);
+  background:var(--bg2);
+  border:1px solid rgba(108,92,231,0.15);
+  border-radius:8px;
+  padding:6px 12px;
+  z-index:9996;
+  opacity:0;
+  transform:translateX(8px);
+  transition:all .4s ease-out;
+  pointer-events:none;
+  white-space:nowrap;
+}
+.ghost-btn-hint.visible{opacity:1;transform:translateX(0)}
+.ghost-btn-hint::after{
+  content:'';
+  position:absolute;
+  right:-6px;top:50%;
+  margin-top:-4px;
+  width:8px;height:8px;
+  background:var(--bg2);
+  border-right:1px solid rgba(108,92,231,0.15);
+  border-top:1px solid rgba(108,92,231,0.15);
+  transform:rotate(45deg);
 }
 .ghost-panel{
   position:fixed;
@@ -1076,8 +1128,9 @@ body{
   .cert-grid{grid-template-columns:1fr}
   .stat-item{padding:8px}
   .stat-number{font-size:1.2rem}
-  .ghost-panel{width:calc(100vw - 32px);right:16px;bottom:80px;height:60vh}
-  .ghost-btn{bottom:16px;right:16px;width:46px;height:46px}
+  .ghost-panel{width:calc(100vw - 32px);right:16px;bottom:76px;height:55vh}
+  .ghost-btn{bottom:16px;right:16px;height:44px;padding:0 14px;font-size:0.75rem}
+  .ghost-btn-hint{display:none!important}
 }
 </style>
 </head>
@@ -1954,9 +2007,11 @@ document.addEventListener('keydown',e=>{
 </script>
 
 <!-- GHOST Chat -->
+<div class="ghost-btn-hint" id="ghost-hint">Ask about Shahid</div>
 <button class="ghost-btn" id="ghost-btn" onclick="toggleGhost()">
   <span class="pulse"></span>
-  &gt;
+  <span class="ghost-btn-icon"></span>
+  <span class="ghost-btn-label">GHOST</span>
 </button>
 <div class="ghost-panel" id="ghost-panel">
   <div class="ghost-header">
@@ -1976,7 +2031,8 @@ document.addEventListener('keydown',e=>{
 const ghostQA = [
   // === ABOUT SHAHID ===
   {q:'who are you',a:"I'm GHOST — Shahid's digital assistant. I can answer questions about his experience, skills, projects, certifications, and anything else an employer might want to know. Ask away."},
-  {q:['how old','age','year born','birth year'],a:'Shahid was born in 2004, so he is 22 years old. Young, but he has been in the IT industry since 2022.'},
+  {q:['how old','age','year born','birth year'],a:'Shahid was born in 2004 — put him at 22. Been in IT since 2022, working his way from field tech to Systems Developer. Not bad for 4 years.'},
+  {q:['manager','report to','boss','supervisor','team lead'],a:'Juan Kahts — Systems Development Manager at Jenny Internet. You can reach him directly at 084 766 3381 if you want his perspective on Shahid\'s work.'},
   {q:['where based','location','live','city','town','newcastle'],a:'Newcastle, KwaZulu-Natal, South Africa. He has a Code 8 driver\'s license and his own car — fully mobile for work, interviews, or on-site visits.'},
   {q:['contact','email','reach','hire'],a:'shahidsingh1zn@gmail.com — straightforward and professional. He usually responds within a few hours.'},
   {q:['github','code','repos'],a:'github.com/sudobreakstuff — all his projects are open source, MIT licensed. The code speaks for itself.'},
@@ -2018,6 +2074,8 @@ const ghostQA = [
 
   // === PHILOSOPHY ===
   {q:['philosophy','approach','how you build','development style'],a:'\"Good code is like a clean workshop — organized, efficient, and ready for the next job.\" Shahid favors simplicity, transparency, and tools that solve one problem well. If a system needs to change, it should be obvious how.'},
+  {q:['steve jobs','apple','innovation','design','think different'],a:'\"The people who are crazy enough to think they can change the world are the ones who do.\" — Steve Jobs. Shahid\'s take: you don\'t change the world in one shot. You automate one repetitive task, build one tool, ship one product. Then another. That\'s how systems get built.'},
+  {q:['quote','inspire','inspiration','motto'],a:'\"If it\'s repetitive, I automate it. If it doesn\'t exist yet, I build it.\" — Shahid. Also a fan of Steve Jobs: \"The only way to do great work is to love what you do.\" And: \"Stay hungry, stay foolish.\""},
   {q:['open source','contribute','mit','license'],a:'All of Shahid\'s projects on GitHub are open source, most under MIT license. He believes code should be shared and improved — not locked away.'},
   {q:['tools','editor','setup','workflow'],a:'VS Code, Docker, Git, Ollama, PlatformIO, Arduino IDE, Python, Chrome DevTools. Terminal-first workflow. His setup is optimized for speed — minimal mouse, maximum keyboard.'},
 
@@ -2026,16 +2084,23 @@ const ghostQA = [
   {q:['thanks','thank you','appreciate'],a:'You\'re welcome. If you have more questions, I\'m here. Shahid is also available directly at shahidsingh1zn@gmail.com.'},
   {q:['bye','goodbye','see you','later'],a:'Good luck with your decision. Shahid is ready when you are — and his code speaks for itself.'},
   {q:['who created','who built','who made'],a:'I was built by Shahid as part of his resume site. I\'m a curated knowledge engine, not real AI — just smart matching against what Shahid knows and does.'},
-  {q:['joke','funny','humor'],a:'Why do Systems Developers prefer dark mode? Because light attracts bugs. (Shahid\'s site is dark mode too — coincidence? Probably not.)'},
+  {q:['joke','funny','humor','laugh','rofl','lol'],a:'Why do Systems Developers prefer dark mode? Because light attracts bugs. (Shahid\'s site is dark mode too — coincidence? Probably not.)'},
+  {q:'another joke',a:'How many Systems Developers does it take to change a lightbulb? None — that\'s a hardware issue. File a ticket.'},
+  {q:'tell me a joke',a:'Why don\'t Systems Developers quit? Because they\'re already running in the background.'},
+  {q:'one more joke',a:'A QA engineer walks into a bar. Orders 1 beer. Orders 0 beers. Orders 999999 beers. Orders a lizard. Orders -1 beers. A real customer walks in and asks where the bathroom is. The bar burns down. QA: "Yep, reproducible."'},
+
 ];
 
 // Matching engine
+// Keywords that are too common — ignore to avoid false matches
+const STOP_WORDS = new Set(['the','and','for','are','not','but','you','all','can','has','had','his','her','how','why','what','who','where','does','did','do','get','use','job','work','tell','about','with','that','this','from','they','have','been','will','would','know','like','make','said']);
 function normalize(s){return s.toLowerCase().replace(/[^a-z0-9 ]/g,'').trim()}
-function keywords(s){return normalize(s).split(/\s+/).filter(w=>w.length>2)}
+function keywords(s){return normalize(s).split(/\s+/).filter(w=>w.length>2&&!STOP_WORDS.has(w))}
 function matchQuestion(input){
   const inputKeywords = keywords(input);
   const inputNorm = normalize(input);
-  let best = {score:0,answer:ghostQA[0].a};
+  const FALLBACK = "I don't know that one. Try asking about his skills, experience, projects, certifications, what makes him different, or just say 'help' to see what I can answer.";
+  let best = {score:0,answer:FALLBACK};
   for(let pair of ghostQA){
     const questions = Array.isArray(pair.q)?pair.q:[pair.q];
     for(let q of questions){
@@ -2043,20 +2108,24 @@ function matchQuestion(input){
       const qNorm = normalize(q);
       const qKeywords = keywords(q);
       if(inputNorm===qNorm){score=100;best={score,answer:pair.a};break}
-      if(inputNorm.includes(qNorm)||qNorm.includes(inputNorm)){score=80}
+      if(inputNorm.includes(qNorm)||qNorm.includes(inputNorm)){score=70;if(inputNorm===qNorm||qNorm===inputNorm)score=90}
       for(let kw of inputKeywords){
-        if(qNorm.includes(kw)) score+=15;
+        if(qNorm.includes(kw)) score+=20;
       }
       for(let kw of qKeywords){
-        if(inputNorm.includes(kw)) score+=10;
+        if(inputNorm.includes(kw)) score+=12;
+      }
+      // Bonus for exact match on any keyword
+      for(let kw of inputKeywords){
+        for(let qkw of qKeywords){
+          if(kw===qkw) score+=8;
+        }
       }
       if(score>best.score){best={score,answer:pair.a}}
     }
     if(best.score>=100)break;
   }
-  if(best.score<15){
-    return "I don't have a good answer for that. Try asking about Shahid's skills, experience, projects, certifications, or what makes him different.";
-  }
+  if(best.score<28) return FALLBACK;
   return best.answer;
 }
 
@@ -2106,6 +2175,20 @@ function sendGhost(){
   },500+Math.random()*400);
 }
 document.getElementById('ghost-input')?.addEventListener('keydown',e=>{if(e.key==='Enter')sendGhost()});
+
+// ===== GHOST HINT ANIMATION =====
+(function(){
+  const hint = document.getElementById('ghost-hint');
+  const btn = document.getElementById('ghost-btn');
+  if(!hint||!btn) return;
+  // Show on load
+  setTimeout(()=>hint.classList.add('visible'),1000);
+  // Hide after 5s
+  setTimeout(()=>hint.classList.remove('visible'),6000);
+  // Show on hover
+  btn.addEventListener('mouseenter',()=>hint.classList.add('visible'));
+  btn.addEventListener('mouseleave',()=>hint.classList.remove('visible'));
+})();
 </script>
 </body>
 </html>

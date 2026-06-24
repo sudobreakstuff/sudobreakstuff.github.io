@@ -1,376 +1,1254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shahid Singh — Systems Developer</title>
-  <meta name="description" content="Resume of Shahid Singh, Systems Developer specializing in automation, full-stack development, and embedded systems.">
-  <meta property="og:title" content="Shahid Singh — Systems Developer">
-  <meta property="og:description" content="Systems Developer | Automation & Workflow Engineer | Full-Stack & Embedded Developer">
-  <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0a0a0f;
-      --bg2: #12121a;
-      --bg3: #1a1a2e;
-      --text: #e8e8f0;
-      --text2: #a0a0b8;
-      --accent: #6c5ce7;
-      --accent2: #a29bfe;
-      --green: #00b894;
-      --orange: #fdcb6e;
-      --radius: 12px;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-    @media print {
-      :root {
-        --bg: #fff;
-        --bg2: #fff;
-        --bg3: #f5f5f8;
-        --text: #111;
-        --text2: #555;
-        --accent: #4a3db8;
-        --accent2: #6c5ce7;
-      }
-      .no-print { display: none !important; }
-      .section, .hero { break-inside: avoid; }
-      .project-card, .job-card { break-inside: avoid; }
-      body { font-size: 11pt; }
-      .container { max-width: 100%; }
-    }
-    .hero { padding: 80px 0 48px; position: relative; overflow: hidden; }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -20%;
-      width: 70%;
-      height: 200%;
-      background: radial-gradient(ellipse, rgba(108,92,231,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-grid { display: grid; grid-template-columns: 1fr 240px; gap: 48px; align-items: start; }
-    .hero h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; }
-    .hero h1 span { color: var(--accent); }
-    .hero .title { font-size: 1.2rem; color: var(--accent2); font-weight: 500; margin-bottom: 16px; }
-    .hero .tagline { color: var(--text2); font-size: 1rem; max-width: 600px; margin-bottom: 24px; }
-    .contact-bar { display: flex; flex-wrap: wrap; gap: 12px 24px; }
-    .contact-bar a {
-      color: var(--text2); text-decoration: none; font-size: 0.9rem;
-      display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s;
-    }
-    .contact-bar a:hover { color: var(--accent); }
-    .contact-bar svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .hero-photo {
-      width: 200px; height: 200px; border-radius: 50%; background: var(--bg3);
-      border: 3px solid var(--accent); display: flex; align-items: center;
-      justify-content: center; font-size: 4rem; color: var(--accent2);
-    }
-    .hero-photo .initial { font-weight: 700; }
-    .section { padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-    .section-header h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.01em; }
-    .section-header .line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); }
-    .job-card {
-      background: var(--bg2); border: 1px solid rgba(255,255,255,0.05);
-      border-radius: var(--radius); padding: 28px; margin-bottom: 20px;
-      transition: border-color 0.2s;
-    }
-    .job-card:hover { border-color: rgba(108,92,231,0.3); }
-    .job-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
-    .job-header h3 { font-size: 1.15rem; font-weight: 600; }
-    .job-header .company { color: var(--accent2); }
-    .job-header .date { font-size: 0.85rem; color: var(--text2); white-space: nowrap; }
-    .job-subtitle { font-size: 0.9rem; color: var(--text2); margin-bottom: 14px; }
-    .job-list { list-style: none; display: grid; gap: 8px; }
-    .job-list li { padding-left: 20px; position: relative; font-size: 0.95rem; color: var(--text2); }
-    .job-list li::before {
-      content: ''; position: absolute; left: 0; top: 10px;
-      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-    }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-    .project-card {
-      background: var(--bg2); border: 1px solid rgba(255,255,255,0.05);
-      border-radius: var(--radius); padding: 24px; transition: all 0.2s;
-    }
-    .project-card:hover { border-color: rgba(108,92,231,0.3); transform: translateY(-2px); }
-    .project-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
-    .project-card .tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-    .project-card .tech span {
-      font-size: 0.75rem; padding: 2px 10px; border-radius: 20px;
-      background: rgba(108,92,231,0.12); color: var(--accent2); font-weight: 500;
-    }
-    .project-card p { font-size: 0.9rem; color: var(--text2); line-height: 1.5; }
-    .project-card .links { margin-top: 12px; display: flex; gap: 12px; }
-    .project-card .links a { font-size: 0.85rem; color: var(--accent); text-decoration: none; font-weight: 500; }
-    .project-card .links a:hover { text-decoration: underline; }
-    .jenny-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-    .jenny-item {
-      background: var(--bg2); border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 8px; padding: 16px; font-size: 0.9rem; color: var(--text2);
-    }
-    .jenny-item strong { color: var(--text); display: block; margin-bottom: 4px; }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
-    .skill-cat {
-      background: var(--bg2); border: 1px solid rgba(255,255,255,0.05);
-      border-radius: var(--radius); padding: 20px;
-    }
-    .skill-cat h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; color: var(--accent2); }
-    .skill-cat .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .skill-cat .tags span {
-      font-size: 0.8rem; padding: 4px 12px; border-radius: 20px;
-      background: rgba(255,255,255,0.04); color: var(--text2);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .edu-card {
-      background: var(--bg2); border: 1px solid rgba(255,255,255,0.05);
-      border-radius: var(--radius); padding: 24px;
-    }
-    .edu-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
-    .edu-card .meta { font-size: 0.9rem; color: var(--text2); margin-bottom: 12px; }
-    .edu-card ul { list-style: none; display: grid; gap: 6px; }
-    .edu-card ul li { padding-left: 18px; position: relative; font-size: 0.9rem; color: var(--text2); }
-    .edu-card ul li::before {
-      content: ''; position: absolute; left: 0; top: 9px;
-      width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
-    }
-    .achievement-list { list-style: none; display: grid; gap: 12px; }
-    .achievement-list li {
-      background: var(--bg2); border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 8px; padding: 16px 20px; font-size: 0.9rem; color: var(--text2);
-      padding-left: 44px; position: relative;
-    }
-    .achievement-list li::before { content: '◆'; position: absolute; left: 18px; color: var(--accent); }
-    footer { text-align: center; padding: 40px 0; color: var(--text2); font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
-    footer a { color: var(--accent); text-decoration: none; }
-    @media (max-width: 768px) {
-      .hero-grid { grid-template-columns: 1fr; text-align: center; }
-      .hero-photo { margin: 0 auto; width: 140px; height: 140px; font-size: 3rem; order: -1; }
-      .contact-bar { justify-content: center; }
-      .hero h1 { font-size: 2rem; }
-      .hero .tagline { margin: 0 auto 24px; }
-      .projects-grid, .jenny-grid, .skills-grid { grid-template-columns: 1fr; }
-      .job-header { flex-direction: column; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahid Singh — Systems Developer</title>
+<meta name="description" content="Shahid Singh — Systems Developer, Automation Engineer, full-stack and embedded developer from Newcastle, South Africa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06060e;
+  --bg2:#0c0c1a;
+  --bg3:#111128;
+  --surface:#16162e;
+  --surface2:#1c1c3a;
+  --text:#e0e0f0;
+  --text2:#9090b8;
+  --text3:#606088;
+  --accent:#6c5ce7;
+  --accent2:#a29bfe;
+  --cyan:#00cec9;
+  --green:#00b894;
+  --orange:#fdcb6e;
+  --red:#ff7675;
+  --pink:#fd79a8;
+  --radius:12px;
+  --font:'Inter',sans-serif;
+  --mono:'Fira Code',monospace;
+  --space:'Space Grotesk',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* Canvas background */
+#particles-canvas{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* ===== TERMINAL HERO ===== */
+.hero-terminal{
+  position:relative;
+  z-index:1;
+  padding:60px 0 40px;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+}
+.terminal-window{
+  background:rgba(12,12,26,0.92);
+  border:1px solid rgba(108,92,231,0.25);
+  border-radius:12px;
+  overflow:hidden;
+  backdrop-filter:blur(20px);
+  width:100%;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+.terminal-header{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 16px;
+  background:rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.terminal-dot{
+  width:12px;height:12px;border-radius:50%;
+}
+.terminal-dot.red{background:#ff5f57}
+.terminal-dot.yellow{background:#ffbd2e}
+.terminal-dot.green{background:#28c840}
+.terminal-title{
+  font-family:var(--mono);
+  font-size:0.75rem;
+  color:var(--text3);
+  margin-left:12px;
+}
+.terminal-body{
+  padding:24px 28px;
+  font-family:var(--mono);
+  font-size:0.9rem;
+  line-height:1.7;
+}
+.terminal-line{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:6px;
+}
+.terminal-prompt{
+  color:var(--green);
+  flex-shrink:0;
+  user-select:none;
+}
+.terminal-output{color:var(--text2);white-space:pre-wrap}
+.terminal-cursor{
+  display:inline-block;
+  width:8px;height:16px;
+  background:var(--accent);
+  animation:blink 1s step-end infinite;
+  vertical-align:text-bottom;
+  margin-left:2px;
+}
+@keyframes blink{50%{opacity:0}}
+.hero-title{
+  font-size:1.1rem;
+  color:var(--accent2);
+  font-weight:500;
+}
+.hero-name{
+  font-size:2rem;
+  font-weight:700;
+  color:var(--text);
+  margin:4px 0;
+}
+.hero-name span{color:var(--accent)}
+.typewriter-text{
+  color:var(--text2);
+  font-size:0.85rem;
+  min-height:1.6em;
+}
+.terminal-email{
+  margin-top:16px;
+  padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 20px;
+}
+.terminal-email span{
+  font-family:var(--mono);
+  font-size:0.8rem;
+  color:var(--text3);
+}
+.terminal-email a{
+  color:var(--cyan);
+  text-decoration:none;
+  font-size:0.8rem;
+  transition:color .2s;
+}
+.terminal-email a:hover{color:var(--accent2)}
+
+/* Stats bar */
+.stats-bar{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:12px;
+  margin-top:24px;
+}
+.stat-item{
+  text-align:center;
+  padding:12px;
+  background:rgba(255,255,255,0.03);
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.05);
+}
+.stat-number{
+  font-family:var(--mono);
+  font-size:1.5rem;
+  font-weight:700;
+  color:var(--accent);
+}
+.stat-label{
+  font-size:0.7rem;
+  color:var(--text3);
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  margin-top:2px;
+}
+
+/* ===== SECTIONS ===== */
+.section{
+  position:relative;
+  z-index:1;
+  padding:60px 0;
+  border-top:1px solid rgba(255,255,255,0.04);
+}
+.section-header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:32px;
+}
+.section-header .icon{
+  font-size:1.2rem;
+  color:var(--accent);
+}
+.section-header h2{
+  font-family:var(--space);
+  font-size:1.5rem;
+  font-weight:700;
+  letter-spacing:-0.01em;
+}
+.section-header .line{
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,var(--accent),transparent);
+}
+
+/* ===== PROFILE ===== */
+.profile-card{
+  background:var(--bg2);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:var(--radius);
+  padding:28px;
+}
+.profile-card p{
+  font-size:0.95rem;
+  color:var(--text2);
+  line-height:1.7;
+}
+.profile-card .highlight{
+  color:var(--text);
+  font-weight:500;
+}
+
+/* ===== EXPERIENCE TIMELINE ===== */
+.timeline{position:relative;padding-left:36px}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:12px;top:8px;bottom:8px;
+  width:2px;
+  background:linear-gradient(to bottom,var(--accent),var(--cyan),var(--green),transparent);
+}
+.timeline-node{
+  position:absolute;
+  left:4px;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  border:2px solid var(--accent);
+  background:var(--bg);
+  z-index:2;
+}
+.timeline-node.current{
+  background:var(--accent);
+  box-shadow:0 0 20px rgba(108,92,231,0.4);
+}
+.tl-item{position:relative;margin-bottom:28px;padding-left:20px}
+.tl-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:4px;
+}
+.tl-header h3{
+  font-family:var(--space);
+  font-size:1.1rem;
+  font-weight:600;
+}
+.tl-header .company{color:var(--accent2)}
+.tl-header .date{
+  font-family:var(--mono);
+  font-size:0.75rem;
+  color:var(--text3);
+  white-space:nowrap;
+  padding:2px 10px;
+  border-radius:20px;
+  background:rgba(108,92,231,0.1);
+  border:1px solid rgba(108,92,231,0.2);
+}
+.tl-subtitle{font-size:0.85rem;color:var(--text3);margin-bottom:10px}
+.tl-details{display:none;margin-top:10px}
+.tl-details.open{display:block}
+.tl-toggle{
+  font-family:var(--mono);
+  font-size:0.75rem;
+  color:var(--cyan);
+  cursor:pointer;
+  user-select:none;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:2px 0;
+  background:none;
+  border:none;
+}
+.tl-toggle:hover{color:var(--accent2)}
+.tl-details ul{list-style:none;display:grid;gap:6px;padding:0}
+.tl-details ul li{
+  padding-left:16px;
+  position:relative;
+  font-size:0.88rem;
+  color:var(--text2);
+}
+.tl-details ul li::before{
+  content:'>';
+  position:absolute;
+  left:0;
+  color:var(--accent);
+  font-family:var(--mono);
+}
+
+/* ===== SKILLS HEX ===== */
+.skills-hex{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:14px;
+}
+.hex-item{
+  background:var(--bg2);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:var(--radius);
+  padding:20px;
+  transition:all .3s;
+  position:relative;
+  overflow:hidden;
+}
+.hex-item::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--cyan));
+  opacity:0;
+  transition:opacity .3s;
+}
+.hex-item:hover::before{opacity:1}
+.hex-item:hover{
+  border-color:rgba(108,92,231,0.3);
+  transform:translateY(-2px);
+}
+.hex-item h3{
+  font-size:0.85rem;
+  font-weight:600;
+  color:var(--accent2);
+  margin-bottom:8px;
+}
+.hex-item .tags{display:flex;flex-wrap:wrap;gap:4px}
+.hex-item .tags span{
+  font-size:0.7rem;
+  padding:2px 8px;
+  border-radius:4px;
+  background:rgba(255,255,255,0.04);
+  color:var(--text3);
+  border:1px solid rgba(255,255,255,0.06);
+  font-family:var(--mono);
+}
+
+/* ===== PROJECTS ===== */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:16px;
+}
+.project-card{
+  background:var(--bg2);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:var(--radius);
+  padding:24px;
+  transition:all .4s cubic-bezier(.25,.46,.45,.94);
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+}
+.project-card::after{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(circle,rgba(108,92,231,0.06),transparent 60%);
+  opacity:0;
+  transition:opacity .4s;
+  pointer-events:none;
+}
+.project-card:hover::after{opacity:1}
+.project-card:hover{
+  border-color:rgba(108,92,231,0.3);
+  transform:translateY(-4px);
+  box-shadow:0 8px 30px rgba(108,92,231,0.15);
+}
+.project-card h3{
+  font-family:var(--space);
+  font-size:1rem;
+  font-weight:600;
+  margin-bottom:6px;
+}
+.project-card .tech{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  margin-bottom:10px;
+}
+.project-card .tech span{
+  font-family:var(--mono);
+  font-size:0.65rem;
+  padding:1px 8px;
+  border-radius:4px;
+  background:rgba(108,92,231,0.1);
+  color:var(--accent2);
+  border:1px solid rgba(108,92,231,0.15);
+}
+.project-card p{
+  font-size:0.85rem;
+  color:var(--text2);
+  line-height:1.5;
+}
+.project-card .links{
+  margin-top:12px;
+  display:flex;
+  gap:12px;
+}
+.project-card .links a{
+  font-family:var(--mono);
+  font-size:0.75rem;
+  color:var(--cyan);
+  text-decoration:none;
+  padding:4px 12px;
+  border-radius:6px;
+  border:1px solid rgba(0,206,201,0.2);
+  transition:all .2s;
+}
+.project-card .links a:hover{
+  background:rgba(0,206,201,0.1);
+  border-color:var(--cyan);
+  color:var(--text);
+}
+
+/* ===== CERTIFICATIONS ===== */
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:10px;
+}
+.cert-item{
+  background:var(--bg2);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:8px;
+  padding:14px 16px;
+  font-size:0.85rem;
+  color:var(--text2);
+  transition:border-color .2s;
+}
+.cert-item strong{
+  display:block;
+  color:var(--text);
+  font-weight:500;
+  margin-bottom:2px;
+}
+.cert-item:hover{border-color:rgba(108,92,231,0.3)}
+
+/* ===== EDUCATION ===== */
+.edu-card{
+  background:var(--bg2);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:var(--radius);
+  padding:24px;
+}
+.edu-item{margin-bottom:20px}
+.edu-item:last-child{margin-bottom:0}
+.edu-item h3{font-size:1rem;font-weight:600;margin-bottom:2px}
+.edu-item .meta{
+  font-size:0.8rem;
+  color:var(--text3);
+  font-family:var(--mono);
+}
+.edu-item ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+.edu-item ul li{
+  font-size:0.75rem;
+  padding:2px 10px;
+  border-radius:4px;
+  background:rgba(108,92,231,0.08);
+  color:var(--text2);
+}
+
+/* ===== REFERENCE CARDS ===== */
+.ref-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:12px;
+}
+.ref-card{
+  background:var(--bg2);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:8px;
+  padding:18px;
+}
+.ref-card h3{font-size:0.9rem;font-weight:600;margin-bottom:2px}
+.ref-card .role{font-size:0.8rem;color:var(--text3);margin-bottom:6px}
+.ref-card .phone{
+  font-family:var(--mono);
+  font-size:0.8rem;
+  color:var(--accent2);
+}
+
+/* ===== FOOTER ===== */
+.terminal-footer{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  padding:40px 0;
+  border-top:1px solid rgba(255,255,255,0.04);
+}
+.terminal-footer p{
+  font-family:var(--mono);
+  font-size:0.75rem;
+  color:var(--text3);
+}
+.terminal-footer a{color:var(--cyan);text-decoration:none}
+.terminal-footer a:hover{color:var(--accent2)}
+
+/* ===== COMMAND PALETTE ===== */
+.cmd-overlay{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.7);
+  z-index:9999;
+  backdrop-filter:blur(4px);
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:20vh;
+}
+.cmd-overlay.active{display:flex}
+.cmd-modal{
+  background:var(--bg2);
+  border:1px solid rgba(108,92,231,0.3);
+  border-radius:12px;
+  width:560px;
+  max-width:90vw;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+.cmd-input-wrap{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 18px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  background:var(--bg3);
+}
+.cmd-input-wrap .prompt{
+  font-family:var(--mono);
+  font-size:0.85rem;
+  color:var(--green);
+}
+.cmd-input{
+  flex:1;
+  background:none;
+  border:none;
+  outline:none;
+  font-family:var(--mono);
+  font-size:0.85rem;
+  color:var(--text);
+}
+.cmd-results{padding:8px 0;max-height:300px;overflow-y:auto}
+.cmd-result-item{
+  padding:8px 18px;
+  font-family:var(--mono);
+  font-size:0.8rem;
+  color:var(--text2);
+  cursor:pointer;
+  display:flex;
+  gap:12px;
+}
+.cmd-result-item .cmd-cmd{color:var(--accent2)}
+.cmd-result-item .cmd-desc{color:var(--text3)}
+.cmd-result-item:hover{background:rgba(108,92,231,0.08)}
+.cmd-result-item.active{background:rgba(108,92,231,0.12)}
+
+/* ===== PRINT ===== */
+@media print{
+  :root{
+    --bg:#fff;--bg2:#fff;--bg3:#f5f5f8;
+    --text:#111;--text2:#555;--text3:#777;
+    --accent:#4a3db8;--accent2:#6c5ce7;
+    --cyan:#00897b;--green:#00897b;
+  }
+  #particles-canvas{display:none!important}
+  .cmd-overlay{display:none!important}
+  .no-print{display:none!important}
+  .hero-terminal{min-height:auto;padding:20px 0}
+  .terminal-window{box-shadow:none;background:var(--bg2);border-color:#ddd}
+  .terminal-body{padding:16px}
+  .section{padding:24px 0;break-inside:avoid}
+  .project-card:hover{transform:none;box-shadow:none}
+  .tl-details{display:block!important}
+  .tl-toggle{display:none!important}
+  .stats-bar{grid-template-columns:repeat(4,1fr)}
+  body{font-size:10pt}
+}
+
+@media(max-width:768px){
+  .terminal-body{padding:16px}
+  .hero-name{font-size:1.4rem}
+  .hero-terminal{min-height:auto;padding:40px 0}
+  .timeline{padding-left:24px}
+  .projects-grid{grid-template-columns:1fr}
+  .skills-hex{grid-template-columns:1fr 1fr}
+  .cert-grid{grid-template-columns:1fr 1fr}
+}
+</style>
 </head>
 <body>
-<div class="container">
-  <section class="hero">
-    <div class="hero-grid">
-      <div>
-        <h1>Shahid <span>Singh</span></h1>
-        <div class="title">Systems Developer</div>
-        <p class="tagline">Automation engineer, full-stack & embedded developer. I build systems that eliminate busywork — ticket workflows, browser tools, hardware controllers, and cross-platform apps — all from Newcastle, South Africa.</p>
-        <div class="contact-bar">
-          <a href="mailto:shahidsingh1zn@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>shahidsingh1zn@gmail.com</a>
-          <a href="https://github.com/sudobreakstuff" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>github.com/sudobreakstuff</a>
-          <a href="https://za.linkedin.com/in/shahid-singh-8a1295366" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
-          <a>Newcastle, South Africa</a>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- TERMINAL HERO -->
+<section class="hero-terminal" id="top">
+  <div class="container">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-dot red"></div>
+        <div class="terminal-dot yellow"></div>
+        <div class="terminal-dot green"></div>
+        <div class="terminal-title">shahid@resume:~</div>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-output">whoami</span>
+        </div>
+        <div class="hero-name">Shahid <span>Singh</span></div>
+        <div class="hero-title">Systems Developer &middot; Automation Engineer &middot; Full-Stack & Embedded Developer</div>
+        <div class="terminal-line" style="margin-top:14px">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-output">cat profile.txt</span>
+        </div>
+        <div class="typewriter-text" id="typewriter"></div>
+        <div class="terminal-line" style="margin-top:16px">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-output"><span style="color:var(--text2)">email:</span> <a href="mailto:shahidsingh1zn@gmail.com" style="color:var(--cyan);text-decoration:none">shahidsingh1zn@gmail.com</a></span>
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-output"><span style="color:var(--text2)">github:</span> <a href="https://github.com/sudobreakstuff" target="_blank" style="color:var(--cyan);text-decoration:none">github.com/sudobreakstuff</a></span>
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-output"><span style="color:var(--text2)">location:</span> Newcastle, South Africa</span>
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-output"><span style="color:var(--text2)">license:</span> Code 8 &middot; Own Car</span>
+        </div>
+        <div class="terminal-line">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-output"><span style="color:var(--text2)">hobbies:</span> Cricket, Fishing, Hiking</span>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-bar">
+          <div class="stat-item"><div class="stat-number" data-target="4">0</div><div class="stat-label">Years IT</div></div>
+          <div class="stat-item"><div class="stat-number" data-target="20">0</div><div class="stat-label">Workflows Built</div></div>
+          <div class="stat-item"><div class="stat-number" data-target="10">0</div><div class="stat-label">Projects Shipped</div></div>
+          <div class="stat-item"><div class="stat-number" data-target="6">0</div><div class="stat-label">Certifications</div></div>
         </div>
       </div>
-      <div class="hero-photo"><span class="initial">SS</span></div>
     </div>
-  </section>
-  <section class="section" id="experience">
-    <div class="section-header"><h2>Experience</h2><div class="line"></div></div>
-    <div class="job-card">
-      <div class="job-header"><h3>Systems Developer <span class="company">— Jenny Internet</span></h3><span class="date">Jun 2025 – Present · 1 yr</span></div>
-      <div class="job-subtitle">Newcastle, South Africa</div>
-      <ul class="job-list">
-        <li>Architected the entire DFE ticket workflow system reducing manual ticket handling by ~70% across Support, Operations, and Admin teams.</li>
-        <li>Built 20+ production workflow templates including Wireless Support, Customer Callout AI, Equipment Orders, Vehicle Management, Overtime, Expenses, Site Rental, and Admin requests.</li>
-        <li>Designed guided troubleshooting flows, Quick Navigate, pre-escalation checklists, customer-in-pain detection, and cross-ticket automation pipelines.</li>
-        <li>Integrated Rocket.Chat alerting across all departments for real-time operations visibility.</li>
-        <li>Created internal wiki documentation, beginner guides, and wireless troubleshooting playbooks used company-wide.</li>
-        <li>Developed Chrome extensions (Jenny Screenshot Assistant, Jenny Vault) for agent productivity with OCR, redaction, annotation, and encrypted template storage.</li>
-      </ul>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="icon">></span>
+      <h2>Profile</h2>
+      <div class="line"></div>
     </div>
-    <div class="job-card">
-      <div class="job-header"><h3>Senior Support Agent <span class="company">— Jenny Internet</span></h3><span class="date">Jun 2023 – May 2025 · 2 yrs</span></div>
-      <div class="job-subtitle">Newcastle, South Africa</div>
-      <ul class="job-list">
-        <li>Provided advanced wireless ISP support including no-connection, speed, intermittent, and outage troubleshooting.</li>
-        <li>Performed signal analysis, traceroutes, tower/sector checks, LAN sync verification, and queue inspection.</li>
-        <li>Mentored junior agents and contributed to internal knowledge base and troubleshooting guides.</li>
-        <li>Developed deep understanding of customer pain points that later informed workflow automation design as a developer.</li>
-      </ul>
+    <div class="profile-card">
+      <p>
+        Junior IT Technician with over <span class="highlight">3 years of experience</span> in 
+        Network Engineering, IT Solutions, Helpdesk Support, and Graphic Design. Successfully designed 
+        and managed a college server and network infrastructure. Contracted through Khuphula Solutions 
+        for various companies, delivering network setups, installations, and technical support that 
+        enhanced operational efficiency and user experience. Proficient in 
+        <span class="highlight">CompTIA A+, Network+, Helpdesk services</span>, and skilled in 
+        Web Hosting (cPanel), Ethical Hacking, and Cybersecurity. Currently working as a 
+        <span class="highlight">Systems Developer</span> at Jenny Internet, building automation 
+        workflows, Chrome extensions, and internal tools. Brings a strong problem-solving mindset, 
+        a passion for continuous improvement, and a commitment to supporting users and teams effectively.
+      </p>
     </div>
-    <div class="job-card">
-      <div class="job-header"><h3>College Lecturer & Server Administrator</h3><span class="date">2020 – 2023 · 3 yrs</span></div>
-      <div class="job-subtitle">Newcastle, South Africa</div>
-      <ul class="job-list">
-        <li>Delivered lectures in IT and computer-related subjects to tertiary students.</li>
-        <li>Managed and maintained the college server infrastructure including user accounts, backups, and network stability.</li>
-        <li>Developed course materials and practical assessments for systems development modules.</li>
-      </ul>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-header">
+      <span class="icon">~</span>
+      <h2>Experience</h2>
+      <div class="line"></div>
     </div>
-  </section>
-  <section class="section" id="education">
-    <div class="section-header"><h2>Education</h2><div class="line"></div></div>
-    <div class="edu-card">
-      <h3>Diploma in Systems Development</h3>
-      <div class="meta">Boston City Campus, Newcastle, South Africa · 2025 – Present</div>
-      <ul>
-        <li>Systems Development (HSYD100-1)</li>
-        <li>Information Systems Management (HISM100-1)</li>
-        <li>Academic Literacy (HALP100-1)</li>
-      </ul>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="timeline-node current"></div>
+        <div class="tl-header">
+          <h3>Systems Developer <span class="company">— Jenny Internet</span></h3>
+          <span class="date">03/2026 &ndash; Present</span>
+        </div>
+        <div class="tl-subtitle">Full-time &middot; Newcastle</div>
+        <button class="tl-toggle" onclick="toggleTL(this)">[+] expand</button>
+        <div class="tl-details">
+          <ul>
+            <li>Built 20+ production DFE ticket workflow templates for Wireless Support, Customer Callout AI, Equipment Orders, Overtime, Vehicle Management, Expenses, Site Rental, and Admin requests.</li>
+            <li>Designed guided troubleshooting flows, Quick Navigate ticket navigation, pre-escalation checklists, customer-in-pain detection, and cross-ticket automation pipelines.</li>
+            <li>Integrated Rocket.Chat alerting across Support, Operations, and Admin departments.</li>
+            <li>Developed Chrome extensions (Jenny Screenshot Assistant, Jenny Vault) for agent productivity with OCR, redaction, and encrypted template storage.</li>
+            <li>Built internal wiki documentation, beginner guides, and wireless troubleshooting playbooks.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="timeline-node"></div>
+        <div class="tl-header">
+          <h3>IT Support Agent <span class="company">— Jenny Internet</span></h3>
+          <span class="date">05/2025 &ndash; 02/2026</span>
+        </div>
+        <div class="tl-subtitle">Full-time &middot; Newcastle</div>
+        <button class="tl-toggle" onclick="toggleTL(this)">[+] expand</button>
+        <div class="tl-details">
+          <ul>
+            <li>Provided technical support for residential and business clients, troubleshooting connectivity issues.</li>
+            <li>Configured and managed MikroTik and various routers; performed port forwarding, speed tests, and signal analysis.</li>
+            <li>Guided customers through network setups, ensuring reliable, high-performance internet services.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="timeline-node"></div>
+        <div class="tl-header">
+          <h3>Junior Technician <span class="company">— Khuphula Solutions</span></h3>
+          <span class="date">03/2023 &ndash; 05/2025</span>
+        </div>
+        <div class="tl-subtitle">Part-time &middot; Newcastle</div>
+        <button class="tl-toggle" onclick="toggleTL(this)">[+] expand</button>
+        <div class="tl-details">
+          <ul>
+            <li>Promoted to Junior Technician after completing CompTIA A+ certification.</li>
+            <li>Installed server cabinets, biometrics, CCTV, VoIP, and networks for major clients: Ackermans, Pick n Pay Clothing, Builders Warehouse, Hungry Lion, Game Stores, and others.</li>
+            <li>Handled cabling, hardware repairs, and provided IT services across multiple companies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="timeline-node"></div>
+        <div class="tl-header">
+          <h3>Technical Learner <span class="company">— National Computer College</span></h3>
+          <span class="date">11/2022 &ndash; 05/2025</span>
+        </div>
+        <div class="tl-subtitle">Part-time &middot; Newcastle</div>
+        <button class="tl-toggle" onclick="toggleTL(this)">[+] expand</button>
+        <div class="tl-details">
+          <ul>
+            <li>Designed and implemented a 20-PC network from scratch, including server rack, cabling, and workstation configuration.</li>
+            <li>Set up a secure Dell file server with switch and firewall for the college IT lab.</li>
+            <li>Lectured CompTIA A+ students online and managed network infrastructure.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="timeline-node"></div>
+        <div class="tl-header">
+          <h3>Learner <span class="company">— Arcelor Mittal</span></h3>
+          <span class="date">03/2023 &ndash; 02/2024</span>
+        </div>
+        <div class="tl-subtitle">Full-time &middot; Newcastle</div>
+        <button class="tl-toggle" onclick="toggleTL(this)">[+] expand</button>
+        <div class="tl-details">
+          <ul>
+            <li>Completed a learnership at ArcelorMittal South Africa, gaining steel manufacturing knowledge.</li>
+            <li>Worked in Billet Mill control rooms with hands-on operational experience.</li>
+            <li>Awarded Level 2 Junior Metallurgy Certificate in 11 months.</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
-  </section>
-  <section class="section" id="skills">
-    <div class="section-header"><h2>Skills & Technologies</h2><div class="line"></div></div>
-    <div class="skills-grid">
-      <div class="skill-cat">
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-header">
+      <span class="icon">#</span>
+      <h2>Skills</h2>
+      <div class="line"></div>
+    </div>
+    <div class="skills-hex">
+      <div class="hex-item">
         <h3>Workflow & Automation</h3>
-        <div class="tags"><span>Heimdall Triggers</span><span>SendActions</span><span>DFE Templates</span><span>Ticket Automation</span><span>Rocket.Chat API</span><span>JSON Workflows</span></div>
+        <div class="tags">
+          <span>Heimdall</span><span>SendActions</span><span>DFE</span><span>Rocket.Chat</span><span>JSON</span><span>Automation</span>
+        </div>
       </div>
-      <div class="skill-cat">
-        <h3>Frontend & Browser Extensions</h3>
-        <div class="tags"><span>React</span><span>TypeScript</span><span>Manifest V3</span><span>Vite</span><span>HTML/CSS/JS</span><span>Tesseract.js OCR</span><span>Canvas API</span></div>
+      <div class="hex-item">
+        <h3>Frontend & Extensions</h3>
+        <div class="tags">
+          <span>React</span><span>TypeScript</span><span>Manifest V3</span><span>Vite</span><span>HTML/CSS</span><span>JavaScript</span><span>OCR</span>
+        </div>
       </div>
-      <div class="skill-cat">
-        <h3>Mobile & Desktop Apps</h3>
-        <div class="tags"><span>Flutter / Dart</span><span>Riverpod</span><span>Drift / SQLite</span><span>Supabase</span><span>GoRouter</span></div>
+      <div class="hex-item">
+        <h3>Mobile & Desktop</h3>
+        <div class="tags">
+          <span>Flutter</span><span>Dart</span><span>Riverpod</span><span>SQLite</span><span>Supabase</span><span>Drift</span>
+        </div>
       </div>
-      <div class="skill-cat">
+      <div class="hex-item">
         <h3>Embedded & Hardware</h3>
-        <div class="tags"><span>ESP32 / Arduino</span><span>BLE HID</span><span>LVGL</span><span>TFT_eSPI</span><span>C++</span><span>3D Printing</span><span>Web Serial</span></div>
+        <div class="tags">
+          <span>ESP32</span><span>Arduino</span><span>C++</span><span>BLE HID</span><span>LVGL</span><span>3D Printing</span>
+        </div>
       </div>
-      <div class="skill-cat">
+      <div class="hex-item">
+        <h3>Networking & Security</h3>
+        <div class="tags">
+          <span>MikroTik</span><span>TCP/IP</span><span>Firewalls</span><span>CCTV</span><span>VoIP</span><span>Cabling</span>
+        </div>
+      </div>
+      <div class="hex-item">
         <h3>Backend & AI</h3>
-        <div class="tags"><span>Python</span><span>FastAPI</span><span>Ollama / vLLM</span><span>ChromaDB</span><span>RAG</span><span>Docker</span><span>PostgreSQL</span></div>
+        <div class="tags">
+          <span>Python</span><span>FastAPI</span><span>Ollama</span><span>Docker</span><span>Linux</span><span>Git</span>
+        </div>
       </div>
-      <div class="skill-cat">
-        <h3>OS & DevOps</h3>
-        <div class="tags"><span>Linux (Arch/Debian)</span><span>Git</span><span>systemd</span><span>GitHub Actions</span><span>Cross-compilation</span><span>ARM64</span></div>
+      <div style="grid-column:1/-1;text-align:center;padding:16px 0">
+        <div class="hex-item" style="display:inline-block;padding:12px 28px">
+          <h3>Professional Skills</h3>
+          <div class="tags" style="justify-content:center">
+            <span>Professionalism</span><span>Teamwork</span><span>Flexibility</span><span>Creativity</span>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-  <section class="section" id="achievements">
-    <div class="section-header"><h2>Key Achievements</h2><div class="line"></div></div>
-    <ul class="achievement-list">
-      <li>Reduced manual ticket handling by ~70% across ISP support operations through custom workflow automation.</li>
-      <li>Built a production-ready BLE macro keyboard (SudoDeck) competing with the Elgato Stream Deck — sold in South Africa for R1,099 with full open-source firmware and tools.</li>
-      <li>Created a 249MB offline educational suite (NexCampus) with 16 study tools, code lab, OCR, dictionary, and interactive solar system — zero internet required.</li>
-      <li>Developed an open-source business management suite (SpiceDesk) for small food shops with POS, inventory, CRM, and expense tracking — MIT licensed.</li>
-      <li>Published 6+ open-source projects on GitHub including Chrome extensions, Flutter apps, and embedded firmware.</li>
-      <li>Self-hosted AI workspace (Odysseus) supporting local LLMs, RAG, agents, email triage, and deep research.</li>
-      <li>Built a custom Linux kernel (SudoOS) for ARM64 handheld gaming devices.</li>
-    </ul>
-  </section>
-  <section class="section" id="jenny-projects">
-    <div class="section-header"><h2>Work Projects — Jenny Internet</h2><div class="line"></div></div>
-    <div class="jenny-grid">
-      <div class="jenny-item"><strong>DFE Ticket Workflow Templates</strong>20+ templates for Support, Operations, and Admin.</div>
-      <div class="jenny-item"><strong>Wireless Support 02 Workflow</strong>Guided troubleshooting for all support scenarios.</div>
-      <div class="jenny-item"><strong>Quick Navigate</strong>Jump-to-section navigation for long support tickets.</div>
-      <div class="jenny-item"><strong>Customer Callout AI</strong>Structured callout tickets with auto-received data.</div>
-      <div class="jenny-item"><strong>Callout Automation Logic</strong>Payment handling, arrangement, cancellation flows.</div>
-      <div class="jenny-item"><strong>Heimdall Scheduled Triggers</strong>Dealer-change triggers, duplicate prevention.</div>
-      <div class="jenny-item"><strong>HOD Escalation Workflows</strong>State save, assign, return to original agent.</div>
-      <div class="jenny-item"><strong>Manager Call Requests</strong>Assignment, notification, auto-return.</div>
-      <div class="jenny-item"><strong>Rocket.Chat Notifications</strong>Real-time alerts across all departments.</div>
-      <div class="jenny-item"><strong>Customer-in-Pain Detection</strong>Identifies repeat-issue customers automatically.</div>
-      <div class="jenny-item"><strong>Overtime Logging</strong>Technician tracking with Rocket.Chat updates.</div>
-      <div class="jenny-item"><strong>Vehicle & Expense Linked Workflows</strong>Bidirectional ticket updates.</div>
-      <div class="jenny-item"><strong>Equipment Order UX & Automation</strong>Order items, billing, compact infoblocks.</div>
-      <div class="jenny-item"><strong>CPE Installation Workflows</strong>MikroTik scripts, manual override logic.</div>
-      <div class="jenny-item"><strong>Admin/System Request Workflows</strong>Custom checklists, visible progress.</div>
-      <div class="jenny-item"><strong>Refund & Site Rental Workflows</strong>Suspend/restart, structured payment terms.</div>
-      <div class="jenny-item"><strong>Internal Wiki & Documentation</strong>Company-wide reference guides.</div>
-      <div class="jenny-item"><strong>Form UX Improvements</strong>Required fields, collapsible sections, guided steps.</div>
-      <div class="jenny-item"><strong>Ticket-to-Ticket Automation</strong>Cross-workflow data passing.</div>
-      <div class="jenny-item"><strong>Chrome Extensions for Agents</strong>OCR + redaction + vault tools.</div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certifications">
+  <div class="container">
+    <div class="section-header">
+      <span class="icon">+</span>
+      <h2>Certifications</h2>
+      <div class="line"></div>
     </div>
-  </section>
-  <section class="section" id="projects">
-    <div class="section-header"><h2>Personal Projects</h2><div class="line"></div></div>
+    <div class="cert-grid">
+      <div class="cert-item"><strong>CompTIA A+</strong>Completed</div>
+      <div class="cert-item"><strong>CompTIA Network+</strong>Completed</div>
+      <div class="cert-item"><strong>CompTIA Security+</strong>In progress</div>
+      <div class="cert-item"><strong>CompTIA Cloud+</strong>In progress</div>
+      <div class="cert-item"><strong>Cybersecurity Diploma</strong>Alison</div>
+      <div class="cert-item"><strong>Ethical Hacking</strong>Alison</div>
+      <div class="cert-item"><strong>cPanel Interface Course</strong>Web Hosting</div>
+      <div class="cert-item"><strong>Cisco Network Security</strong>Cisco</div>
+      <div class="cert-item"><strong>Cisco IT Helpdesk</strong>Cisco</div>
+      <div class="cert-item"><strong>QuickBooks Certified User</strong>Intuit</div>
+      <div class="cert-item"><strong>Microsoft Office Specialist</strong>Microsoft</div>
+      <div class="cert-item"><strong>Website Development</strong>HTML, CSS, JS, WordPress</div>
+      <div class="cert-item"><strong>Level 2 Junior Metallurgy</strong>ArcelorMittal</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-header">
+      <span class="icon">*</span>
+      <h2>Education</h2>
+      <div class="line"></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-item">
+        <h3>Newcastle High School</h3>
+        <div class="meta">Matric &mdash; Bachelor's Pass &middot; 2018 &ndash; 2022</div>
+      </div>
+      <div class="edu-item">
+        <h3>National Computer College</h3>
+        <div class="meta">IT Engineering &middot; 2022 &ndash; Present</div>
+        <ul>
+          <li>Internet Core Computing</li>
+          <li>Microsoft Office Specialist</li>
+          <li>CompTIA A+, Network+, Security+, Cloud+</li>
+          <li>Cybersecurity</li>
+          <li>Web &amp; Software Development</li>
+          <li>QuickBooks Certified User</li>
+        </ul>
+      </div>
+      <div class="edu-item">
+        <h3>Boston City Campus</h3>
+        <div class="meta">Diploma in Systems Development &middot; 2025 &ndash; Present</div>
+        <ul>
+          <li>Systems Development</li>
+          <li>Information Systems Management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="icon">$</span>
+      <h2>Projects</h2>
+      <div class="line"></div>
+    </div>
     <div class="projects-grid">
+
       <div class="project-card">
         <h3>SudoDeck</h3>
         <div class="tech"><span>C++</span><span>ESP32</span><span>BLE</span><span>Arduino</span><span>Python</span><span>LVGL</span></div>
-        <p>Bluetooth macro keyboard — wireless Stream Deck competitor. ESP32+ILI9341 touchscreen, BLE HID, multi-page grid, 30 buttons/page, app launcher, live widgets, themes, Web Serial config. Sold in SA for R1,099.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/sudodeck" target="_blank">GitHub</a><a href="https://sudobreakstuff.github.io/sudodeck" target="_blank">Website</a></div>
+        <p>Wireless Bluetooth macro keyboard — open-source Stream Deck competitor. ESP32+ILI9341 touchscreen, BLE HID, multi-page grid, 30 buttons/page, app launcher, live widgets, Web Serial config. Sold assembled in South Africa for R1,099.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/sudodeck" target="_blank">Source</a><a href="https://sudobreakstuff.github.io/sudodeck" target="_blank">Demo</a></div>
       </div>
+
+      <div class="project-card">
+        <h3>Jenny Screenshot Assistant</h3>
+        <div class="tech"><span>React</span><span>TypeScript</span><span>Vite</span><span>Tesseract</span><span>MV3</span></div>
+        <p>Production Chrome/Edge extension for support agents. Captures screenshots, runs local OCR, redacts sensitive data, annotates, and generates editable ticket notes. Privacy-first — no uploads by default.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/jenny-screenshot-assistant" target="_blank">Source</a></div>
+      </div>
+
+      <div class="project-card">
+        <h3>Jenny Vault</h3>
+        <div class="tech"><span>JavaScript</span><span>MV3</span><span>Encryption</span><span>Chrome API</span></div>
+        <p>Chrome extension for saving template JSON/text with local encryption. Password-protected vault with search, edit, JSON/tree views, export/import, and 7 color themes. Built for internal Jenny support use.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/jenny-vault" target="_blank">Source</a></div>
+      </div>
+
       <div class="project-card">
         <h3>SpiceDesk</h3>
         <div class="tech"><span>Flutter</span><span>Dart</span><span>Supabase</span><span>Riverpod</span></div>
-        <p>Open-source business management suite for bakeries, delis, and food shops. POS, inventory, CRM, expenses, quotes, reports, WhatsApp sharing, invoice PDFs. Free forever, MIT licensed.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/spicedesk" target="_blank">GitHub</a></div>
+        <p>Open-source business management suite for bakeries, delis, and food shops. POS, inventory, CRM, expenses, quotes, reports, invoice PDFs, WhatsApp sharing. Cross-platform (Linux, Windows, Android). MIT licensed.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/spicedesk" target="_blank">Source</a></div>
       </div>
-      <div class="project-card">
-        <h3>Odysseus</h3>
-        <div class="tech"><span>Python</span><span>FastAPI</span><span>ChromaDB</span><span>Ollama</span><span>Docker</span></div>
-        <p>Self-hosted AI workspace — chat with local LLMs, agent with MCP tools, deep research, document editing, email triage, calendar, notes, tasks, memory, and 2FA. Privacy-first, runs on your own hardware.</p>
-        <div class="links"><a href="https://github.com/pewdiepie-archdaemon/odysseus" target="_blank">GitHub</a></div>
-      </div>
+
       <div class="project-card">
         <h3>NexCampus</h3>
-        <div class="tech"><span>Python</span><span>JavaScript</span><span>OCR</span><span>PyWebView</span></div>
-        <p>Offline educational suite — 249MB with 16 study tools, code lab (Python/JS/Bash), text tools, 262k-word dictionary, periodic table, interactive solar system, OCR, 9 themes. Free, no internet required.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/Nexcampus" target="_blank">GitHub</a></div>
+        <div class="tech"><span>Python</span><span>JavaScript</span><span>OCR</span><span>Ollama</span></div>
+        <p>Offline educational suite — 249MB with study tools, code lab (Python/JS/Bash), text tools, 262k-word dictionary, interactive periodic table, solar system, OCR, and 9 themes. Works with zero internet.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/Nexcampus" target="_blank">Source</a></div>
       </div>
+
       <div class="project-card">
         <h3>Family Tree App</h3>
         <div class="tech"><span>Flutter</span><span>Dart</span><span>SQLite</span><span>Riverpod</span></div>
-        <p>Interactive offline family tree builder. Multiple family books, tree view with pan/zoom, person profiles, photos, relationships, timeline, statistics, dark/light themes. Cross-platform (Windows, Android, Linux).</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/family-tree-app" target="_blank">GitHub</a></div>
+        <p>Interactive offline family tree builder. Multiple family books, pan/zoom tree view, person profiles, photos, relationships, timeline view, statistics. Cross-platform: Windows, Android, Linux.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/family-tree-app" target="_blank">Source</a></div>
       </div>
-      <div class="project-card">
-        <h3>Jenny Screenshot Assistant</h3>
-        <div class="tech"><span>React</span><span>TypeScript</span><span>Vite</span><span>OCR</span><span>Manifest V3</span></div>
-        <p>Production Chrome/Edge extension for screenshot capture, local OCR, regex extraction, redaction, annotation, and ticket note generation. Privacy-first — no uploads by default, optional AI diagnosis.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/jenny-screenshot-assistant" target="_blank">GitHub</a></div>
-      </div>
-      <div class="project-card">
-        <h3>Jenny Vault</h3>
-        <div class="tech"><span>JavaScript</span><span>Chrome API</span><span>Encryption</span></div>
-        <p>Chrome extension for saving template JSON/text with local encryption. Password-protected vault with search, edit, JSON/tree views, export, and bulk management.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/jenny-vault" target="_blank">GitHub</a></div>
-      </div>
-      <div class="project-card">
-        <h3>CYD Chrome Controller</h3>
-        <div class="tech"><span>C++</span><span>ESP32</span><span>Arduino</span><span>Python</span><span>ydotool</span></div>
-        <p>Physical touch interface for browser media control. ESP32 + touchscreen with 9 media zones (prev/play/next/vol/mute/back/reload/forward).</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/cyd-controller" target="_blank">GitHub</a></div>
-      </div>
+
       <div class="project-card">
         <h3>Agent Robin 007</h3>
-        <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span><span>Canvas API</span></div>
-        <p>James Bond-themed Father's Day interactive experience. Animated mission briefing, 3-round shooting gallery, score tracking, Bond quotes, downloadable commendation card.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/agent-robin-007" target="_blank">GitHub</a></div>
+        <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span><span>Canvas</span><span>Web Audio</span></div>
+        <p>James Bond-themed Father's Day game. Animated mission briefing, 3-round shooting gallery, score tracking, Bond quotes, downloadable commendation card, confetti, Aston Martin finale.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/agent-robin-007" target="_blank">Source</a></div>
       </div>
+
+      <div class="project-card">
+        <h3>RFID Card Reader</h3>
+        <div class="tech"><span>Python</span><span>Curses</span><span>Proxmark3</span><span>TUI</span></div>
+        <p>Terminal-based EM410x RFID card reader/writer. Animated TUI with pulsing borders, session logging, CSV export, hex-ID writing/cloning, auto-incrementing ID generator. Drives Proxmark3 hardware.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/rfid-card-reader" target="_blank">Source</a></div>
+      </div>
+
+      <div class="project-card">
+        <h3>CYD Chrome Controller</h3>
+        <div class="tech"><span>C++</span><span>Python</span><span>ESP32</span><span>ydotool</span></div>
+        <p>Physical touch interface for browser/media control. ESP32 + touchscreen with 9 touch zones mapped to media shortcuts. Sends keystrokes via ydotool on Wayland. Configurable JSON layout.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/cyd-controller" target="_blank">Source</a></div>
+      </div>
+
+      <div class="project-card">
+        <h3>CYD Firmware / Daemon</h3>
+        <div class="tech"><span>Arduino C++</span><span>Python</span><span>LVGL</span><span>WiFi</span><span>UDP</span></div>
+        <p>ESP32 cyberdeck firmware with on-screen keyboard and touchpad. Sends keystrokes/mouse events over serial and WiFi UDP. Includes R36S daemon for uinput injection and gamepad-to-keyboard bridge.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/cyd-firmware" target="_blank">Source</a></div>
+      </div>
+
+      <div class="project-card">
+        <h3>SudoOS</h3>
+        <div class="tech"><span>Linux Kernel</span><span>ARM64</span><span>C</span><span>Bash</span></div>
+        <p>Custom Linux kernel build for R36S handheld (ARM64). Automated cross-compilation script, custom kernel config, branded boot logo, initramfs rebuild, and uInitrd creation.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/sudoos" target="_blank">Source</a></div>
+      </div>
+
       <div class="project-card">
         <h3>For Akiva, With Love</h3>
         <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span><span>Canvas</span><span>Web Audio</span></div>
-        <p>Interactive web experience — a garden of 9 years of memories. Plant seeds, watch flowers bloom with love letters and photos. Aurora sky, fireflies, moonlit scene, ambient music.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/for-akiva-with-love" target="_blank">GitHub</a></div>
+        <p>Interactive web garden — plant seeds into flowers representing 9 years of memories. Aurora sky, fireflies, moonlit scene, ambient flute music, and a finale animation.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/for-akiva-with-love" target="_blank">Source</a></div>
       </div>
+
       <div class="project-card">
-        <h3>SudoOS</h3>
-        <div class="tech"><span>Linux Kernel</span><span>ARM64</span><span>Bash</span><span>Cross-compile</span></div>
-        <p>Custom Linux kernel build for ARM64 handheld devices (R36S). Automated build script, custom kernel config, initramfs, uInitrd creation.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/sudoos" target="_blank">GitHub</a></div>
+        <h3>Fyxion 3D Tools</h3>
+        <div class="tech"><span>JavaScript</span><span>Three.js</span><span>STL</span><span>3D</span></div>
+        <p>Browser-based 3D STL viewer and editor with TinkerCAD-style controls. Multiple versions evolving from basic viewer to full-screen editor with WebGL rendering, transforms, and navigation.</p>
+        <div class="links"><a href="https://github.com/sudobreakstuff/fyxion-3d-tools" target="_blank">Source</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="section" id="references">
+  <div class="container">
+    <div class="section-header">
+      <span class="icon">@</span>
+      <h2>References</h2>
+      <div class="line"></div>
+    </div>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <h3>Parash Hariparsadh</h3>
+        <div class="role">Learner Coordinator &middot; Arcelor Mittal</div>
+        <div class="phone">034 314 7911</div>
+      </div>
+      <div class="ref-card">
+        <h3>Jenny Internet Support Manager</h3>
+        <div class="role">Support Manager &middot; Jenny Internet</div>
+        <div class="phone">062 545 0910</div>
       </div>
     </div>
-  </section>
-  <footer>
-    <p>Shahid Singh · <a href="mailto:shahidsingh1zn@gmail.com">shahidsingh1zn@gmail.com</a> · Newcastle, South Africa</p>
-    <p style="margin-top:8px;font-size:0.8rem;"><a href="Shahid_Singh_Resume.pdf">Download PDF Resume</a> · <a href="https://github.com/sudobreakstuff/sudobreakstuff.github.io" target="_blank">Source on GitHub</a></p>
-  </footer>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="terminal-footer">
+  <div class="container">
+    <p style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-bottom:8px">
+      <span>$ echo <span style="color:var(--cyan)">"shahidsingh1zn@gmail.com"</span></span>
+      <span>$ cat <a href="https://github.com/sudobreakstuff" target="_blank">github.com/sudobreakstuff</a></span>
+      <span>$ <a href="resume.pdf" target="_blank">download resume.pdf</a></span>
+    </p>
+    <p>Built by Shahid Singh &middot; Single HTML file &middot; Systems Developer style</p>
+  </div>
+</footer>
+
+<!-- COMMAND PALETTE -->
+<div class="cmd-overlay" id="cmd-overlay" onclick="closeCmd(event)">
+  <div class="cmd-modal" onclick="event.stopPropagation()">
+    <div class="cmd-input-wrap">
+      <span class="prompt">$</span>
+      <input class="cmd-input" id="cmd-input" type="text" placeholder="Type a command... (help)" autofocus oninput="filterCmd(this.value)" onkeydown="cmdKeydown(event)">
+    </div>
+    <div class="cmd-results" id="cmd-results"></div>
+  </div>
 </div>
+
+<script>
+// ===== PARTICLE NETWORK BACKGROUND =====
+(function(){
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  const COUNT = 80;
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  for(let i=0;i<COUNT;i++){
+    particles.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      vx: (Math.random()-0.5)*0.3,
+      vy: (Math.random()-0.5)*0.3,
+      r: Math.random()*2+1,
+      a: Math.random()*0.4+0.1
+    });
+  }
+  let mouse = {x:0,y:0};
+  document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let p of particles){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=canvas.width;
+      if(p.x>canvas.width)p.x=0;
+      if(p.y<0)p.y=canvas.height;
+      if(p.y>canvas.height)p.y=0;
+      let dx=mouse.x-p.x,dy=mouse.y-p.y;
+      let dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<200){p.vx+=dx*0.00005;p.vy+=dy*0.00005}
+      p.vx*=0.99;p.vy*=0.99;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(108,92,231,${p.a})`;
+      ctx.fill();
+    }
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        let dx=particles[i].x-particles[j].x;
+        let dy=particles[i].y-particles[j].y;
+        let dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<150){
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.strokeStyle=`rgba(108,92,231,${0.06*(1-dist/150)})`;
+          ctx.lineWidth=0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ===== TYPEWRITER =====
+(function(){
+  const el = document.getElementById('typewriter');
+  const text = "Junior IT Technician with 3+ years in Network Engineering, IT Solutions, Helpdesk Support, and Graphic Design. Designed and managed a college server and network. CompTIA A+ and Network+ certified. Currently building automation systems, Chrome extensions, and embedded hardware at Jenny Internet.";
+  let i=0;
+  function type(){
+    if(i<text.length){
+      el.textContent+=text.charAt(i);
+      i++;
+      setTimeout(type,15+Math.random()*20);
+    }
+  }
+  setTimeout(type,500);
+})();
+
+// ===== STAT COUNTER =====
+(function(){
+  const counters = document.querySelectorAll('.stat-number');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        let current = 0;
+        const step = Math.ceil(target/30);
+        const interval = setInterval(()=>{
+          current+=step;
+          if(current>=target){current=target;clearInterval(interval)}
+          el.textContent=current+'+';
+        },40);
+        observer.unobserve(el);
+      }
+    });
+  },{threshold:0.5});
+  counters.forEach(c=>observer.observe(c));
+})();
+
+// ===== TIMELINE TOGGLE =====
+function toggleTL(btn){
+  const details = btn.nextElementSibling;
+  const isOpen = details.classList.toggle('open');
+  btn.textContent = isOpen ? '[-] collapse' : '[+] expand';
+}
+
+// ===== COMMAND PALETTE =====
+const commands = [
+  {cmd:'whoami',desc:'Show identity',action:()=>'Shahid Singh — Systems Developer'},
+  {cmd:'about',desc:'Show profile summary',action:()=>'3+ years IT experience. CompTIA A+, Network+. Systems Developer at Jenny Internet.'},
+  {cmd:'experience',desc:'List work history',action:()=>'Jenny Internet (IT Support 05/25-02/26, SysDev 03/26-Present) | Khuphula Solutions (03/23-05/25) | NCC (11/22-05/25) | ArcelorMittal (03/23-02/24)'},
+  {cmd:'skills',desc:'Show technical skills',action:()=>'Workflow Automation, React/TS, Flutter, ESP32, Python, Networking, MikroTik'},
+  {cmd:'projects',desc:'List projects',action:()=>'SudoDeck, SpiceDesk, Jenny Screenshot Asst, Jenny Vault, NexCampus, Family Tree App, Agent Robin 007, RFID Reader, CYD Controller, SudoOS, Fyxion 3D Tools'},
+  {cmd:'certs',desc:'Show certifications',action:()=>'CompTIA A+, Network+, Alison Cybersecurity & Ethical Hacking, cPanel, Cisco, QuickBooks, MS Office'},
+  {cmd:'email',desc:'Show contact email',action:()=>'shahidsingh1zn@gmail.com'},
+  {cmd:'github',desc:'Show GitHub profile',action:()=>'github.com/sudobreakstuff'},
+  {cmd:'location',desc:'Show location',action:()=>'Newcastle, South Africa. Code 8 license, own car.'},
+  {cmd:'download',desc:'Download PDF resume',action:()=>{window.open('resume.pdf');return 'Opening resume.pdf...'}},
+  {cmd:'clear',desc:'Clear terminal',action:()=>{document.getElementById('cmd-results').innerHTML='';return ''}},
+  {cmd:'help',desc:'Show available commands',action:()=>'whoami | about | experience | skills | projects | certs | email | github | location | download | clear | help'},
+  {cmd:'ls',desc:'List directory',action:()=>'about/  experience/  skills/  projects/  certs/  education/  contact/'},
+];
+let selectedIdx = -1;
+
+function openCmd(){
+  document.getElementById('cmd-overlay').classList.add('active');
+  document.getElementById('cmd-input').value='';
+  document.getElementById('cmd-input').focus();
+  filterCmd('');
+}
+function closeCmd(e){
+  if(e && e.target!==e.currentTarget) return;
+  document.getElementById('cmd-overlay').classList.remove('active');
+}
+function filterCmd(val){
+  const results = document.getElementById('cmd-results');
+  const filtered = commands.filter(c=>c.cmd.includes(val.toLowerCase())||c.desc.toLowerCase().includes(val.toLowerCase()));
+  selectedIdx = -1;
+  if(val===''){results.innerHTML='<div style="padding:16px 18px;color:var(--text3);font-family:var(--mono);font-size:0.8rem">Type a command — try <strong>help</strong>, <strong>whoami</strong>, <strong>projects</strong>, <strong>certs</strong>, <strong>download</strong></div>';return}
+  if(filtered.length===0){results.innerHTML='<div style="padding:16px 18px;color:var(--text3);font-family:var(--mono);font-size:0.8rem">Command not found. Type <strong>help</strong> for available commands.</div>';return}
+  results.innerHTML = filtered.map((c,i)=>`<div class="cmd-result-item${i===0?' active':''}" onclick="execCmd('${c.cmd}')" data-cmd="${c.cmd}"><span class="cmd-cmd">${c.cmd}</span><span class="cmd-desc">${c.desc}</span></div>`).join('');
+}
+function cmdKeydown(e){
+  const items = document.querySelectorAll('.cmd-result-item');
+  if(e.key==='ArrowDown'&&selectedIdx<items.length-1){
+    selectedIdx++;items[selectedIdx]?.classList.add('active');items[selectedIdx-1]?.classList.remove('active');
+    items[selectedIdx]?.scrollIntoView({block:'nearest'});
+  }else if(e.key==='ArrowUp'&&selectedIdx>0){
+    selectedIdx--;items[selectedIdx]?.classList.add('active');items[selectedIdx+1]?.classList.remove('active');
+    items[selectedIdx]?.scrollIntoView({block:'nearest'});
+  }else if(e.key==='Enter'){
+    if(selectedIdx>=0) execCmd(items[selectedIdx]?.dataset?.cmd);
+    else execCmd(document.getElementById('cmd-input').value);
+  }else if(e.key==='Escape') closeCmd({target:document.getElementById('cmd-overlay')});
+}
+function execCmd(cmd){
+  if(!cmd) return;
+  const found = commands.find(c=>c.cmd===cmd);
+  if(!cmd.startsWith('ls ')&&!found){filterCmd(cmd);return}
+  const result = found ? found.action() : 'Command not found';
+  const results = document.getElementById('cmd-results');
+  results.innerHTML = `<div style="padding:12px 18px;font-family:var(--mono);font-size:0.8rem;color:var(--text2);border-bottom:1px solid rgba(255,255,255,0.06)"><span style="color:var(--green)">$ ${cmd}</span></div><div style="padding:12px 18px;font-family:var(--mono);font-size:0.8rem;color:var(--cyan)">${result}</div>`;
+}
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openCmd()}
+});
+
+// ===== SCROLL REVEAL =====
+(function(){
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) entry.target.style.opacity='1';
+    });
+  },{threshold:0.05});
+  sections.forEach(s=>{s.style.opacity='0';s.style.transition='opacity 0.6s ease-out';observer.observe(s)});
+  // make first section visible immediately
+  if(sections.length) sections[0].style.opacity='1';
+})();
+</script>
 </body>
 </html>

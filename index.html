@@ -250,25 +250,25 @@ body{
   background:var(--accent);
   box-shadow:0 0 20px rgba(108,92,231,0.4);
 }
-  .download-btn{
-    display:inline-block;
-    font-family:var(--mono);
-    font-size:0.85rem;
-    color:var(--bg);
-    background:linear-gradient(135deg,var(--accent),var(--cyan));
-    padding:10px 24px;
-    border-radius:8px;
-    text-decoration:none;
-    transition:all .3s;
-    font-weight:600;
-    letter-spacing:0.3px;
-  }
-  .download-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 6px 25px rgba(108,92,231,0.4);
-    color:var(--bg);
-  }
-  .tl-item{position:relative;margin-bottom:28px;padding-left:32px}
+.download-btn{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:0.85rem;
+  color:var(--bg);
+  background:linear-gradient(135deg,var(--accent),var(--cyan));
+  padding:10px 24px;
+  border-radius:8px;
+  text-decoration:none;
+  transition:all .3s;
+  font-weight:600;
+  letter-spacing:0.3px;
+}
+.download-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 25px rgba(108,92,231,0.4);
+  color:var(--bg);
+}
+.tl-item{position:relative;margin-bottom:28px;padding-left:32px}
   .tl-header{
   display:flex;
   justify-content:space-between;
@@ -325,22 +325,22 @@ body{
   font-family:var(--mono);
 }
 
-/* ===== SKILLS HEX ===== */
-.skills-hex{
+/* ===== SKILLS ===== */
+.skills-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
   gap:14px;
 }
-.hex-item{
+.skill-card{
   background:var(--bg2);
-  border:1px solid rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.06);
   border-radius:var(--radius);
-  padding:20px;
+  padding:18px 20px;
   transition:all .3s;
   position:relative;
   overflow:hidden;
 }
-.hex-item::before{
+.skill-card::before{
   content:'';
   position:absolute;
   top:0;left:0;right:0;
@@ -349,27 +349,79 @@ body{
   opacity:0;
   transition:opacity .3s;
 }
-.hex-item:hover::before{opacity:1}
-.hex-item:hover{
-  border-color:rgba(108,92,231,0.3);
-  transform:translateY(-2px);
+.skill-card:hover::before{opacity:1}
+.skill-card:hover{border-color:rgba(108,92,231,0.3);transform:translateY(-2px)}
+.skill-card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:8px;
 }
-.hex-item h3{
+.skill-card-header h3{
   font-size:0.85rem;
   font-weight:600;
   color:var(--accent2);
-  margin-bottom:8px;
 }
-.hex-item .tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
-.hex-item .tags span{
+.skill-level{
+  font-family:var(--mono);
   font-size:0.7rem;
   padding:2px 8px;
   border-radius:4px;
-  background:rgba(255,255,255,0.04);
-  color:var(--text3);
-  border:1px solid rgba(255,255,255,0.06);
-  font-family:var(--mono);
+  background:rgba(108,92,231,0.12);
+  color:var(--accent2);
+  border:1px solid rgba(108,92,231,0.15);
 }
+.skill-tags{display:flex;flex-wrap:wrap;gap:4px}
+.skill-tags span{
+  font-size:0.7rem;
+  padding:2px 8px;
+  border-radius:4px;
+  background:rgba(255,255,255,0.03);
+  color:var(--text3);
+  border:1px solid rgba(255,255,255,0.05);
+  font-family:var(--mono);
+  transition:all .2s;
+}
+.skill-tags span:hover{
+  background:rgba(108,92,231,0.1);
+  color:var(--accent2);
+  border-color:rgba(108,92,231,0.2);
+}
+
+.skill-term-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--mono);
+  font-size:0.8rem;
+  color:var(--text2);
+  padding:4px 0;
+}
+.skill-term-prompt{color:var(--green);flex-shrink:0}
+.skill-term-bar{
+  flex:1;
+  height:12px;
+  background:var(--bg);
+  border-radius:6px;
+  overflow:hidden;
+  position:relative;
+}
+.skill-term-fill{
+  height:100%;
+  border-radius:6px;
+  background:linear-gradient(90deg,var(--accent),var(--cyan));
+  width:0;
+  transition:width 1s cubic-bezier(.25,.46,.45,.94);
+}
+.skill-term-fill.visible{width:var(--pct)}
+.skill-term-pct{
+  font-size:0.7rem;
+  color:var(--text3);
+  min-width:32px;
+  text-align:right;
+}
+
+/* ===== SKILLS HEX (legacy - kept for reference) ===== */
 
 /* ===== PROJECTS ===== */
 .projects-grid{
@@ -450,38 +502,59 @@ body{
   color:var(--text);
 }
 
-/* ===== SKILL BARS ===== */
-.skill-bars{display:grid;grid-template-columns:1fr;gap:8px;margin-top:20px}
-.skill-bar-row{display:grid;grid-template-columns:minmax(0,1fr) max-content;align-items:center;gap:12px}
-.skill-bar-label{font-size:0.8rem;color:var(--text2);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.skill-bar-track{position:relative;height:10px;background:var(--bg);border-radius:5px;overflow:hidden}
-.skill-bar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--cyan));width:0;transition:width 1.2s cubic-bezier(.25,.46,.45,.94)}
-.skill-bar-fill.visible{width:var(--pct)}
-.skill-bar-pct{font-size:0.7rem;color:var(--text3);font-family:var(--mono);min-width:32px;text-align:right}
-
 /* ===== CERTIFICATIONS ===== */
 .cert-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
   gap:10px;
 }
 .cert-item{
   background:var(--bg2);
   border:1px solid rgba(255,255,255,0.05);
   border-radius:8px;
-  padding:14px 16px;
+  padding:12px 16px;
   font-size:0.85rem;
   color:var(--text2);
-  transition:border-color .2s;
+  transition:all .2s;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
-.cert-icon{font-size:1.1rem;margin-right:8px;display:inline-block;vertical-align:middle;filter:grayscale(0.2)}
-.cert-item strong{
+.cert-item:hover{border-color:rgba(108,92,231,0.3);transform:translateY(-1px)}
+.cert-badge{
+  flex-shrink:0;
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--mono);
+  font-size:0.6rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+.cert-badge.aplus{background:rgba(108,92,231,0.15);color:var(--accent2)}
+.cert-badge.network{background:rgba(0,206,201,0.15);color:var(--cyan)}
+.cert-badge.security{background:rgba(255,118,117,0.15);color:var(--red)}
+.cert-badge.cloud{background:rgba(0,184,148,0.15);color:var(--green)}
+.cert-badge.cyber{background:rgba(253,203,110,0.15);color:var(--orange)}
+.cert-badge.hack{background:rgba(253,121,168,0.15);color:var(--pink)}
+.cert-badge.hosting{background:rgba(108,92,231,0.1);color:var(--accent2)}
+.cert-badge.cisco{background:rgba(0,184,148,0.12);color:var(--green)}
+.cert-badge.finance{background:rgba(0,206,201,0.12);color:var(--cyan)}
+.cert-badge.office{background:rgba(108,92,231,0.1);color:var(--accent2)}
+.cert-badge.web{background:rgba(253,203,110,0.12);color:var(--orange)}
+.cert-badge.metal{background:rgba(255,118,117,0.1);color:var(--red)}
+.cert-info{}
+.cert-info strong{
   display:block;
   color:var(--text);
   font-weight:500;
-  margin-bottom:2px;
+  font-size:0.85rem;
 }
-.cert-item:hover{border-color:rgba(108,92,231,0.3)}
+.cert-info span{font-size:0.75rem;color:var(--text3)}
 
 /* ===== EDUCATION ===== */
 .edu-card{
@@ -490,27 +563,56 @@ body{
   border-radius:var(--radius);
   padding:24px;
 }
-.edu-item{margin-bottom:20px}
+.edu-item{display:flex;gap:16px;margin-bottom:24px;position:relative}
 .edu-item:last-child{margin-bottom:0}
-.edu-item h3{font-size:1rem;font-weight:600;margin-bottom:2px}
-.edu-item .meta{
+.edu-item:not(:last-child)::after{
+  content:'';
+  position:absolute;
+  left:15px;top:44px;bottom:-8px;
+  width:2px;
+  background:linear-gradient(to bottom,var(--accent),transparent);
+  opacity:0.3;
+}
+.edu-dot{
+  flex-shrink:0;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:rgba(108,92,231,0.12);
+  border:2px solid rgba(108,92,231,0.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--mono);
+  font-size:0.65rem;
+  font-weight:700;
+  color:var(--accent2);
+  margin-top:2px;
+}
+.edu-dot.current{background:var(--accent);border-color:var(--accent);color:var(--bg);box-shadow:0 0 12px rgba(108,92,231,0.3)}
+.edu-body{flex:1}
+.edu-body h3{font-size:1rem;font-weight:600;margin-bottom:1px}
+.edu-body .meta{
   font-size:0.8rem;
   color:var(--text3);
   font-family:var(--mono);
+  margin-bottom:6px;
 }
-.edu-item ul{
+.edu-body ul{
   list-style:none;
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
-  margin-top:8px;
+  gap:4px;
+  margin-top:4px;
 }
-.edu-item ul li{
-  font-size:0.75rem;
+.edu-body ul li{
+  font-size:0.7rem;
   padding:2px 10px;
   border-radius:4px;
-  background:rgba(108,92,231,0.08);
+  background:rgba(108,92,231,0.06);
   color:var(--text2);
+  border:1px solid rgba(255,255,255,0.04);
+  font-family:var(--mono);
 }
 
 /* ===== REFERENCE CARDS ===== */
@@ -651,24 +753,94 @@ body{
 
 /* ===== PRINT ===== */
 @media print{
+  @page{size:A4;margin:10mm 12mm}
   :root{
     --bg:#fff;--bg2:#fff;--bg3:#f5f5f8;
-    --text:#111;--text2:#555;--text3:#777;
+    --text:#111;--text2:#444;--text3:#666;
     --accent:#4a3db8;--accent2:#6c5ce7;
     --cyan:#00897b;--green:#00897b;
   }
-  #particles-canvas{display:none!important}
-  .cmd-overlay{display:none!important}
-  .no-print{display:none!important}
-  .hero-terminal{min-height:auto;padding:20px 0}
-  .terminal-window{box-shadow:none;background:var(--bg2);border-color:#ddd}
-  .terminal-body{padding:16px}
-  .section{padding:24px 0;break-inside:avoid}
-  .project-card:hover{transform:none;box-shadow:none}
-  .tl-details{display:block!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  html{font-size:8.5pt}
+  #particles-canvas,.cmd-overlay,.project-modal-overlay,.no-print,.terminal-cursor,.typewriter-text,.download-btn,.cmd-toggle-hint{display:none!important}
+  .container{max-width:100%!important;padding:0!important}
+
+  .section{page-break-inside:avoid;padding:8px 0!important;border-top:none!important}
+  .section-header{margin-bottom:8px}
+  .section-header h2{font-size:1rem}
+  .section-header .icon{font-size:0.85rem}
+
+  .hero-terminal{min-height:0!important;padding:0!important;page-break-inside:avoid}
+  .terminal-window{box-shadow:none!important;border:1px solid #ddd!important}
+  .terminal-body{padding:10px 14px!important}
+  .terminal-line{margin-bottom:3px;font-size:0.75rem}
+  .hero-name{font-size:1.3rem!important}
+  .hero-title{font-size:0.75rem!important}
+  .terminal-email{margin-top:8px;padding-top:8px}
+
+  .stats-bar{grid-template-columns:repeat(4,1fr);margin-top:6px;gap:6px}
+  .stat-item{padding:4px 6px;border-color:#ddd}
+  .stat-number{font-size:0!important}
+  .stat-number::after{content:attr(data-target)"+";font-size:0.95rem;color:var(--accent);font-weight:700;font-family:var(--mono)}
+  .stat-label{font-size:0.55rem}
+
+  .profile-card{padding:10px;page-break-inside:avoid}
+  .profile-card p{font-size:0.75rem;line-height:1.4;color:var(--text2)!important}
+
+  .timeline{padding-left:16px}
+  .timeline::before{left:6px}
+  .timeline-node{width:10px;height:10px;left:1px}
+  .tl-item{padding-left:16px;margin-bottom:6px}
+  .tl-header h3{font-size:0.8rem}
+  .tl-header .date{font-size:0.6rem;padding:1px 5px}
+  .tl-subtitle{font-size:0.65rem;margin-bottom:2px}
+  .tl-details{display:block!important;margin-top:2px}
+  .tl-details ul li{font-size:0.65rem;line-height:1.35;padding-left:10px;padding-bottom:0}
   .tl-toggle{display:none!important}
-  .stats-bar{grid-template-columns:repeat(4,1fr)}
-  body{font-size:10pt}
+
+  .skill-term{padding:8px 10px!important;margin-bottom:6px}
+  .skill-term-row{font-size:0.6rem;padding:1px 0}
+  .skill-term-bar{height:6px}
+  .skill-term-fill{width:var(--pct)!important;transition:none!important}
+  .skill-term-pct{font-size:0.55rem}
+  .skills-grid{grid-template-columns:repeat(2,1fr);gap:6px}
+  .skill-card{padding:6px 10px}
+  .skill-card-header h3{font-size:0.7rem}
+  .skill-level{font-size:0.55rem;padding:1px 5px}
+  .skill-tags span{font-size:0.55rem;padding:1px 5px}
+
+  .cert-grid{grid-template-columns:repeat(3,1fr);gap:6px}
+  .cert-item{padding:5px 8px;gap:8px}
+  .cert-badge{width:24px;height:24px;font-size:0.45rem;border-radius:6px}
+  .cert-info strong{font-size:0.65rem}
+  .cert-info span{font-size:0.6rem}
+
+  .edu-card{padding:10px}
+  .edu-item{gap:10px;margin-bottom:10px}
+  .edu-dot{width:24px;height:24px;font-size:0.5rem}
+  .edu-body h3{font-size:0.8rem}
+  .edu-body .meta{font-size:0.65rem;margin-bottom:4px}
+  .edu-body ul li{font-size:0.6rem;padding:1px 6px}
+  .edu-item:not(:last-child)::after{left:11px;top:32px}
+
+  .projects-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .project-card{padding:8px 10px;page-break-inside:avoid}
+  .project-card::after,.project-card:hover::after{display:none!important}
+  .project-card:hover{transform:none;box-shadow:none}
+  .project-card h3{font-size:0.75rem;margin-bottom:3px}
+  .project-card .tech{margin-bottom:4px}
+  .project-card .tech span{font-size:0.5rem;padding:1px 5px}
+  .project-card p{font-size:0.62rem;line-height:1.3}
+  .project-card .links{margin-top:4px}
+  .project-card .links a{font-size:0.58rem;padding:1px 7px}
+
+  .ref-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .ref-card{padding:6px 10px}
+  .ref-card h3{font-size:0.75rem}
+  .ref-card .role,.ref-card .phone{font-size:0.65rem}
+
+  .terminal-footer{padding:8px 0}
+  .terminal-footer p{font-size:0.6rem}
 }
 
 @media(max-width:768px){
@@ -677,8 +849,10 @@ body{
   .hero-terminal{min-height:auto;padding:40px 0}
   .timeline{padding-left:24px}
   .projects-grid{grid-template-columns:1fr}
-  .skills-hex{grid-template-columns:1fr 1fr}
-  .cert-grid{grid-template-columns:1fr 1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
+  .stat-item{padding:8px}
+  .stat-number{font-size:1.2rem}
 }
 </style>
 </head>
@@ -758,15 +932,20 @@ body{
     </div>
     <div class="profile-card">
       <p>
-        Systems Developer with over <span class="highlight">3 years of experience</span> in
-        process automation, systems integration, and software development. Currently building
-        <span class="highlight">automation workflows, Chrome extensions, and internal tools</span>
-        at Jenny Internet — automating ticket handling, file management, and network operations
-        for 60+ corporate clients nationwide. CompTIA A+ and Network+ certified with a
-        Diploma in Information Technology in Systems Development. Previously delivered network
-        setups, infrastructure design, and technical support for clients including Ackermans,
-        Pick n Pay, Builders Warehouse, and more. Passionate about automation, embedded
-        systems, and eliminating busywork.
+        I build systems that make other systems work better. At <span class="highlight">Jenny Internet</span>,
+        I design and develop internal software — ticket automation workflows, Chrome extensions for
+        support agents, file management tools — that keep <span class="highlight">60+ corporate networks</span>
+        and their support teams running efficiently.
+      </p>
+      <p style="margin-top:12px">
+        <span class="highlight">CompTIA A+</span> and <span class="highlight">Network+</span> certified.
+        Diploma in Information Technology — Systems Development in progress at Boston City Campus.
+        Previously deployed network infrastructure for Ackermans, Pick n Pay, Builders Warehouse and others.
+        Built <span class="highlight">BLE macro keyboards</span>, <span class="highlight">RFID tools</span>,
+        and <span class="highlight">custom Linux kernels</span> on the side.
+      </p>
+      <p style="margin-top:12px">
+        If it's repetitive, I automate it. If it doesn't exist yet, I build it.
       </p>
     </div>
   </div>
@@ -881,79 +1060,100 @@ body{
       <h2>Skills</h2>
       <div class="line"></div>
     </div>
-    <div class="skills-hex">
-      <div class="hex-item">
-        <h3>Workflow & Automation</h3>
-        <div class="tags">
-          <span>Heimdall</span><span>SendActions</span><span>DFE</span><span>Rocket.Chat</span><span>JSON</span><span>Automation</span>
+    <div class="skill-term" style="background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:20px 22px;margin-bottom:20px">
+      <div style="font-family:var(--mono);font-size:0.75rem;color:var(--text3);margin-bottom:14px">$ ./benchmark --skills</div>
+      <div class="skill-term-row">
+        <span class="skill-term-prompt">workflow</span>
+        <div class="skill-term-bar"><div class="skill-term-fill" style="--pct:95%" data-pct="95"></div></div>
+        <span class="skill-term-pct">95%</span>
+      </div>
+      <div class="skill-term-row">
+        <span class="skill-term-prompt">networking</span>
+        <div class="skill-term-bar"><div class="skill-term-fill" style="--pct:88%" data-pct="88"></div></div>
+        <span class="skill-term-pct">88%</span>
+      </div>
+      <div class="skill-term-row">
+        <span class="skill-term-prompt">frontend</span>
+        <div class="skill-term-bar"><div class="skill-term-fill" style="--pct:80%" data-pct="80"></div></div>
+        <span class="skill-term-pct">80%</span>
+      </div>
+      <div class="skill-term-row">
+        <span class="skill-term-prompt">backend</span>
+        <div class="skill-term-bar"><div class="skill-term-fill" style="--pct:75%" data-pct="75"></div></div>
+        <span class="skill-term-pct">75%</span>
+      </div>
+      <div class="skill-term-row">
+        <span class="skill-term-prompt">mobile</span>
+        <div class="skill-term-bar"><div class="skill-term-fill" style="--pct:70%" data-pct="70"></div></div>
+        <span class="skill-term-pct">70%</span>
+      </div>
+      <div class="skill-term-row">
+        <span class="skill-term-prompt">embedded</span>
+        <div class="skill-term-bar"><div class="skill-term-fill" style="--pct:65%" data-pct="65"></div></div>
+        <span class="skill-term-pct">65%</span>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h3>Workflow & Automation</h3>
+          <span class="skill-level">Expert</span>
         </div>
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">Proficiency</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:95%"></div></div>
-          <span class="skill-bar-pct">95%</span>
+        <div class="skill-tags">
+          <span>Heimdall</span><span>SendActions</span><span>DFE</span><span>Rocket.Chat</span><span>JSON</span><span>Automation Pipelines</span>
         </div>
       </div>
-      <div class="hex-item">
-        <h3>Frontend & Extensions</h3>
-        <div class="tags">
-          <span>React</span><span>TypeScript</span><span>Manifest V3</span><span>Vite</span><span>HTML/CSS</span><span>JavaScript</span><span>OCR</span>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h3>Frontend & Extensions</h3>
+          <span class="skill-level">Advanced</span>
         </div>
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">Proficiency</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:80%"></div></div>
-          <span class="skill-bar-pct">80%</span>
+        <div class="skill-tags">
+          <span>React</span><span>TypeScript</span><span>Manifest V3</span><span>Vite</span><span>HTML/CSS</span><span>JavaScript</span><span>Tesseract OCR</span>
         </div>
       </div>
-      <div class="hex-item">
-        <h3>Mobile & Desktop</h3>
-        <div class="tags">
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h3>Mobile & Desktop</h3>
+          <span class="skill-level">Intermediate</span>
+        </div>
+        <div class="skill-tags">
           <span>Flutter</span><span>Dart</span><span>Riverpod</span><span>SQLite</span><span>Supabase</span><span>Drift</span>
         </div>
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">Proficiency</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:70%"></div></div>
-          <span class="skill-bar-pct">70%</span>
-        </div>
       </div>
-      <div class="hex-item">
-        <h3>Embedded & Hardware</h3>
-        <div class="tags">
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h3>Embedded & Hardware</h3>
+          <span class="skill-level">Intermediate</span>
+        </div>
+        <div class="skill-tags">
           <span>ESP32</span><span>Arduino</span><span>C++</span><span>BLE HID</span><span>LVGL</span><span>3D Printing</span>
         </div>
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">Proficiency</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:65%"></div></div>
-          <span class="skill-bar-pct">65%</span>
-        </div>
       </div>
-      <div class="hex-item">
-        <h3>Networking & Security</h3>
-        <div class="tags">
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h3>Networking & Security</h3>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-tags">
           <span>MikroTik</span><span>TCP/IP</span><span>Firewalls</span><span>CCTV</span><span>VoIP</span><span>Cabling</span>
         </div>
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">Proficiency</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:85%"></div></div>
-          <span class="skill-bar-pct">85%</span>
-        </div>
       </div>
-      <div class="hex-item">
-        <h3>Backend & AI</h3>
-        <div class="tags">
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <h3>Backend & AI</h3>
+          <span class="skill-level">Intermediate</span>
+        </div>
+        <div class="skill-tags">
           <span>Python</span><span>FastAPI</span><span>Ollama</span><span>Docker</span><span>Linux</span><span>Git</span>
         </div>
-        <div class="skill-bar-row">
-          <span class="skill-bar-label">Proficiency</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:75%"></div></div>
-          <span class="skill-bar-pct">75%</span>
-        </div>
       </div>
-      <div style="grid-column:1/-1;text-align:center;padding:8px 0 0">
-        <div class="hex-item" style="display:inline-block;padding:12px 28px">
-          <h3>Professional Skills</h3>
-          <div class="tags" style="justify-content:center">
-            <span>Problem-solving</span><span>Teamwork</span><span>Flexibility</span><span>Self-directed</span>
-          </div>
+    </div>
+    <div style="margin-top:12px;text-align:center">
+      <div class="skill-card" style="display:inline-block;padding:10px 28px">
+        <div class="skill-tags" style="justify-content:center">
+          <span>Problem-solving</span><span>Teamwork</span><span>Self-directed</span><span>Adaptability</span>
         </div>
       </div>
     </div>
@@ -969,19 +1169,19 @@ body{
       <div class="line"></div>
     </div>
     <div class="cert-grid">
-      <div class="cert-item"><span class="cert-icon">🖥️</span><strong>CompTIA A+</strong>Completed</div>
-      <div class="cert-item"><span class="cert-icon">🌐</span><strong>CompTIA Network+</strong>Completed</div>
-      <div class="cert-item"><span class="cert-icon">🛡️</span><strong>CompTIA Security+</strong>In progress</div>
-      <div class="cert-item"><span class="cert-icon">☁️</span><strong>CompTIA Cloud+</strong>In progress</div>
-      <div class="cert-item"><span class="cert-icon">🔬</span><strong>Cybersecurity Diploma</strong>Alison</div>
-      <div class="cert-item"><span class="cert-icon">🕵️</span><strong>Ethical Hacking</strong>Alison</div>
-      <div class="cert-item"><span class="cert-icon">🌍</span><strong>cPanel Interface Course</strong>Web Hosting</div>
-      <div class="cert-item"><span class="cert-icon">🔗</span><strong>Cisco Network Security</strong>Cisco</div>
-      <div class="cert-item"><span class="cert-icon">🎧</span><strong>Cisco IT Helpdesk</strong>Cisco</div>
-      <div class="cert-item"><span class="cert-icon">💰</span><strong>QuickBooks Certified User</strong>Intuit</div>
-      <div class="cert-item"><span class="cert-icon">📊</span><strong>Microsoft Office Specialist</strong>Microsoft</div>
-      <div class="cert-item"><span class="cert-icon">🖌️</span><strong>Website Development</strong>HTML, CSS, JS, WordPress</div>
-      <div class="cert-item"><span class="cert-icon">⚙️</span><strong>Level 2 Junior Metallurgy</strong>ArcelorMittal</div>
+      <div class="cert-item"><div class="cert-badge aplus">A+</div><div class="cert-info"><strong>CompTIA A+</strong><span>Completed</span></div></div>
+      <div class="cert-item"><div class="cert-badge network">N+</div><div class="cert-info"><strong>CompTIA Network+</strong><span>Completed</span></div></div>
+      <div class="cert-item"><div class="cert-badge security">S+</div><div class="cert-info"><strong>CompTIA Security+</strong><span>In progress</span></div></div>
+      <div class="cert-item"><div class="cert-badge cloud">C+</div><div class="cert-info"><strong>CompTIA Cloud+</strong><span>In progress</span></div></div>
+      <div class="cert-item"><div class="cert-badge cyber">CS</div><div class="cert-info"><strong>Cybersecurity Diploma</strong><span>Alison</span></div></div>
+      <div class="cert-item"><div class="cert-badge hack">EH</div><div class="cert-info"><strong>Ethical Hacking</strong><span>Alison</span></div></div>
+      <div class="cert-item"><div class="cert-badge hosting">CP</div><div class="cert-info"><strong>cPanel Interface Course</strong><span>Web Hosting</span></div></div>
+      <div class="cert-item"><div class="cert-badge cisco">CN</div><div class="cert-info"><strong>Cisco Network Security</strong><span>Cisco</span></div></div>
+      <div class="cert-item"><div class="cert-badge cisco">IT</div><div class="cert-info"><strong>Cisco IT Helpdesk</strong><span>Cisco</span></div></div>
+      <div class="cert-item"><div class="cert-badge finance">QB</div><div class="cert-info"><strong>QuickBooks Certified User</strong><span>Intuit</span></div></div>
+      <div class="cert-item"><div class="cert-badge office">MS</div><div class="cert-info"><strong>Microsoft Office Specialist</strong><span>Microsoft</span></div></div>
+      <div class="cert-item"><div class="cert-badge web">WD</div><div class="cert-info"><strong>Website Development</strong><span>HTML, CSS, JS, WordPress</span></div></div>
+      <div class="cert-item"><div class="cert-badge metal">M2</div><div class="cert-info"><strong>Level 2 Junior Metallurgy</strong><span>ArcelorMittal</span></div></div>
     </div>
   </div>
 </section>
@@ -996,28 +1196,46 @@ body{
     </div>
     <div class="edu-card">
       <div class="edu-item">
-        <h3>Newcastle High School</h3>
-        <div class="meta">Matric &mdash; Bachelor's Pass &middot; 2018 &ndash; 2022</div>
+        <div class="edu-dot">HS</div>
+        <div class="edu-body">
+          <h3>Newcastle High School</h3>
+          <div class="meta">Matric &mdash; Bachelor's Pass &middot; 2018 &ndash; 2022</div>
+          <ul>
+            <li>Bachelor's Pass with University Entrance</li>
+            <li>Mathematics, Physical Science, English</li>
+          </ul>
+        </div>
       </div>
       <div class="edu-item">
-        <h3>National Computer College</h3>
-        <div class="meta">IT Engineering &middot; 2022 &ndash; 2025</div>
-        <ul>
-          <li>Internet Core Computing</li>
-          <li>Microsoft Office Specialist</li>
-          <li>CompTIA A+, Network+, Security+, Cloud+</li>
-          <li>Cybersecurity</li>
-          <li>Web &amp; Software Development</li>
-          <li>QuickBooks Certified User</li>
-        </ul>
+        <div class="edu-dot">NC</div>
+        <div class="edu-body">
+          <h3>National Computer College</h3>
+          <div class="meta">IT Engineering &middot; 2022 &ndash; 2025</div>
+          <ul>
+            <li>CompTIA A+</li>
+            <li>CompTIA Network+</li>
+            <li>CompTIA Security+</li>
+            <li>CompTIA Cloud+</li>
+            <li>Cybersecurity</li>
+            <li>Web &amp; Software Development</li>
+            <li>Microsoft Office Specialist</li>
+            <li>QuickBooks Certified User</li>
+            <li>Internet Core Computing</li>
+          </ul>
+        </div>
       </div>
       <div class="edu-item">
-        <h3>Boston City Campus</h3>
-        <div class="meta">Diploma in Systems Development &middot; 2025 &ndash; Present</div>
-        <ul>
-          <li>Systems Development</li>
-          <li>Information Systems Management</li>
-        </ul>
+        <div class="edu-dot current">BC</div>
+        <div class="edu-body">
+          <h3>Boston City Campus</h3>
+          <div class="meta">Diploma in Information Technology &mdash; Systems Development &middot; 2025 &ndash; Present</div>
+          <ul>
+            <li>Systems Development &amp; Analysis</li>
+            <li>Information Systems Management</li>
+            <li>Database Design &amp; Implementation</li>
+            <li>Software Engineering Principles</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -1065,7 +1283,7 @@ body{
         <h3>NexCampus</h3>
         <div class="tech"><span>Python</span><span>JavaScript</span><span>OCR</span><span>Ollama</span></div>
         <p>Offline educational suite — 249MB with study tools, code lab (Python/JS/Bash), text tools, 262k-word dictionary, interactive periodic table, solar system, OCR, and 9 themes. Works with zero internet.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/Nexcampus" target="_blank">Source</a></div>
+        <div class="links"><a href="https://github.com/sudobreakstuff/Nexcampus" target="_blank">Source</a><a href="https://sudobreakstuff.github.io/Nexcampus/" target="_blank">Demo</a></div>
       </div>
 
       <div class="project-card">
@@ -1079,7 +1297,7 @@ body{
         <h3>Agent Robin 007</h3>
         <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span><span>Canvas</span><span>Web Audio</span></div>
         <p>James Bond-themed Father's Day game. Animated mission briefing, 3-round shooting gallery, score tracking, Bond quotes, downloadable commendation card, confetti, Aston Martin finale.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/agent-robin-007" target="_blank">Source</a></div>
+        <div class="links"><a href="https://github.com/sudobreakstuff/agent-robin-007" target="_blank">Source</a><a href="https://sudobreakstuff.github.io/agent-robin-007/" target="_blank">Demo</a></div>
       </div>
 
       <div class="project-card">
@@ -1114,7 +1332,7 @@ body{
         <h3>For Akiva, With Love</h3>
         <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span><span>Canvas</span><span>Web Audio</span></div>
         <p>Interactive web garden — plant seeds into flowers representing 9 years of memories. Aurora sky, fireflies, moonlit scene, ambient flute music, and a finale animation.</p>
-        <div class="links"><a href="https://github.com/sudobreakstuff/for-akiva-with-love" target="_blank">Source</a></div>
+        <div class="links"><a href="https://github.com/sudobreakstuff/for-akiva-with-love" target="_blank">Source</a><a href="https://sudobreakstuff.github.io/for-akiva-with-love/" target="_blank">Demo</a></div>
       </div>
 
     </div>
@@ -1137,7 +1355,7 @@ body{
       </div>
       <div class="ref-card">
         <h3>Juan Kahts</h3>
-        <div class="role">Business Process &middot; Jenny Internet</div>
+        <div class="role">Systems Development Manager &middot; Jenny Internet</div>
         <div class="phone">084 766 3381</div>
       </div>
     </div>
@@ -1232,7 +1450,7 @@ body{
 // ===== TYPEWRITER =====
 (function(){
   const el = document.getElementById('typewriter');
-  const text = "Systems Developer with 3+ years in process automation, systems integration, and software development. CompTIA A+ and Network+ certified. Building automation workflows, Chrome extensions, and embedded systems at Jenny Internet.";
+  const text = "I build systems that make other systems work better. Automation workflows, Chrome extensions, internal tools. CompTIA A+ and Network+ certified. Currently at Jenny Internet.";
   let i=0;
   function type(){
     if(i<text.length){
@@ -1276,11 +1494,11 @@ function toggleTL(btn){
 // ===== COMMAND PALETTE =====
 const commands = [
   {cmd:'whoami',desc:'Show identity',action:()=>'Shahid Singh — Systems Developer'},
-  {cmd:'about',desc:'Show profile summary',action:()=>'Systems Developer. CompTIA A+, Network+. 3+ years in process automation, Chrome extensions, embedded systems at Jenny Internet.'},
+  {cmd:'about',desc:'Show profile summary',action:()=>'I build systems that make other systems work better. Automation workflows, Chrome extensions, internal tools. CompTIA A+, Network+. Jenny Internet.'},
   {cmd:'experience',desc:'List work history',action:()=>'Jenny Internet (SysDev 03/26-Present, IT Support 05/25-02/26) | Khuphula Solutions (03/23-05/25) | ArcelorMittal (03/23-02/24)'},
   {cmd:'skills',desc:'Show technical skills',action:()=>'Workflow Automation, React/TS, Flutter, ESP32, Python, Networking, MikroTik'},
   {cmd:'projects',desc:'List projects',action:()=>'SudoDeck, SpiceDesk, Jenny Screenshot Asst, Jenny Vault, NexCampus, Family Tree App, Agent Robin 007, RFID Reader, CYD Controller, CYD Firmware, SudoOS'},
-  {cmd:'certs',desc:'Show certifications',action:()=>'CompTIA A+, Network+, Alison Cybersecurity & Ethical Hacking, cPanel, Cisco, QuickBooks, MS Office'},
+  {cmd:'certs',desc:'Show certifications',action:()=>'CompTIA A+, Network+, Security+, Cloud+ | Alison Cybersecurity & Ethical Hacking | cPanel | Cisco Network Security | QuickBooks | MS Office'},
   {cmd:'email',desc:'Show contact email',action:()=>'shahidsingh1zn@gmail.com'},
   {cmd:'github',desc:'Show GitHub profile',action:()=>'github.com/sudobreakstuff'},
   {cmd:'location',desc:'Show location',action:()=>'Newcastle, South Africa. Code 8 license, own car.'},
@@ -1367,7 +1585,7 @@ document.addEventListener('keydown',e=>{
 
 // ===== SKILL BAR ANIMATION =====
 (function(){
-  const bars = document.querySelectorAll('.skill-bar-fill');
+  const bars = document.querySelectorAll('.skill-term-fill');
   const observer = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}

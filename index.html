@@ -67,6 +67,15 @@ body{
   backdrop-filter:blur(20px);
   width:100%;
   box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  position:relative;
+}
+.terminal-window::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.015) 2px,rgba(255,255,255,0.015) 4px);
+  pointer-events:none;
+  z-index:2;
 }
 .terminal-header{
   display:flex;
@@ -119,6 +128,12 @@ body{
   font-size:1.1rem;
   color:var(--accent2);
   font-weight:500;
+  text-shadow:0 0 40px rgba(108,92,231,0.15);
+  animation:titleGlow 4s ease-in-out infinite;
+}
+@keyframes titleGlow{
+  0%,100%{text-shadow:0 0 20px rgba(108,92,231,0.1)}
+  50%{text-shadow:0 0 40px rgba(108,92,231,0.25)}
 }
 .hero-name{
   font-size:2rem;
@@ -127,10 +142,39 @@ body{
   margin:4px 0;
 }
 .hero-name span{color:var(--accent)}
+.term-input{
+  flex:1;
+  background:none;
+  border:none;
+  outline:none;
+  color:var(--text);
+  font-family:var(--mono);
+  font-size:0.9rem;
+  caret-color:var(--accent);
+}
+.term-input::placeholder{color:var(--text3);font-size:0.8rem;opacity:0.5}
+#term-output .term-line{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:4px;
+  font-family:var(--mono);
+  font-size:0.85rem;
+}
+#term-output .term-line .out{color:var(--text2);white-space:pre-wrap}
+#term-output .term-line .out.green{color:var(--green)}
+#term-output .term-line .out.cyan{color:var(--cyan)}
+#term-output .term-line .out.accent{color:var(--accent2)}
 .typewriter-text{
   color:var(--text2);
   font-size:0.85rem;
   min-height:1.6em;
+}
+.typewriter-text::after{
+  content:'|';
+  color:var(--accent);
+  animation:blink 1s step-end infinite;
+  margin-left:2px;
 }
 .terminal-email{
   margin-top:16px;
@@ -422,6 +466,31 @@ body{
 }
 
 /* ===== SKILLS HEX (legacy - kept for reference) ===== */
+
+/* ===== PROJECT FILTERS ===== */
+.project-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:16px;
+}
+.pf-btn{
+  font-family:var(--mono);
+  font-size:0.75rem;
+  padding:5px 14px;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.03);
+  color:var(--text3);
+  cursor:pointer;
+  transition:all .2s;
+}
+.pf-btn:hover{color:var(--text2);border-color:rgba(108,92,231,0.2)}
+.pf-btn.active{
+  background:rgba(108,92,231,0.12);
+  color:var(--accent2);
+  border-color:rgba(108,92,231,0.3);
+}
 
 /* ===== PROJECTS ===== */
 .projects-grid{
@@ -765,7 +834,7 @@ body{
   #particles-canvas,.cmd-overlay,.project-modal-overlay,.no-print,.terminal-cursor,.typewriter-text,.download-btn,.cmd-toggle-hint{display:none!important}
   .container{max-width:100%!important;padding:0!important}
 
-  .section{page-break-inside:avoid;padding:8px 0!important;border-top:none!important}
+  .section{padding:6px 0!important;border-top:none!important}
   .section-header{margin-bottom:8px}
   .section-header h2{font-size:1rem}
   .section-header .icon{font-size:0.85rem}
@@ -780,8 +849,7 @@ body{
 
   .stats-bar{grid-template-columns:repeat(4,1fr);margin-top:6px;gap:6px}
   .stat-item{padding:4px 6px;border-color:#ddd}
-  .stat-number{font-size:0!important}
-  .stat-number::after{content:attr(data-target)"+";font-size:0.95rem;color:var(--accent);font-weight:700;font-family:var(--mono)}
+  .stat-number{font-size:0.95rem}
   .stat-label{font-size:0.55rem}
 
   .profile-card{padding:10px;page-break-inside:avoid}
@@ -870,7 +938,7 @@ body{
         <div class="terminal-dot green"></div>
         <div class="terminal-title">shahid@resume:~</div>
       </div>
-      <div class="terminal-body">
+      <div class="terminal-body" id="terminal-body">
         <div class="terminal-line">
           <span class="terminal-prompt">$</span>
           <span class="terminal-output">whoami</span>
@@ -879,28 +947,33 @@ body{
         <div class="hero-title">Systems Developer &middot; Automation Engineer &middot; Full-Stack & Embedded Developer</div>
         <div class="terminal-line" style="margin-top:14px">
           <span class="terminal-prompt">$</span>
-          <span class="terminal-output">cat profile.txt</span>
+          <span class="terminal-output"><span style="color:var(--text2)">~/profile</span> <span style="color:var(--accent2)">cat</span> profile.txt</span>
         </div>
         <div class="typewriter-text" id="typewriter"></div>
         <div class="terminal-line" style="margin-top:16px">
           <span class="terminal-prompt">$</span>
-          <span class="terminal-output"><span style="color:var(--text2)">email:</span> <a href="mailto:shahidsingh1zn@gmail.com" style="color:var(--cyan);text-decoration:none">shahidsingh1zn@gmail.com</a></span>
+          <span class="terminal-output"><span style="color:var(--text2)">~/profile</span> <span style="color:var(--accent2)">echo</span> <span style="color:var(--green)">"$CONTACT"</span></span>
         </div>
         <div class="terminal-line">
-          <span class="terminal-prompt">$</span>
-          <span class="terminal-output"><span style="color:var(--text2)">github:</span> <a href="https://github.com/sudobreakstuff" target="_blank" style="color:var(--cyan);text-decoration:none">github.com/sudobreakstuff</a></span>
+          <span class="terminal-prompt"></span>
+          <span class="terminal-output">email: <a href="mailto:shahidsingh1zn@gmail.com" style="color:var(--cyan);text-decoration:none">shahidsingh1zn@gmail.com</a></span>
         </div>
         <div class="terminal-line">
-          <span class="terminal-prompt">$</span>
-          <span class="terminal-output"><span style="color:var(--text2)">location:</span> Newcastle, South Africa</span>
+          <span class="terminal-prompt"></span>
+          <span class="terminal-output">github: <a href="https://github.com/sudobreakstuff" target="_blank" style="color:var(--cyan);text-decoration:none">github.com/sudobreakstuff</a></span>
         </div>
         <div class="terminal-line">
-          <span class="terminal-prompt">$</span>
-          <span class="terminal-output"><span style="color:var(--text2)">license:</span> Code 8 &middot; Own Car</span>
+          <span class="terminal-prompt"></span>
+          <span class="terminal-output">location: Newcastle, South Africa</span>
         </div>
         <div class="terminal-line">
+          <span class="terminal-prompt"></span>
+          <span class="terminal-output">license: Code 8 &middot; Own car</span>
+        </div>
+
+        <div class="terminal-line">
           <span class="terminal-prompt">$</span>
-          <span class="terminal-output"><span style="color:var(--text2)">hobbies:</span> Cricket, Fishing, Hiking</span>
+          <span class="terminal-output"><span style="color:var(--text2)">~/profile</span> <span style="color:var(--accent2)">./benchmark</span></span>
         </div>
 
         <!-- Stats -->
@@ -910,12 +983,18 @@ body{
           <div class="stat-item"><div class="stat-number" data-target="10">0</div><div class="stat-label">Projects Shipped</div></div>
           <div class="stat-item"><div class="stat-number" data-target="6">0</div><div class="stat-label">Certifications</div></div>
         </div>
-        <div class="terminal-line" style="margin-top:16px;justify-content:center">
+
+        <!-- Terminal output area for interactive commands -->
+        <div id="term-output"></div>
+
+        <!-- Interactive input line -->
+        <div class="terminal-line" style="margin-top:14px" id="term-input-line">
           <span class="terminal-prompt">$</span>
-          <a href="resume.pdf" download="Shahid_Singh_Resume.pdf" class="download-btn" target="_blank">download resume.pdf</a>
+          <input type="text" id="term-input" class="term-input" placeholder="type a command... (try help)" autocomplete="off" spellcheck="false">
         </div>
+
         <div class="terminal-line" style="margin-top:12px;justify-content:center;opacity:0.5;font-size:0.75rem">
-          <span style="color:var(--text3)">Press <kbd style="background:rgba(255,255,255,0.08);padding:1px 6px;border-radius:4px;font-family:var(--mono)">Ctrl+K</kbd> to open command palette</span>
+          <span style="color:var(--text3)"><kbd style="background:rgba(255,255,255,0.08);padding:1px 6px;border-radius:4px;font-family:var(--mono)">Tab</kbd> focus &middot; <kbd style="background:rgba(255,255,255,0.08);padding:1px 6px;border-radius:4px;font-family:var(--mono)">Ctrl+K</kbd> palette &middot; <kbd style="background:rgba(255,255,255,0.08);padding:1px 6px;border-radius:4px;font-family:var(--mono)">/</kbd> filter projects</span>
         </div>
       </div>
     </div>
@@ -934,8 +1013,7 @@ body{
       <p>
         I build systems that make other systems work better. At <span class="highlight">Jenny Internet</span>,
         I design and develop internal software — ticket automation workflows, Chrome extensions for
-        support agents, file management tools — that keep <span class="highlight">60+ corporate networks</span>
-        and their support teams running efficiently.
+        support agents, file management tools — that keep support teams running efficiently.
       </p>
       <p style="margin-top:12px">
         <span class="highlight">CompTIA A+</span> and <span class="highlight">Network+</span> certified.
@@ -1249,86 +1327,93 @@ body{
       <h2>Projects</h2>
       <div class="line"></div>
     </div>
+    <div class="project-filters">
+      <button class="pf-btn active" data-filter="all">All</button>
+      <button class="pf-btn" data-filter="extension">Extensions</button>
+      <button class="pf-btn" data-filter="desktop">Desktop</button>
+      <button class="pf-btn" data-filter="hardware">Hardware</button>
+      <button class="pf-btn" data-filter="web">Web</button>
+    </div>
     <div class="projects-grid">
 
-      <div class="project-card">
+      <div class="project-card" data-category="hardware">
         <h3>SudoDeck</h3>
         <div class="tech"><span>C++</span><span>ESP32</span><span>BLE</span><span>Arduino</span><span>Python</span><span>LVGL</span></div>
         <p>Wireless Bluetooth macro keyboard — open-source Stream Deck competitor. ESP32+ILI9341 touchscreen, BLE HID, multi-page grid, 30 buttons/page, app launcher, live widgets, Web Serial config. Sold assembled in South Africa for R1,099.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/sudodeck" target="_blank">Source</a><a href="https://sudobreakstuff.github.io/sudodeck" target="_blank">Demo</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="extension">
         <h3>Jenny Screenshot Assistant</h3>
         <div class="tech"><span>React</span><span>TypeScript</span><span>Vite</span><span>Tesseract</span><span>MV3</span></div>
         <p>Production Chrome/Edge extension for support agents. Captures screenshots, runs local OCR, redacts sensitive data, annotates, and generates editable ticket notes. Privacy-first — no uploads by default.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/jenny-screenshot-assistant" target="_blank">Source</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="extension">
         <h3>Jenny Vault</h3>
         <div class="tech"><span>JavaScript</span><span>MV3</span><span>Encryption</span><span>Chrome API</span></div>
         <p>Chrome extension for saving template JSON/text with local encryption. Password-protected vault with search, edit, JSON/tree views, export/import, and 7 color themes. Built for internal Jenny support use.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/jenny-vault" target="_blank">Source</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="desktop">
         <h3>SpiceDesk</h3>
         <div class="tech"><span>Flutter</span><span>Dart</span><span>Supabase</span><span>Riverpod</span></div>
         <p>Open-source business management suite for bakeries, delis, and food shops. POS, inventory, CRM, expenses, quotes, reports, invoice PDFs, WhatsApp sharing. Cross-platform (Linux, Windows, Android). MIT licensed.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/spicedesk" target="_blank">Source</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="desktop">
         <h3>NexCampus</h3>
         <div class="tech"><span>Python</span><span>JavaScript</span><span>OCR</span><span>Ollama</span></div>
         <p>Offline educational suite — 249MB with study tools, code lab (Python/JS/Bash), text tools, 262k-word dictionary, interactive periodic table, solar system, OCR, and 9 themes. Works with zero internet.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/Nexcampus" target="_blank">Source</a><a href="https://sudobreakstuff.github.io/Nexcampus/" target="_blank">Demo</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="desktop">
         <h3>Family Tree App</h3>
         <div class="tech"><span>Flutter</span><span>Dart</span><span>SQLite</span><span>Riverpod</span></div>
         <p>Interactive offline family tree builder. Multiple family books, pan/zoom tree view, person profiles, photos, relationships, timeline view, statistics. Cross-platform: Windows, Android, Linux.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/family-tree-app" target="_blank">Source</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="web">
         <h3>Agent Robin 007</h3>
         <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span><span>Canvas</span><span>Web Audio</span></div>
         <p>James Bond-themed Father's Day game. Animated mission briefing, 3-round shooting gallery, score tracking, Bond quotes, downloadable commendation card, confetti, Aston Martin finale.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/agent-robin-007" target="_blank">Source</a><a href="https://sudobreakstuff.github.io/agent-robin-007/" target="_blank">Demo</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="hardware">
         <h3>RFID Card Reader</h3>
         <div class="tech"><span>Python</span><span>Curses</span><span>Proxmark3</span><span>TUI</span></div>
         <p>Terminal-based EM410x RFID card reader/writer. Animated TUI with pulsing borders, session logging, CSV export, hex-ID writing/cloning, auto-incrementing ID generator. Drives Proxmark3 hardware.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/rfid-card-reader" target="_blank">Source</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="hardware">
         <h3>CYD Chrome Controller</h3>
         <div class="tech"><span>C++</span><span>Python</span><span>ESP32</span><span>ydotool</span></div>
         <p>Physical touch interface for browser/media control. ESP32 + touchscreen with 9 touch zones mapped to media shortcuts. Sends keystrokes via ydotool on Wayland. Configurable JSON layout.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/cyd-controller" target="_blank">Source</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="hardware">
         <h3>CYD Firmware / Daemon</h3>
         <div class="tech"><span>Arduino C++</span><span>Python</span><span>LVGL</span><span>WiFi</span><span>UDP</span></div>
         <p>ESP32 cyberdeck firmware with on-screen keyboard and touchpad. Sends keystrokes/mouse events over serial and WiFi UDP. Includes R36S daemon for uinput injection and gamepad-to-keyboard bridge.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/cyd-firmware" target="_blank">Source</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="hardware">
         <h3>SudoOS</h3>
         <div class="tech"><span>Linux Kernel</span><span>ARM64</span><span>C</span><span>Bash</span></div>
         <p>Custom Linux kernel build for R36S handheld (ARM64). Automated cross-compilation script, custom kernel config, branded boot logo, initramfs rebuild, and uInitrd creation.</p>
         <div class="links"><a href="https://github.com/sudobreakstuff/sudoos" target="_blank">Source</a></div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="web">
         <h3>For Akiva, With Love</h3>
         <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span><span>Canvas</span><span>Web Audio</span></div>
         <p>Interactive web garden — plant seeds into flowers representing 9 years of memories. Aurora sky, fireflies, moonlit scene, ambient flute music, and a finale animation.</p>
@@ -1370,7 +1455,7 @@ body{
       <span>$ cat <a href="https://github.com/sudobreakstuff" target="_blank">github.com/sudobreakstuff</a></span>
       <span>$ <a href="resume.pdf" download="Shahid_Singh_Resume.pdf" target="_blank">download resume.pdf</a></span>
     </p>
-    <p>Built by Shahid Singh &middot; Single HTML file &middot; Systems Developer style</p>
+    <p>Built by Shahid Singh</p>
   </div>
 </footer>
 
@@ -1450,7 +1535,7 @@ body{
 // ===== TYPEWRITER =====
 (function(){
   const el = document.getElementById('typewriter');
-  const text = "I build systems that make other systems work better. Automation workflows, Chrome extensions, internal tools. CompTIA A+ and Network+ certified. Currently at Jenny Internet.";
+  const text = "I build systems that make other systems work better. Ticket automation, Chrome extensions, file management, embedded hardware — whatever it takes to eliminate busywork. Systems Developer at Jenny Internet.";
   let i=0;
   function type(){
     if(i<text.length){
@@ -1465,11 +1550,18 @@ body{
 // ===== STAT COUNTER =====
 (function(){
   const counters = document.querySelectorAll('.stat-number');
+  // For print/PDF capture: set values immediately
+  if(window.matchMedia('print').matches || navigator.userAgent.includes('HeadlessChrome')){
+    counters.forEach(el=>{el.textContent=el.dataset.target+'+'});
+    return;
+  }
+  // For web: animate on scroll with Observer
   const observer = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
         const el = entry.target;
         const target = parseInt(el.dataset.target);
+        el.textContent='0+';
         let current = 0;
         const step = Math.ceil(target/30);
         const interval = setInterval(()=>{
@@ -1550,7 +1642,89 @@ function execCmd(cmd){
 }
 document.addEventListener('keydown',e=>{
   if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openCmd()}
+  if(e.key==='Tab'&&!e.ctrlKey&&!e.metaKey){e.preventDefault();document.getElementById('term-input')?.focus()}
 });
+
+// ===== INTERACTIVE TERMINAL =====
+(function(){
+  const input = document.getElementById('term-input');
+  const output = document.getElementById('term-output');
+  const body = document.getElementById('terminal-body');
+  const termCommands = [
+    {cmd:'whoami',action:()=>'Shahid Singh — Systems Developer'},
+    {cmd:'about',action:()=>'I build systems that make other systems work better. Automation workflows, Chrome extensions, internal tools. CompTIA A+, Network+. Jenny Internet.'},
+    {cmd:'experience',action:()=>'Jenny Internet (SysDev 03/26-Present, IT Support 05/25-02/26) | Khuphula Solutions (03/23-05/25) | ArcelorMittal (03/23-02/24)'},
+    {cmd:'skills',action:()=>'Workflow Automation, React/TS, Flutter, ESP32, Python, Networking, MikroTik'},
+    {cmd:'projects',action:()=>'SudoDeck, SpiceDesk, Screenshot Asst, Jenny Vault, NexCampus, Family Tree, Robin 007, RFID Reader, CYD Controller, Firmware, SudoOS'},
+    {cmd:'certs',action:()=>'CompTIA A+, N+, S+, Cloud+ | Cybersecurity | Ethical Hacking | cPanel | Cisco | QuickBooks | MS Office'},
+    {cmd:'email',action:()=>'shahidsingh1zn@gmail.com'},
+    {cmd:'github',action:()=>'github.com/sudobreakstuff'},
+    {cmd:'location',action:()=>'Newcastle, South Africa. Code 8, own car.'},
+    {cmd:'download',action:()=>{window.open('resume.pdf');return 'Downloading resume.pdf...'}},
+    {cmd:'clear',action:()=>{output.innerHTML='';return''}},
+    {cmd:'help',action:()=>'whoami | about | experience | skills | projects | certs | email | github | location | download | clear | help'},
+    {cmd:'ls',action:()=>'about/  experience/  skills/  projects/  certs/  education/  contact/'},
+    {cmd:'date',action:()=>new Date().toLocaleString()},
+    {cmd:'uptime',action:()=>'Session started '+new Date().toLocaleTimeString()},
+  ];
+  if(!input) return;
+  let history = [];
+  let historyIdx = -1;
+  input.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      const val = input.value.trim().toLowerCase();
+      if(!val) return;
+      input.value='';
+      const found = termCommands.find(c=>c.cmd===val) || commands.find(c=>c.cmd===val);
+      const result = found ? found.action() : `bash: ${val}: command not found`;
+      const line = document.createElement('div');
+      line.className='term-line';
+      const resultText = typeof result==='string'?result:'';
+      line.innerHTML=`<span class="terminal-prompt" style="color:var(--green)">$</span><span class="out">${val}</span>`;
+      output.appendChild(line);
+      if(resultText){
+        const rline = document.createElement('div');
+        rline.className='term-line';
+        rline.innerHTML=`<span class="terminal-prompt"></span><span class="out cyan">${resultText}</span>`;
+        output.appendChild(rline);
+      }
+      history.push(val);
+      historyIdx = history.length;
+      body.scrollTop = body.scrollHeight;
+    }
+    if(e.key==='ArrowUp'){
+      e.preventDefault();
+      if(historyIdx>0){historyIdx--;input.value=history[historyIdx]}
+    }
+    if(e.key==='ArrowDown'){
+      e.preventDefault();
+      if(historyIdx<history.length-1){historyIdx++;input.value=history[historyIdx]}
+      else{historyIdx=history.length;input.value=''}
+    }
+  });
+  // Focus input on page load
+  setTimeout(()=>input.focus(),2000);
+})();
+
+// ===== PROJECT FILTER =====
+(function(){
+  const btns = document.querySelectorAll('.pf-btn');
+  const cards = document.querySelectorAll('.project-card');
+  btns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card=>{
+        if(filter==='all'||card.dataset.category===filter){
+          card.style.display='';
+        }else{
+          card.style.display='none';
+        }
+      });
+    });
+  });
+})();
 
 // ===== PROJECT MODAL =====
 (function(){
@@ -1594,17 +1768,31 @@ document.addEventListener('keydown',e=>{
   bars.forEach(b=>observer.observe(b));
 })();
 
-// ===== SCROLL REVEAL =====
+// ===== SCROLL CASCADE =====
 (function(){
-  const sections = document.querySelectorAll('.section');
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting) entry.target.style.opacity='1';
-    });
-  },{threshold:0.05});
-  sections.forEach(s=>{s.style.opacity='0';s.style.transition='opacity 0.6s ease-out';observer.observe(s)});
-  // make first section visible immediately
-  if(sections.length) sections[0].style.opacity='1';
+  const grids = ['.skills-grid','.cert-grid','.edu-card','.ref-grid'];
+  grids.forEach(sel=>{
+    const parent = document.querySelector(sel);
+    if(!parent) return;
+    const children = parent.children;
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          Array.from(entry.target.children).forEach((child,i)=>{
+            child.style.opacity='0';
+            child.style.transform='translateY(10px)';
+            child.style.transition='opacity 0.4s ease-out, transform 0.4s ease-out';
+            child.style.transitionDelay=(i*50)+'ms';
+            requestAnimationFrame(()=>{child.style.opacity='1';child.style.transform='translateY(0)'});
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.15});
+    observer.observe(parent);
+    // show first items immediately
+    Array.from(children).forEach((c,i)=>{if(i<2){c.style.opacity='1';c.style.transform='translateY(0)'}});
+  });
 })();
 </script>
 </body>

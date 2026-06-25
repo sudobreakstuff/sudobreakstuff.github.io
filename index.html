@@ -738,21 +738,6 @@ body{
 }
 .terminal-footer a{color:var(--cyan);text-decoration:none}
 .terminal-footer a:hover{color:var(--accent2)}
-.footer-card{
-  display:flex;
-  flex-wrap:wrap;
-  gap:32px;
-  justify-content:center;
-  background:var(--bg2);
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:var(--radius);
-  padding:28px 32px;
-  max-width:640px;
-  margin:0 auto;
-  text-align:left;
-}
-.footer-left{flex:1;min-width:220px}
-.footer-right{flex:1;min-width:200px}
 
 /* ===== COMMAND PALETTE ===== */
 .cmd-overlay{
@@ -1058,6 +1043,31 @@ body{
 }
 .modal-close:hover{color:var(--text)}
 
+/* ===== BACK TO TOP ===== */
+.back-top{
+  position:fixed;
+  bottom:24px;left:24px;
+  width:44px;height:44px;
+  border-radius:12px;
+  background:rgba(12,12,26,0.85);
+  border:1px solid rgba(108,92,231,0.2);
+  color:var(--accent2);
+  cursor:pointer;
+  z-index:9995;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.2rem;
+  opacity:0;
+  transform:translateY(20px);
+  pointer-events:none;
+  transition:all .3s;
+  backdrop-filter:blur(12px);
+}
+.back-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.back-top:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.back-top svg{width:18px;height:18px;display:block}
+
 /* ===== PRINT ===== */
 @media print{
   @page{size:A4;margin:10mm 12mm}
@@ -1069,7 +1079,7 @@ body{
   }
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   html{font-size:8.5pt}
-  #particles-canvas,.cmd-overlay,.project-modal-overlay,.ghost-btn,.ghost-panel,.no-print,.terminal-cursor,.typewriter-text,.download-btn,.cmd-toggle-hint,.project-thumb{display:none!important}
+  #particles-canvas,.cmd-overlay,.project-modal-overlay,.ghost-btn,.ghost-panel,.no-print,.terminal-cursor,.typewriter-text,.download-btn,.cmd-toggle-hint,.project-thumb,.back-top{display:none!important}
   .terminal-window::after{display:none!important}
   .container{max-width:100%!important;padding:0!important}
 
@@ -1209,9 +1219,9 @@ body{
           <span class="terminal-prompt"></span>
           <span class="terminal-output">location: Newcastle, South Africa</span>
         </div>
-        <div class="terminal-line">
-          <span class="terminal-prompt"></span>
-          <span class="terminal-output">license: Code 8 &middot; Own car</span>
+        <div class="terminal-line" style="margin-top:8px">
+          <span class="terminal-prompt" style="color:var(--orange)">~</span>
+          <span class="terminal-output" style="color:var(--text3);font-style:italic;font-size:0.82rem">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle." — Steve Jobs</span>
         </div>
 
         <div class="terminal-line">
@@ -1706,31 +1716,12 @@ body{
 <!-- FOOTER -->
 <footer class="terminal-footer">
   <div class="container">
-    <div class="footer-card">
-      <div class="footer-left">
-        <div style="font-family:var(--mono);font-size:0.8rem;color:var(--cyan);margin-bottom:6px">$ ls -la ~/resume/</div>
-        <div style="font-family:var(--mono);font-size:0.75rem;color:var(--text3);margin-bottom:14px;line-height:1.8">
-          -rw-r--r-- 1 shahid staff &nbsp;2,199 lines &nbsp;index.html<br>
-          -rw-r--r-- 1 shahid staff &nbsp;&nbsp;794 KB &nbsp;&nbsp;&nbsp;resume.pdf
-        </div>
-        <a href="resume.pdf" download="Shahid_Singh_Resume.pdf" target="_blank" class="download-btn">
-          <svg viewBox="0 0 16 16" width="14" height="14" style="vertical-align:middle;margin-right:6px"><path d="M8 10l4-4H10V2H6v4H4l4 4z" fill="currentColor"/><path d="M2 12v2h12v-2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-          Download Resume (PDF)
-        </a>
-        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-top:10px">
-          <a href="https://sudobreakstuff.github.io" target="_blank" style="color:var(--accent2);text-decoration:none">sudobreakstuff.github.io</a>
-        </div>
-      </div>
-      <div class="footer-right">
-        <div style="font-family:var(--mono);font-size:0.8rem;color:var(--text2);margin-bottom:8px">Get in touch</div>
-        <div style="font-size:0.8rem;color:var(--text3);line-height:1.8">
-          email: <a href="mailto:shahidsingh1zn@gmail.com" style="color:var(--cyan);text-decoration:none">shahidsingh1zn@gmail.com</a><br>
-          github: <a href="https://github.com/sudobreakstuff" target="_blank" style="color:var(--cyan);text-decoration:none">github.com/sudobreakstuff</a><br>
-          tel: <span style="color:var(--text2)">Juan Kahts (Ref) — 084 766 3381</span>
-        </div>
-      </div>
-    </div>
-    <p style="margin-top:16px">Built by Shahid Singh</p>
+    <p style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 24px;margin-bottom:8px">
+      <span style="color:var(--text3);font-family:var(--mono)">$ cat <a href="https://github.com/sudobreakstuff" target="_blank">github.com/sudobreakstuff</a></span>
+      <span style="color:var(--text3);font-family:var(--mono)">$ echo <a href="mailto:shahidsingh1zn@gmail.com">shahidsingh1zn@gmail.com</a></span>
+      <a href="resume.pdf" download="Shahid_Singh_Resume.pdf" target="_blank" class="download-btn">Download Resume (PDF)</a>
+    </p>
+    <p>Built by Shahid Singh &mdash; <a href="https://sudobreakstuff.github.io">sudobreakstuff.github.io</a></p>
   </div>
 </footer>
 
@@ -1941,18 +1932,7 @@ document.addEventListener('keydown',e=>{
     {cmd:'ls',action:()=>'about/  experience/  skills/  projects/  certs/  education/  contact/'},
     {cmd:'date',action:()=>new Date().toLocaleString()},
     {cmd:'uptime',action:()=>'Session started '+new Date().toLocaleTimeString()},
-  // === GREETINGS / META ===
-  {q:['hello','hi','hey','howdy','sup'],a:'Hello. I\'m GHOST. I handle questions about Shahid\'s work so he doesn\'t have to repeat himself. Ask me about his skills, experience, projects, or the rumor that I\'m powered by a Raspberry Pi. (I\'m not. But I won\'t confirm or deny.)'},
-  {q:['thanks','thank you','appreciate'],a:'Happy to help. If something I said sparks interest, Shahid is reachable at shahidsingh1zn@gmail.com. I\'m just the frontend — he\'s the actual system.'},
-  {q:['bye','goodbye','see you','later'],a:'Good luck with your decision. Shahid is ready when you are. And if the code samples don\'t convince you, the SudoDeck clicks will. There\'s something about mechanical keyboard switches that unit tests just can\'t replicate.'},
-  {q:['who created','who built','who made'],a:'Shahid built me as part of this resume. I\'m a knowledge engine — curated responses, smart matching, no hallucinations. I only say what I\'ve been programmed to confirm. In an era of AI making things up, I find that refreshing.'},
-  {q:['proud','favorite project','best work','highlight'],a:"SudoDeck. No question. He went from \"I wonder if I could build a macro keyboard\" to a product people actually buy for R1,099. PCB design, firmware, enclosure, BLE stack, Web Serial config — all him. He doesn't just build things. He ships them."},
-  {q:['joke','funny','humor','laugh','rofl','lol'],a:'Why do Systems Developers prefer dark mode? Because light attracts bugs. Shahid\'s site, coincidentally, is dark mode. I\'ll let you draw your own conclusions.'},
-  {q:'another joke',a:'How many Systems Developers does it take to change a lightbulb? None — that\'s a hardware issue. File a ticket. Someone will get to it within 72 business hours.'},
-  {q:'tell me a joke',a:'Why don\'t Systems Developers quit? Because they\'re already running in the background. Closing the process would require root access they don\'t have.'},
-  {q:'one more joke',a:'A QA engineer walks into a bar. Orders 1 beer. Orders 0 beers. Orders 999999 beers. Orders a lizard. Orders -1 beers. A real customer walks in and asks where the bathroom is. The bar burns down. QA closes the ticket: "Reproducible. Not a priority."'},
-
-];
+  ];
   if(!input) return;
   let history = [];
   let historyIdx = -1;
@@ -2101,6 +2081,11 @@ document.addEventListener('keydown',e=>{
     <button class="ghost-send" onclick="sendGhost()">&rarr;</button>
   </div>
 </div>
+
+<!-- Back to Top -->
+<button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z" fill="currentColor"/></svg>
+</button>
 
 <script>
 // ===== GHOST KNOWLEDGE ENGINE =====
@@ -2322,6 +2307,13 @@ document.getElementById('ghost-input')?.addEventListener('keydown',e=>{if(e.key=
   // Show on hover
   btn.addEventListener('mouseenter',()=>hint.classList.add('visible'));
   btn.addEventListener('mouseleave',()=>hint.classList.remove('visible'));
+})();
+
+// ===== BACK TO TOP =====
+(function(){
+  const btn = document.getElementById('back-top');
+  if(!btn) return;
+  window.addEventListener('scroll',()=>btn.classList.toggle('visible',window.scrollY>400));
 })();
 </script>
 </body>

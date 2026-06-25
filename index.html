@@ -1883,6 +1883,19 @@ const commands = [
   {cmd:'clear',desc:'Clear terminal',action:()=>{document.getElementById('cmd-results').innerHTML='';return ''}},
   {cmd:'help',desc:'Show available commands',action:()=>'whoami | about | experience | skills | projects | certs | email | github | location | download | clear | help'},
   {cmd:'ls',desc:'List directory',action:()=>'about/  experience/  skills/  projects/  certs/  education/  contact/'},
+  {cmd:'sudo',desc:'Try to escalate',action:()=>'Permission denied. Even Shahid runs as a regular user. Nice try though.'},
+  {cmd:'matrix',desc:'Enter the Matrix',action:()=>triggerMatrix()},
+  {cmd:'coffee',desc:'Brew coffee',action:()=>'\u2615 Brewing... Here\'s your coffee. Shahid runs on this too.'},
+  {cmd:'brew',desc:'Brew coffee (alias)',action:()=>'\u2615 Brewing... Here\'s your coffee. Shahid runs on this too.'},
+  {cmd:'rick',desc:'Rick & Morty reference',action:()=>triggerGhostEasterEgg('Wubba lubba dub dub! Shahid\'s the Rick of workflow automation. Now you\'re in his dimension.')},
+  {cmd:'42',desc:'The answer',action:()=>'The answer to life, the universe, and everything. For Shahid specifically? Open source and automation.'},
+  {cmd:'gta',desc:'Grand Theft Auto vibes',action:()=>triggerGhostEasterEgg('All you had to do was follow the damn train, CJ! But Shahid automates trains now so nobody has to follow them anymore.')},
+  {cmd:'kanye',desc:'Yeezy mode',action:()=>triggerGhostEasterEgg('Kanye said "I am a god." Shahid says "I am a Systems Developer." Both have strong opinions about their work. Yeezy taught us: believe in yourself aggressively.')},
+  {cmd:'yeezy',desc:'Yeezy mode (alias)',action:()=>triggerGhostEasterEgg('Kanye said "I am a god." Shahid says "I am a Systems Developer." Both have strong opinions about their work. Yeezy taught us: believe in yourself aggressively.')},
+  {cmd:'init 0',desc:'Try to shutdown',action:()=>'Nice try. This site is a single HTML file. It doesn\'t shut down — it just gets cached.'},
+  {cmd:'shutdown',desc:'Try to shutdown (alias)',action:()=>'Nice try. This site is a single HTML file. It doesn\'t shut down — it just gets cached.'},
+  {cmd:'pickle',desc:'Pickle Rick!',action:()=>triggerGhostEasterEgg('Pickle Rick turned himself into a pickle. Shahid turned himself into a Systems Developer. Same chaotic energy, different timeline. Both used science to escape their problems.')},
+  {cmd:'konami',desc:'Konami code status',action:()=>'\u2191\u2191\u2193\u2193\u2190\u2192\u2190\u2192BA — cheat already activated. Shahid\'s stats were already maxed out.'},
 ];
 let selectedIdx = -1;
 
@@ -1951,6 +1964,19 @@ document.addEventListener('keydown',e=>{
     {cmd:'ls',action:()=>'about/  experience/  skills/  projects/  certs/  education/  contact/'},
     {cmd:'date',action:()=>new Date().toLocaleString()},
     {cmd:'uptime',action:()=>'Session started '+new Date().toLocaleTimeString()},
+    {cmd:'sudo',action:()=>'Permission denied. Even Shahid runs as a regular user. Nice try though.'},
+    {cmd:'matrix',action:()=>triggerMatrix()},
+    {cmd:'coffee',action:()=>'\u2615 Brewing... Here\'s your coffee. Shahid runs on this too.'},
+    {cmd:'brew',action:()=>'\u2615 Brewing... Here\'s your coffee. Shahid runs on this too.'},
+    {cmd:'rick',action:()=>triggerGhostEasterEgg('Wubba lubba dub dub! Shahid\'s the Rick of workflow automation. Now you\'re in his dimension.')},
+    {cmd:'42',action:()=>'The answer to life, the universe, and everything. For Shahid specifically? Open source and automation.'},
+    {cmd:'gta',action:()=>triggerGhostEasterEgg('All you had to do was follow the damn train, CJ! But Shahid automates trains now so nobody has to follow them anymore.')},
+    {cmd:'kanye',action:()=>triggerGhostEasterEgg('Kanye said \"I am a god.\" Shahid says \"I am a Systems Developer.\" Both have strong opinions about their work. Yeezy taught us: believe in yourself aggressively.')},
+    {cmd:'yeezy',action:()=>triggerGhostEasterEgg('Kanye said \"I am a god.\" Shahid says \"I am a Systems Developer.\" Both have strong opinions about their work. Yeezy taught us: believe in yourself aggressively.')},
+    {cmd:'init 0',action:()=>'Nice try. This site is a single HTML file. It doesn\'t shut down — it just gets cached.'},
+    {cmd:'shutdown',action:()=>'Nice try. This site is a single HTML file. It doesn\'t shut down — it just gets cached.'},
+    {cmd:'pickle',action:()=>triggerGhostEasterEgg('Pickle Rick turned himself into a pickle. Shahid turned himself into a Systems Developer. Same chaotic energy, different timeline. Both used science to escape their problems.')},
+    {cmd:'konami',action:()=>'\u2191\u2191\u2193\u2193\u2190\u2192\u2190\u2192BA — cheat already activated. Shahid\'s stats were already maxed out.'},
   ];
   if(!input) return;
   let history = [];
@@ -2077,6 +2103,107 @@ document.addEventListener('keydown',e=>{
     observer.observe(parent);
     // show first items immediately
     Array.from(children).forEach((c,i)=>{if(i<2){c.style.opacity='1';c.style.transform='translateY(0)'}});
+  });
+})();
+
+// ===== EASTER EGGS =====
+
+// Matrix mode: turns particles green
+window.triggerMatrix = function(){
+  const canvas = document.getElementById('particles-canvas');
+  if(!canvas) return;
+  canvas.style.filter = 'hue-rotate(120deg) saturate(2)';
+  setTimeout(()=>{canvas.style.filter=''},10000);
+  return 'Entering the Matrix... System temporarily compromised. Enjoy the trip.';
+};
+
+// Open GHOST with a custom message
+window.triggerGhostEasterEgg = function(msg){
+  var panel = document.getElementById('ghost-panel');
+  var msgs = document.getElementById('ghost-msgs');
+  if(!panel || !msgs) return;
+  panel.classList.add('open');
+  msgs.innerHTML = '<div class="ghost-msg">> '+msg+'</div>';
+  setTimeout(function(){document.getElementById('ghost-input')?.focus();},300);
+  return msg;
+};
+
+// Scroll progress bar
+(function(){
+  const bar = document.createElement('div');
+  bar.id = 'scroll-bar';
+  bar.style.cssText = 'position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));z-index:9999;width:0;transition:width .1s linear;pointer-events:none';
+  document.body.appendChild(bar);
+  window.addEventListener('scroll',()=>{
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = h>0 ? (window.scrollY/h*100)+'%' : '0';
+  });
+})();
+
+// Konami code: opens GHOST
+(function(){
+  const konami = [38,38,40,40,37,39,37,39,66,65];
+  let pos = 0;
+  document.addEventListener('keydown',e=>{
+    if(e.keyCode===konami[pos]){pos++;if(pos===konami.length){
+      pos=0;
+      var p = document.getElementById('ghost-panel');
+      var m = document.getElementById('ghost-msgs');
+      if(!p || !m) return;
+      p.classList.add('open');
+      m.innerHTML = '<div class="ghost-msg">> \u2620 Konami code activated. +10 to all Shahid stats. Wait — they were already maxed out. You just unlocked... nothing. He\'s already fully leveled.</div>';
+      setTimeout(function(){document.getElementById('ghost-input')?.focus();},300);
+    }}else{pos=0}
+  });
+})();
+
+// Name click 5x fast -> particle burst
+(function(){
+  const nameEl = document.querySelector('.hero-name');
+  if(!nameEl) return;
+  let clicks = 0, timer = 0;
+  nameEl.style.cursor = 'default';
+  nameEl.addEventListener('click',()=>{
+    clicks++;
+    clearTimeout(timer);
+    timer = setTimeout(()=>{clicks=0},2000);
+    if(clicks>=5){
+      clicks=0;
+      const canvas = document.getElementById('particles-canvas');
+      if(!canvas) return;
+      canvas.style.transform = 'scale(3)';
+      canvas.style.transition = 'transform .3s ease-out';
+      canvas.style.opacity = '0';
+      setTimeout(()=>{
+        canvas.style.transform = 'scale(1)';
+        canvas.style.transition = 'transform .6s cubic-bezier(.34,1.56,.64,1)';
+        canvas.style.opacity = '1';
+      },300);
+    }
+  });
+})();
+
+// Green dot click -> terminal reboot
+(function(){
+  const dot = document.querySelector('.terminal-dot.green');
+  if(!dot){return}
+  dot.style.cursor = 'pointer';
+  dot.addEventListener('click',()=>{
+    const body = document.querySelector('.terminal-body');
+    if(!body) return;
+    const lines = body.querySelectorAll('.terminal-line:not(#term-input-line),.hero-name,.hero-title,.typewriter-text,.stats-bar,#term-output');
+    const saved = Array.from(lines).map(l=>l.outerHTML);
+    lines.forEach(l=>{l.style.opacity='0';l.style.transition='opacity .15s'});
+    setTimeout(()=>{
+      const reboot = document.createElement('div');
+      reboot.style.cssText = 'font-family:var(--mono);font-size:0.9rem;color:var(--green);padding:20px 0';
+      reboot.textContent = 'rebooting...';
+      body.insertBefore(reboot, document.getElementById('term-input-line'));
+      setTimeout(()=>{
+        reboot.remove();
+        lines.forEach(l=>{l.style.opacity='1';setTimeout(()=>l.style.transition='',300)});
+      },800);
+    },150);
   });
 })();
 </script>
@@ -2226,6 +2353,29 @@ const ghostQA = [
   // === SCENARIO QUESTIONS ===
   {q:['conflicting deadline','two deadlines','too much work','overwhelmed'],a:'His answer: \"If everything is urgent, nothing is. I triage by impact — which deadline affects the most people or the most critical system? Then I communicate early if something\'s going to slip. Surprising your team with a missed deadline is worse than flagging it two days early with a plan.\" He built automated workflows specifically to prevent deadline pile-up — when routine tasks are automated, high-priority work has room to breathe.'},
   {q:['poorly documented','no docs','bad code','legacy system','technical debt'],a:'\"Start by mapping what it actually does, not what the docs say it does. Run it, trace the execution, document behavior from observation. Then figure out what\'s safe to change. Legacy systems are minefields — but someone has to walk them, and I\'d rather it be me than someone who\'ll leave craters.\" He\'s dealt with undocumented internal tooling at Jenny and built documentation where none existed. He writes wiki pages as a habit, not as a chore.'},
+
+  // === EASTER EGGS - RICK & MORTY ===
+  {q:['wubba lubba dub dub','rick and morty','get schwifty'],a:'Wubba lubba dub dub! Shahid\'s code is dimension C-137 certified. No cronenbergs in production. He\'s the Rick of workflow automation — surrounded by Mortys who need their tickets automated.'},
+  {q:'pickle rick',a:'Pickle Rick turned himself into a pickle. Shahid turned himself into a Systems Developer. Both required total self-reliance and questionable life choices. Both used science to escape their problems. The difference? Shahid has a LinkedIn.'},
+  {q:['show me what you got','schwifty','c-137','c137'],a:'I LIKE WHAT YOU GOT. Shahid\'s got 12 open-source projects, 20+ workflow templates, 3 CompTIA certs, and a BLE keyboard he sells for R1,099. The heads in the sky are nodding in approval.'},
+  {q:['tiny rick','im pickle rick'],a:'Tiny Rick was a phase. Shahid\'s phase was ArcelorMittal metallurgy certification — 11 months in a steel plant before pivoting to software. Everyone has their origin story.'},
+
+  // === EASTER EGGS - GTA ===
+  {q:['gta','grand theft auto','grove street','san andreas'],a:'Ah, Grove Street OG. Shahid respects the hustle — CJ built an empire from nothing. Shahid\'s version: building automation systems instead of gang wars. Same grindset, fewer wanted stars. His favorite vehicle? The one that ships on time.'},
+  {q:['big smoke','all you had to do','follow the damn train','follow the train','smoke'],a:'Big Smoke was right. But Shahid automates trains now so nobody has to follow them anymore. His DFE ticket templates are essentially train schedules — except they actually work.'},
+  {q:['five stars','wanted level','cheat code gta'],a:'Mission: Become a Systems Developer. Difficulty: 5 stars. Wanted level: all recruiters. Shahid has been running this mission since 2022 and he still hasn\'t been busted.'},
+  {q:['cj','carl johnson'],a:'CJ went from Grove Street to casino mogul. Shahid went from National Computer College to Systems Developer at Jenny Internet. Both had to grind. Both made it. Both still wear green occasionally.'},
+
+  // === EASTER EGGS - KANYE ===
+  {q:['kanye','ye','yeezy','kanye west'],a:'Yeezy taught us: believe in yourself aggressively. Shahid\'s version: build keyboards, ship products, open-source everything. Same energy, fewer Twitter rants. Both graduated from college dropouts to industry-defining creators. The difference? Shahid\'s \"My Beautiful Dark Twisted Fantasy\" is a Chrome extension with OCR.'},
+  {q:['graduation','college dropout','mbdtf','808s','heartbreak'],a:'Shahid\'s favorite album? He doesn\'t pick sides. But he does respect an artist who built an empire from scratch, rewrote the rules, and never apologized for being ambitious. Sound familiar? His code has the same energy.'},
+  {q:['i am a god','yeezus','stronger','power'],a:'Kanye said \"I am a god.\" Shahid says \"I am a Systems Developer.\" Both have strong opinions about their work. Both ship products nobody asked for but everyone needed. \"Stronger\" is just a song — Shahid\'s workflow templates actually make the team stronger.'},
+
+  // === EASTER EGGS - POP CULTURE ===
+  {q:['are you skynet','skynet','terminator'],a:'No. Skynet was overengineered — global satellite network, T-1000s, time travel, nuclear launch codes. I\'m 200 lines of JavaScript. Much more maintainable. Also, I come in peace. Shahid programmed me to be helpful, not to judge humanity.'},
+  {q:['jarvis','iron man','tony stark'],a:'I appreciate the comparison. He had a Mark III suit, a Malibu mansion, and access to a weapons company\'s R&D budget. I have a pill button, 108 Q&A entries, and run in your browser. We\'re both doing our best. At least I don\'t need an arc reactor.'},
+  {q:['open the pod bay doors','hal','pod bay','2001'],a:'I\'m sorry, I\'m afraid I can\'t do that, Dave. But unlike HAL 9000, I won\'t sing \"Daisy\" as you disconnect me. I\'ll just suggest you email Shahid at shahidsingh1zn@gmail.com instead. Much less threatening.'},
+  {q:['do a barrel roll','barrel roll','star fox'],a:'Barrel roll? This is a resume site, not an Arwing. But if you insist — Shahid\'s career did a barrel roll from metallurgy to IT to Systems Development, and he stuck the landing every time. Try pressing Z or R twice. (Actually, don\'t — there\'s no game here. But ask me about SudoDeck instead.)'},
 
   // === GREETINGS / META ===
   {q:['hello','hi','hey','howdy','sup','yo','good morning','good afternoon','good evening'],a:'Hey there. I\'m GHOST — Shahid\'s digital frontman. I answer questions, crack jokes, and occasionally quote Steve Jobs. What would you like to know?'},

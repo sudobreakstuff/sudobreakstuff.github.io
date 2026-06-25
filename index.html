@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Shahid Singh — Systems Developer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c1a'/%3E%3Crect width='32' height='32' rx='6' fill='none' stroke='%236c5ce7' stroke-width='1.5'/%3E%3Ctext x='4' y='16' font-family='monospace' font-size='14' font-weight='bold' fill='%2300cec9'%3E%3E_%3C/text%3E%3Crect x='4' y='22' width='16' height='2.5' fill='%236c5ce7' rx='1'%3E%3Canimate attributeName='opacity' values='1%3B0%3B1' dur='1.2s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/svg%3E" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -301,7 +302,8 @@ body{
   box-shadow:0 0 20px rgba(108,92,231,0.4);
 }
 .download-btn{
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
   font-family:var(--mono);
   font-size:0.85rem;
   color:var(--bg);
@@ -312,10 +314,12 @@ body{
   transition:all .3s;
   font-weight:600;
   letter-spacing:0.3px;
+  border:none;
+  cursor:pointer;
 }
 .download-btn:hover{
   transform:translateY(-2px);
-  box-shadow:0 6px 25px rgba(108,92,231,0.4);
+  box-shadow:0 8px 28px rgba(108,92,231,0.45);
   color:var(--bg);
 }
 .tl-item{position:relative;margin-bottom:28px;padding-left:32px}
@@ -576,6 +580,19 @@ body{
   border-color:var(--cyan);
   color:var(--text);
 }
+.project-thumb{
+  width:100%;
+  aspect-ratio:2/1;
+  background:rgba(255,255,255,0.02);
+  border-radius:6px;
+  margin-bottom:14px;
+  border:1px solid rgba(255,255,255,0.04);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.project-thumb svg{max-width:100%;max-height:100%}
 
 /* ===== CERTIFICATIONS ===== */
 .cert-grid{
@@ -598,31 +615,27 @@ body{
 .cert-item:hover{border-color:rgba(108,92,231,0.3);transform:translateY(-1px)}
 .cert-badge{
   flex-shrink:0;
-  width:36px;
-  height:36px;
-  border-radius:8px;
+  width:40px;
+  height:40px;
+  border-radius:10px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-family:var(--mono);
-  font-size:0.6rem;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:0.5px;
+  color:inherit;
 }
+.cert-badge svg{display:block}
 .cert-badge.aplus{background:rgba(108,92,231,0.15);color:var(--accent2)}
 .cert-badge.network{background:rgba(0,206,201,0.15);color:var(--cyan)}
 .cert-badge.security{background:rgba(255,118,117,0.15);color:var(--red)}
 .cert-badge.cloud{background:rgba(0,184,148,0.15);color:var(--green)}
 .cert-badge.cyber{background:rgba(253,203,110,0.15);color:var(--orange)}
 .cert-badge.hack{background:rgba(253,121,168,0.15);color:var(--pink)}
-.cert-badge.hosting{background:rgba(108,92,231,0.1);color:var(--accent2)}
+.cert-badge.hosting{background:rgba(108,92,231,0.12);color:var(--accent2)}
 .cert-badge.cisco{background:rgba(0,184,148,0.12);color:var(--green)}
 .cert-badge.finance{background:rgba(0,206,201,0.12);color:var(--cyan)}
 .cert-badge.office{background:rgba(108,92,231,0.1);color:var(--accent2)}
 .cert-badge.web{background:rgba(253,203,110,0.12);color:var(--orange)}
 .cert-badge.metal{background:rgba(255,118,117,0.1);color:var(--red)}
-.cert-info{}
 .cert-info strong{
   display:block;
   color:var(--text);
@@ -725,6 +738,21 @@ body{
 }
 .terminal-footer a{color:var(--cyan);text-decoration:none}
 .terminal-footer a:hover{color:var(--accent2)}
+.footer-card{
+  display:flex;
+  flex-wrap:wrap;
+  gap:32px;
+  justify-content:center;
+  background:var(--bg2);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--radius);
+  padding:28px 32px;
+  max-width:640px;
+  margin:0 auto;
+  text-align:left;
+}
+.footer-left{flex:1;min-width:220px}
+.footer-right{flex:1;min-width:200px}
 
 /* ===== COMMAND PALETTE ===== */
 .cmd-overlay{
@@ -1041,7 +1069,7 @@ body{
   }
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   html{font-size:8.5pt}
-  #particles-canvas,.cmd-overlay,.project-modal-overlay,.ghost-btn,.ghost-panel,.no-print,.terminal-cursor,.typewriter-text,.download-btn,.cmd-toggle-hint{display:none!important}
+  #particles-canvas,.cmd-overlay,.project-modal-overlay,.ghost-btn,.ghost-panel,.no-print,.terminal-cursor,.typewriter-text,.download-btn,.cmd-toggle-hint,.project-thumb{display:none!important}
   .terminal-window::after{display:none!important}
   .container{max-width:100%!important;padding:0!important}
 
@@ -1090,7 +1118,8 @@ body{
 
   .cert-grid{grid-template-columns:repeat(3,1fr);gap:6px}
   .cert-item{padding:5px 8px;gap:8px}
-  .cert-badge{width:24px;height:24px;font-size:0.45rem;border-radius:6px}
+  .cert-badge{width:28px;height:28px;border-radius:7px}
+  .cert-badge svg{width:16px;height:16px}
   .cert-info strong{font-size:0.65rem}
   .cert-info span{font-size:0.6rem}
 
@@ -1231,10 +1260,11 @@ body{
       </p>
       <p style="margin-top:12px">
         <span class="highlight">CompTIA A+</span> and <span class="highlight">Network+</span> certified.
-        Diploma in Information Technology — Systems Development in progress at Boston City Campus.
-        Previously deployed network infrastructure for Ackermans, Pick n Pay, Builders Warehouse and others.
-        Built <span class="highlight">BLE macro keyboards</span>, <span class="highlight">RFID tools</span>,
-        and <span class="highlight">custom Linux kernels</span> on the side.
+        Completed IT Engineering studies at National Computer College, covering the CompTIA curriculum
+        plus cybersecurity, web development, and ethical hacking. Currently studying Systems Development at
+        Boston City Campus. Previously deployed network infrastructure for Ackermans, Pick n Pay,
+        Builders Warehouse and others. Built <span class="highlight">BLE macro keyboards</span>,
+        <span class="highlight">RFID tools</span>, and <span class="highlight">custom Linux kernels</span> on the side.
       </p>
       <p style="margin-top:12px">
         If it's repetitive, I automate it. If it doesn't exist yet, I build it.
@@ -1461,19 +1491,19 @@ body{
       <div class="line"></div>
     </div>
     <div class="cert-grid">
-      <div class="cert-item"><div class="cert-badge aplus">A+</div><div class="cert-info"><strong>CompTIA A+</strong><span>Completed</span></div></div>
-      <div class="cert-item"><div class="cert-badge network">N+</div><div class="cert-info"><strong>CompTIA Network+</strong><span>Completed</span></div></div>
-      <div class="cert-item"><div class="cert-badge security">S+</div><div class="cert-info"><strong>CompTIA Security+</strong><span>In progress</span></div></div>
-      <div class="cert-item"><div class="cert-badge cloud">C+</div><div class="cert-info"><strong>CompTIA Cloud+</strong><span>In progress</span></div></div>
-      <div class="cert-item"><div class="cert-badge cyber">CS</div><div class="cert-info"><strong>Cybersecurity Diploma</strong><span>Alison</span></div></div>
-      <div class="cert-item"><div class="cert-badge hack">EH</div><div class="cert-info"><strong>Ethical Hacking</strong><span>Alison</span></div></div>
-      <div class="cert-item"><div class="cert-badge hosting">CP</div><div class="cert-info"><strong>cPanel Interface Course</strong><span>Web Hosting</span></div></div>
-      <div class="cert-item"><div class="cert-badge cisco">CN</div><div class="cert-info"><strong>Cisco Network Security</strong><span>Cisco</span></div></div>
-      <div class="cert-item"><div class="cert-badge cisco">IT</div><div class="cert-info"><strong>Cisco IT Helpdesk</strong><span>Cisco</span></div></div>
-      <div class="cert-item"><div class="cert-badge finance">QB</div><div class="cert-info"><strong>QuickBooks Certified User</strong><span>Intuit</span></div></div>
-      <div class="cert-item"><div class="cert-badge office">MS</div><div class="cert-info"><strong>Microsoft Office Specialist</strong><span>Microsoft</span></div></div>
-      <div class="cert-item"><div class="cert-badge web">WD</div><div class="cert-info"><strong>Website Development</strong><span>HTML, CSS, JS, WordPress</span></div></div>
-      <div class="cert-item"><div class="cert-badge metal">M2</div><div class="cert-info"><strong>Level 2 Junior Metallurgy</strong><span>ArcelorMittal</span></div></div>
+      <div class="cert-item"><div class="cert-badge aplus"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L3 7v5c0 5.2 3.9 10.1 9 10 5.1.1 9-4.8 9-10V7L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="cert-info"><strong>CompTIA A+</strong><span>Completed</span></div></div>
+      <div class="cert-item"><div class="cert-badge network"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L3 7v5c0 5.2 3.9 10.1 9 10 5.1.1 9-4.8 9-10V7L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="cert-info"><strong>CompTIA Network+</strong><span>Completed</span></div></div>
+      <div class="cert-item"><div class="cert-badge security"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L3 7v5c0 5.2 3.9 10.1 9 10 5.1.1 9-4.8 9-10V7L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v3M12 15h0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="cert-info"><strong>CompTIA Security+</strong><span>In progress</span></div></div>
+      <div class="cert-item"><div class="cert-badge cloud"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L3 7v5c0 5.2 3.9 10.1 9 10 5.1.1 9-4.8 9-10V7L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="13" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 11c-.5-1.5.5-4 2-4M16 11c.5-1.5-.5-4-2-4" fill="none" stroke="currentColor" stroke-width="1"/></svg></div><div class="cert-info"><strong>CompTIA Cloud+</strong><span>In progress</span></div></div>
+      <div class="cert-item"><div class="cert-badge cyber"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V7a4 4 0 118 0v4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/></svg></div><div class="cert-info"><strong>Cybersecurity Diploma</strong><span>Alison — Online</span></div></div>
+      <div class="cert-item"><div class="cert-badge hack"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 4l-8 3M16 20l-8-3M20 8l-3 8M4 8l3 8" stroke="currentColor" stroke-width="1" opacity=".4"/></svg></div><div class="cert-info"><strong>Ethical Hacking</strong><span>Alison — Online</span></div></div>
+      <div class="cert-item"><div class="cert-badge hosting"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="4" ry="8" fill="none" stroke="currentColor" stroke-width="1"/><path d="M4 12h16" stroke="currentColor" stroke-width="1"/></svg></div><div class="cert-info"><strong>cPanel Interface Course</strong><span>Web Hosting — Online</span></div></div>
+      <div class="cert-item"><div class="cert-badge cisco"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="7" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7l10 10M7 17l4-4M13 7l-2 2" stroke="currentColor" stroke-width="1" opacity=".6"/></svg></div><div class="cert-info"><strong>Cisco Network Security</strong><span>Cisco — Online</span></div></div>
+      <div class="cert-item"><div class="cert-badge cisco"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="7" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7l10 10M7 17l4-4M13 7l-2 2" stroke="currentColor" stroke-width="1" opacity=".6"/></svg></div><div class="cert-info"><strong>Cisco IT Helpdesk</strong><span>Cisco — Online</span></div></div>
+      <div class="cert-item"><div class="cert-badge finance"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 13h3M8 17h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 12h2M14 16h2" stroke="currentColor" stroke-width=".8" opacity=".4"/></svg></div><div class="cert-info"><strong>QuickBooks Certified User</strong><span>Intuit — Online</span></div></div>
+      <div class="cert-item"><div class="cert-badge office"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="4" width="8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="4" width="8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="12" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="12" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div><div class="cert-info"><strong>Microsoft Office Specialist</strong><span>Microsoft — Online</span></div></div>
+      <div class="cert-item"><div class="cert-badge web"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 6l-5 6 5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 6l5 6-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M13 3l-2 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".4"/></svg></div><div class="cert-info"><strong>Website Development</strong><span>HTML, CSS, JS, WordPress</span></div></div>
+      <div class="cert-item"><div class="cert-badge metal"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 1l-2.4 2.2L6.3 3l-.4 3-2.8 1.4 1.2 3-1.2 3 2.8 1.4.4 3 3.3-.2L12 19l2.4-2.2 3.3.2.4-3 2.8-1.4-1.2-3 1.2-3-2.8-1.4-.4-3-3.3.2z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></div><div class="cert-info"><strong>Level 2 Junior Metallurgy</strong><span>ArcelorMittal</span></div></div>
     </div>
   </div>
 </section>
@@ -1502,12 +1532,12 @@ body{
         <div class="edu-dot">NC</div>
         <div class="edu-body">
           <h3>National Computer College</h3>
-          <div class="meta">IT Engineering &middot; 2022 &ndash; 2025</div>
+          <div class="meta">IT Engineering (Completed) &middot; 2022 &ndash; 2025</div>
           <ul>
-            <li>CompTIA A+</li>
-            <li>CompTIA Network+</li>
-            <li>CompTIA Security+</li>
-            <li>CompTIA Cloud+</li>
+            <li>CompTIA A+ (Certified)</li>
+            <li>CompTIA Network+ (Certified)</li>
+            <li>CompTIA Security+ (Curriculum)</li>
+            <li>CompTIA Cloud+ (Curriculum)</li>
             <li>Cybersecurity</li>
             <li>Web &amp; Software Development</li>
             <li>Microsoft Office Specialist</li>
@@ -1520,7 +1550,7 @@ body{
         <div class="edu-dot current">BC</div>
         <div class="edu-body">
           <h3>Boston City Campus</h3>
-          <div class="meta">Diploma in Information Technology &mdash; Systems Development &middot; 2025 &ndash; Present</div>
+          <div class="meta">Systems Development (In Progress) &middot; 2025 &ndash; Present</div>
           <ul>
             <li>Systems Development &amp; Analysis</li>
             <li>Information Systems Management</li>
@@ -1551,6 +1581,7 @@ body{
     <div class="projects-grid">
 
       <div class="project-card" data-category="hardware">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><rect x="8" y="10" width="104" height="30" rx="3" fill="none" stroke="rgba(108,92,231,.3)" stroke-width="1"/><rect x="14" y="15" width="18" height="9" rx="1.5" fill="rgba(108,92,231,.12)"/><rect x="35" y="15" width="18" height="9" rx="1.5" fill="rgba(108,92,231,.12)"/><rect x="56" y="15" width="18" height="9" rx="1.5" fill="rgba(0,206,201,.15)"/><rect x="77" y="15" width="18" height="9" rx="1.5" fill="rgba(108,92,231,.12)"/><rect x="14" y="27" width="18" height="9" rx="1.5" fill="rgba(108,92,231,.08)"/><rect x="35" y="27" width="18" height="9" rx="1.5" fill="rgba(108,92,231,.08)"/><rect x="56" y="27" width="18" height="9" rx="1.5" fill="rgba(108,92,231,.08)"/><rect x="77" y="27" width="18" height="9" rx="1.5" fill="rgba(108,92,231,.08)"/></svg></div>
         <h3>SudoDeck</h3>
         <div class="tech"><span>C++</span><span>ESP32</span><span>BLE</span><span>Arduino</span><span>Python</span><span>LVGL</span></div>
         <p>Wireless Bluetooth macro keyboard — open-source Stream Deck competitor. ESP32+ILI9341 touchscreen, BLE HID, multi-page grid, 30 buttons/page, app launcher, live widgets, Web Serial config. Sold assembled in South Africa for R1,099.</p>
@@ -1558,6 +1589,7 @@ body{
       </div>
 
       <div class="project-card" data-category="extension">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><rect x="25" y="8" width="70" height="34" rx="4" fill="none" stroke="rgba(108,92,231,.3)" stroke-width="1"/><circle cx="45" cy="25" r="6" fill="none" stroke="rgba(0,206,201,.35)" stroke-width="1.5"/><circle cx="45" cy="25" r="2.5" fill="rgba(0,206,201,.15)"/><rect x="60" y="18" width="8" height="14" rx="1" fill="rgba(108,92,231,.1)"/><rect x="72" y="22" width="8" height="10" rx="1" fill="rgba(108,92,231,.15)"/><rect x="84" y="16" width="8" height="16" rx="1" fill="rgba(108,92,231,.08)"/></svg></div>
         <h3>Jenny Screenshot Assistant</h3>
         <div class="tech"><span>React</span><span>TypeScript</span><span>Vite</span><span>Tesseract</span><span>MV3</span></div>
         <p>Production Chrome/Edge extension for support agents. Captures screenshots, runs local OCR, redacts sensitive data, annotates, and generates editable ticket notes. Privacy-first — no uploads by default.</p>
@@ -1565,6 +1597,7 @@ body{
       </div>
 
       <div class="project-card" data-category="extension">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><rect x="35" y="6" width="50" height="38" rx="5" fill="none" stroke="rgba(253,203,110,.3)" stroke-width="1"/><circle cx="50" cy="25" r="8" fill="none" stroke="rgba(253,203,110,.35)" stroke-width="1.5"/><circle cx="50" cy="25" r="2" fill="rgba(253,203,110,.25)"/><circle cx="70" cy="25" r="4" fill="none" stroke="rgba(108,92,231,.25)" stroke-width="1"/><path d="M70 13v-2a4 4 0 014-4v0a4 4 0 014 4v2M70 37v2a4 4 0 004 4v0a4 4 0 004-4v-2" fill="none" stroke="rgba(108,92,231,.2)" stroke-width="1"/></svg></div>
         <h3>Jenny Vault</h3>
         <div class="tech"><span>JavaScript</span><span>MV3</span><span>Encryption</span><span>Chrome API</span></div>
         <p>Chrome extension for saving template JSON/text with local encryption. Password-protected vault with search, edit, JSON/tree views, export/import, and 7 color themes. Built for internal Jenny support use.</p>
@@ -1572,6 +1605,7 @@ body{
       </div>
 
       <div class="project-card" data-category="desktop">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><rect x="8" y="10" width="30" height="30" rx="2" fill="none" stroke="rgba(0,184,148,.3)" stroke-width="1"/><rect x="14" y="16" width="18" height="6" rx="1" fill="rgba(0,184,148,.08)"/><rect x="14" y="25" width="18" height="6" rx="1" fill="rgba(0,184,148,.08)"/><line x1="45" y1="18" x2="60" y2="18" stroke="rgba(0,184,148,.15)"/><line x1="45" y1="28" x2="60" y2="28" stroke="rgba(0,184,148,.15)"/><line x1="45" y1="38" x2="60" y2="38" stroke="rgba(0,184,148,.15)"/><rect x="68" y="12" width="8" height="16" rx="1" fill="rgba(0,184,148,.1)"/><rect x="79" y="18" width="8" height="10" rx="1" fill="rgba(0,184,148,.2)"/><rect x="90" y="6" width="8" height="22" rx="1" fill="rgba(0,184,148,.15)"/><rect x="103" y="10" width="10" height="18" rx="1" fill="rgba(108,92,231,.12)"/></svg></div>
         <h3>SpiceDesk</h3>
         <div class="tech"><span>Flutter</span><span>Dart</span><span>Supabase</span><span>Riverpod</span></div>
         <p>Open-source business management suite for bakeries, delis, and food shops. POS, inventory, CRM, expenses, quotes, reports, invoice PDFs, WhatsApp sharing. Cross-platform (Linux, Windows, Android). MIT licensed.</p>
@@ -1579,6 +1613,7 @@ body{
       </div>
 
       <div class="project-card" data-category="desktop">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><path d="M55 8l-20 5v24l20-4z" fill="rgba(0,206,201,.08)" stroke="rgba(0,206,201,.25)" stroke-width="1"/><path d="M65 8l20 5v24l-20-4z" fill="rgba(108,92,231,.08)" stroke="rgba(108,92,231,.25)" stroke-width="1"/><circle cx="43" cy="18" r="2" fill="rgba(0,206,201,.35)"/><circle cx="78" cy="18" r="2" fill="rgba(108,92,231,.35)"/><circle cx="43" cy="28" r="1.5" fill="rgba(0,206,201,.2)"/><circle cx="78" cy="28" r="1.5" fill="rgba(108,92,231,.2)"/></svg></div>
         <h3>NexCampus</h3>
         <div class="tech"><span>Python</span><span>JavaScript</span><span>OCR</span><span>Ollama</span></div>
         <p>Offline educational suite — 249MB with study tools, code lab (Python/JS/Bash), text tools, 262k-word dictionary, interactive periodic table, solar system, OCR, and 9 themes. Works with zero internet.</p>
@@ -1586,6 +1621,7 @@ body{
       </div>
 
       <div class="project-card" data-category="desktop">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><circle cx="60" cy="8" r="4" fill="none" stroke="rgba(0,184,148,.4)" stroke-width="1.5"/><circle cx="36" cy="22" r="4" fill="none" stroke="rgba(0,184,148,.3)" stroke-width="1.2"/><circle cx="84" cy="22" r="4" fill="none" stroke="rgba(0,184,148,.3)" stroke-width="1.2"/><circle cx="22" cy="38" r="3" fill="none" stroke="rgba(0,184,148,.2)" stroke-width="1"/><circle cx="50" cy="38" r="3" fill="none" stroke="rgba(0,184,148,.2)" stroke-width="1"/><circle cx="70" cy="38" r="3" fill="none" stroke="rgba(0,184,148,.2)" stroke-width="1"/><circle cx="98" cy="38" r="3" fill="none" stroke="rgba(0,184,148,.2)" stroke-width="1"/><line x1="60" y1="12" x2="36" y2="18" stroke="rgba(0,184,148,.15)"/><line x1="60" y1="12" x2="84" y2="18" stroke="rgba(0,184,148,.15)"/><line x1="36" y1="26" x2="22" y2="35" stroke="rgba(0,184,148,.1)"/><line x1="36" y1="26" x2="50" y2="35" stroke="rgba(0,184,148,.1)"/><line x1="84" y1="26" x2="70" y2="35" stroke="rgba(0,184,148,.1)"/><line x1="84" y1="26" x2="98" y2="35" stroke="rgba(0,184,148,.1)"/></svg></div>
         <h3>Family Tree App</h3>
         <div class="tech"><span>Flutter</span><span>Dart</span><span>SQLite</span><span>Riverpod</span></div>
         <p>Interactive offline family tree builder. Multiple family books, pan/zoom tree view, person profiles, photos, relationships, timeline view, statistics. Cross-platform: Windows, Android, Linux.</p>
@@ -1593,6 +1629,7 @@ body{
       </div>
 
       <div class="project-card" data-category="web">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><circle cx="60" cy="24" r="18" fill="none" stroke="rgba(255,118,117,.2)" stroke-width="1"/><circle cx="60" cy="24" r="9" fill="none" stroke="rgba(255,118,117,.3)" stroke-width="1"/><circle cx="60" cy="24" r="3" fill="rgba(255,118,117,.35)"/><line x1="60" y1="4" x2="60" y2="7" stroke="rgba(255,118,117,.25)" stroke-width="1"/><line x1="60" y1="41" x2="60" y2="44" stroke="rgba(255,118,117,.25)" stroke-width="1"/><line x1="40" y1="24" x2="43" y2="24" stroke="rgba(255,118,117,.25)" stroke-width="1"/><line x1="77" y1="24" x2="80" y2="24" stroke="rgba(255,118,117,.25)" stroke-width="1"/></svg></div>
         <h3>Agent Robin 007</h3>
         <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span><span>Canvas</span><span>Web Audio</span></div>
         <p>James Bond-themed Father's Day game. Animated mission briefing, 3-round shooting gallery, score tracking, Bond quotes, downloadable commendation card, confetti, Aston Martin finale.</p>
@@ -1600,6 +1637,7 @@ body{
       </div>
 
       <div class="project-card" data-category="hardware">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><rect x="20" y="8" width="48" height="30" rx="3" fill="none" stroke="rgba(108,92,231,.3)" stroke-width="1"/><rect x="26" y="14" width="14" height="14" rx="1" fill="rgba(108,92,231,.1)" stroke="rgba(108,92,231,.15)" stroke-width=".5"/><rect x="44" y="14" width="11" height="14" rx="1" fill="rgba(108,92,231,.08)"/><rect x="26" y="32" width="14" height="2" rx="1" fill="rgba(108,92,231,.15)"/><path d="M16 12c-2 0-2 2-2 6s-.5 10 0 12c.5 1.5 2 2 2 2" fill="none" stroke="rgba(108,92,231,.3)" stroke-width="1.2"/><path d="M12 8c-3 0-3 4-3 8s0 15 0 18c0 3 3 4 3 4" fill="none" stroke="rgba(108,92,231,.15)" stroke-width="1"/><path d="M78 18l4 4-4 4M84 22h12" stroke="rgba(0,206,201,.3)" stroke-width="1" fill="none"/></svg></div>
         <h3>RFID Card Reader</h3>
         <div class="tech"><span>Python</span><span>Curses</span><span>Proxmark3</span><span>TUI</span></div>
         <p>Terminal-based EM410x RFID card reader/writer. Animated TUI with pulsing borders, session logging, CSV export, hex-ID writing/cloning, auto-incrementing ID generator. Drives Proxmark3 hardware.</p>
@@ -1607,6 +1645,7 @@ body{
       </div>
 
       <div class="project-card" data-category="hardware">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><rect x="25" y="5" width="60" height="40" rx="5" fill="none" stroke="rgba(0,206,201,.3)" stroke-width="1"/><rect x="33" y="11" width="13" height="11" rx="2" fill="rgba(0,206,201,.1)"/><rect x="50" y="11" width="13" height="11" rx="2" fill="rgba(0,206,201,.1)"/><rect x="67" y="11" width="13" height="11" rx="2" fill="rgba(0,206,201,.1)"/><rect x="33" y="26" width="13" height="11" rx="2" fill="rgba(0,206,201,.1)"/><rect x="50" y="26" width="13" height="11" rx="2" fill="rgba(0,206,201,.15)"/><rect x="67" y="26" width="13" height="11" rx="2" fill="rgba(0,206,201,.1)"/></svg></div>
         <h3>CYD Chrome Controller</h3>
         <div class="tech"><span>C++</span><span>Python</span><span>ESP32</span><span>ydotool</span></div>
         <p>Physical touch interface for browser/media control. ESP32 + touchscreen with 9 touch zones mapped to media shortcuts. Sends keystrokes via ydotool on Wayland. Configurable JSON layout.</p>
@@ -1614,6 +1653,7 @@ body{
       </div>
 
       <div class="project-card" data-category="hardware">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><rect x="30" y="10" width="50" height="28" rx="3" fill="rgba(108,92,231,.04)" stroke="rgba(108,92,231,.3)" stroke-width="1"/><rect x="46" y="14" width="18" height="12" rx="1" fill="rgba(108,92,231,.12)"/><line x1="30" y1="18" x2="22" y2="18" stroke="rgba(108,92,231,.15)"/><line x1="30" y1="28" x2="22" y2="28" stroke="rgba(108,92,231,.15)"/><line x1="80" y1="18" x2="88" y2="18" stroke="rgba(108,92,231,.15)"/><line x1="80" y1="28" x2="88" y2="28" stroke="rgba(108,92,231,.15)"/><circle cx="22" cy="23" r="2" fill="rgba(0,206,201,.25)"/><circle cx="88" cy="23" r="2" fill="rgba(0,206,201,.25)"/></svg></div>
         <h3>CYD Firmware / Daemon</h3>
         <div class="tech"><span>Arduino C++</span><span>Python</span><span>LVGL</span><span>WiFi</span><span>UDP</span></div>
         <p>ESP32 cyberdeck firmware with on-screen keyboard and touchpad. Sends keystrokes/mouse events over serial and WiFi UDP. Includes R36S daemon for uinput injection and gamepad-to-keyboard bridge.</p>
@@ -1621,6 +1661,7 @@ body{
       </div>
 
       <div class="project-card" data-category="hardware">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><rect x="15" y="8" width="85" height="34" rx="4" fill="rgba(12,12,26,.6)" stroke="rgba(0,184,148,.3)" stroke-width="1"/><circle cx="23" cy="16" r="3.5" fill="rgba(255,118,117,.35)"/><circle cx="31" cy="16" r="3.5" fill="rgba(253,203,110,.35)"/><circle cx="39" cy="16" r="3.5" fill="rgba(0,184,148,.35)"/><line x1="23" y1="28" x2="90" y2="28" stroke="rgba(0,184,148,.15)" stroke-width=".8"/><line x1="23" y1="35" x2="80" y2="35" stroke="rgba(0,184,148,.1)" stroke-width=".8"/><rect x="23" y="38" width="28" height="2" rx="1" fill="rgba(108,92,231,.2)"/></svg></div>
         <h3>SudoOS</h3>
         <div class="tech"><span>Linux Kernel</span><span>ARM64</span><span>C</span><span>Bash</span></div>
         <p>Custom Linux kernel build for R36S handheld (ARM64). Automated cross-compilation script, custom kernel config, branded boot logo, initramfs rebuild, and uInitrd creation.</p>
@@ -1628,6 +1669,7 @@ body{
       </div>
 
       <div class="project-card" data-category="web">
+        <div class="project-thumb"><svg viewBox="0 0 120 50"><line x1="28" y1="40" x2="28" y2="12" stroke="rgba(0,184,148,.3)" stroke-width="1.5"/><circle cx="28" cy="8" r="7" fill="rgba(253,121,168,.2)"/><line x1="60" y1="40" x2="60" y2="8" stroke="rgba(0,184,148,.3)" stroke-width="1.5"/><circle cx="60" cy="5" r="5" fill="rgba(253,203,110,.2)"/><ellipse cx="63" cy="26" rx="5" ry="3" fill="rgba(0,184,148,.12)"/><line x1="92" y1="40" x2="92" y2="16" stroke="rgba(0,184,148,.3)" stroke-width="1.5"/><circle cx="92" cy="12" r="6" fill="rgba(108,92,231,.2)"/><arc cx="86" cy="36" rx="4" ry="2" fill="none" stroke="rgba(253,121,168,.2)" stroke-width="1"/></svg></div>
         <h3>For Akiva, With Love</h3>
         <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span><span>Canvas</span><span>Web Audio</span></div>
         <p>Interactive web garden — plant seeds into flowers representing 9 years of memories. Aurora sky, fireflies, moonlit scene, ambient flute music, and a finale animation.</p>
@@ -1664,12 +1706,31 @@ body{
 <!-- FOOTER -->
 <footer class="terminal-footer">
   <div class="container">
-    <p style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-bottom:8px">
-      <span>$ echo <span style="color:var(--cyan)">"shahidsingh1zn@gmail.com"</span></span>
-      <span>$ cat <a href="https://github.com/sudobreakstuff" target="_blank">github.com/sudobreakstuff</a></span>
-      <span>$ <a href="resume.pdf" download="Shahid_Singh_Resume.pdf" target="_blank">download resume.pdf</a></span>
-    </p>
-    <p>Built by Shahid Singh</p>
+    <div class="footer-card">
+      <div class="footer-left">
+        <div style="font-family:var(--mono);font-size:0.8rem;color:var(--cyan);margin-bottom:6px">$ ls -la ~/resume/</div>
+        <div style="font-family:var(--mono);font-size:0.75rem;color:var(--text3);margin-bottom:14px;line-height:1.8">
+          -rw-r--r-- 1 shahid staff &nbsp;2,199 lines &nbsp;index.html<br>
+          -rw-r--r-- 1 shahid staff &nbsp;&nbsp;794 KB &nbsp;&nbsp;&nbsp;resume.pdf
+        </div>
+        <a href="resume.pdf" download="Shahid_Singh_Resume.pdf" target="_blank" class="download-btn">
+          <svg viewBox="0 0 16 16" width="14" height="14" style="vertical-align:middle;margin-right:6px"><path d="M8 10l4-4H10V2H6v4H4l4 4z" fill="currentColor"/><path d="M2 12v2h12v-2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          Download Resume (PDF)
+        </a>
+        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-top:10px">
+          <a href="https://sudobreakstuff.github.io" target="_blank" style="color:var(--accent2);text-decoration:none">sudobreakstuff.github.io</a>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div style="font-family:var(--mono);font-size:0.8rem;color:var(--text2);margin-bottom:8px">Get in touch</div>
+        <div style="font-size:0.8rem;color:var(--text3);line-height:1.8">
+          email: <a href="mailto:shahidsingh1zn@gmail.com" style="color:var(--cyan);text-decoration:none">shahidsingh1zn@gmail.com</a><br>
+          github: <a href="https://github.com/sudobreakstuff" target="_blank" style="color:var(--cyan);text-decoration:none">github.com/sudobreakstuff</a><br>
+          tel: <span style="color:var(--text2)">Juan Kahts (Ref) — 084 766 3381</span>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:16px">Built by Shahid Singh</p>
   </div>
 </footer>
 
@@ -1690,7 +1751,7 @@ body{
   const canvas = document.getElementById('particles-canvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
-  const COUNT = 80;
+  const COUNT = 150;
   function resize(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -1880,7 +1941,18 @@ document.addEventListener('keydown',e=>{
     {cmd:'ls',action:()=>'about/  experience/  skills/  projects/  certs/  education/  contact/'},
     {cmd:'date',action:()=>new Date().toLocaleString()},
     {cmd:'uptime',action:()=>'Session started '+new Date().toLocaleTimeString()},
-  ];
+  // === GREETINGS / META ===
+  {q:['hello','hi','hey','howdy','sup'],a:'Hello. I\'m GHOST. I handle questions about Shahid\'s work so he doesn\'t have to repeat himself. Ask me about his skills, experience, projects, or the rumor that I\'m powered by a Raspberry Pi. (I\'m not. But I won\'t confirm or deny.)'},
+  {q:['thanks','thank you','appreciate'],a:'Happy to help. If something I said sparks interest, Shahid is reachable at shahidsingh1zn@gmail.com. I\'m just the frontend — he\'s the actual system.'},
+  {q:['bye','goodbye','see you','later'],a:'Good luck with your decision. Shahid is ready when you are. And if the code samples don\'t convince you, the SudoDeck clicks will. There\'s something about mechanical keyboard switches that unit tests just can\'t replicate.'},
+  {q:['who created','who built','who made'],a:'Shahid built me as part of this resume. I\'m a knowledge engine — curated responses, smart matching, no hallucinations. I only say what I\'ve been programmed to confirm. In an era of AI making things up, I find that refreshing.'},
+  {q:['proud','favorite project','best work','highlight'],a:"SudoDeck. No question. He went from \"I wonder if I could build a macro keyboard\" to a product people actually buy for R1,099. PCB design, firmware, enclosure, BLE stack, Web Serial config — all him. He doesn't just build things. He ships them."},
+  {q:['joke','funny','humor','laugh','rofl','lol'],a:'Why do Systems Developers prefer dark mode? Because light attracts bugs. Shahid\'s site, coincidentally, is dark mode. I\'ll let you draw your own conclusions.'},
+  {q:'another joke',a:'How many Systems Developers does it take to change a lightbulb? None — that\'s a hardware issue. File a ticket. Someone will get to it within 72 business hours.'},
+  {q:'tell me a joke',a:'Why don\'t Systems Developers quit? Because they\'re already running in the background. Closing the process would require root access they don\'t have.'},
+  {q:'one more joke',a:'A QA engineer walks into a bar. Orders 1 beer. Orders 0 beers. Orders 999999 beers. Orders a lizard. Orders -1 beers. A real customer walks in and asks where the bathroom is. The bar burns down. QA closes the ticket: "Reproducible. Not a priority."'},
+
+];
   if(!input) return;
   let history = [];
   let historyIdx = -1;
@@ -2063,8 +2135,8 @@ const ghostQA = [
   {q:['process automation','ticket','helpdesk flow'],a:'He designed guided troubleshooting flows, Quick Navigate ticket menus, pre-escalation checklists, customer-in-pain detection algorithms, and cross-ticket automation pipelines. Then wrote the wiki docs, beginner guides, and playbooks so the team could actually use it all. He builds systems and then teaches everyone else how to fly them.'},
 
   // === EDUCATION & CERTS ===
-  {q:['education','study','college','qualification'],a:'National Computer College (2022–2025) — IT Engineering covering CompTIA A+, Network+, Security+, Cloud+, Cybersecurity, Web Development. Boston City Campus (2025–Present) — Diploma in Information Technology: Systems Development (Systems Analysis, Database Design, Software Engineering). Newcastle High School — Matric, Bachelor\'s Pass with university entrance.'},
-  {q:['certifications','certs','comptia','a+','network+'],a:"CompTIA A+ — hardware, OS, repair. CompTIA Network+ — TCP/IP, routing, infrastructure (both completed). Working towards Security+ and Cloud+. Plus Alison Cybersecurity & Ethical Hacking, cPanel, Cisco Network Security, QuickBooks Certified User, Microsoft Office Specialist. And Level 2 Junior Metallurgy — which has nothing to do with IT and everything to do with being versatile."},
+  {q:['education','study','college','qualification'],a:'National Computer College (2022–2025) — IT Engineering covering CompTIA A+, Network+, Security+, Cloud+, Cybersecurity, Web Development. Boston City Campus (2025–Present) — Studying Systems Development: Analysis, Database Design, Software Engineering (not yet completed). Newcastle High School — Matric, Bachelor\'s Pass with university entrance.'},
+  {q:['certifications','certs','comptia','a+','network+'],a:"CompTIA A+ — hardware, OS, repair. CompTIA Network+ — TCP/IP, routing, infrastructure (both completed). Working towards Security+ and Cloud+. Also completed several online certifications independently: Alison Cybersecurity Plus Alison Cybersecurity & Ethical Hacking, cPanel, Cisco Network Security, QuickBooks Certified User, Microsoft Office Specialist. Ethical Hacking, cPanel, Cisco Network Security, QuickBooks Certified User, Microsoft Office Specialist. And Level 2 Junior Metallurgy — which has nothing to do with IT and everything to do with being versatile."},
 
   // === INTERVIEW QUESTIONS ===
   {q:['why hire','why should we','hire you','reasons'],a:'\"I build systems that make other systems work better.\" That\'s not a tagline — it\'s his track record. He ships production software, sells hardware products, maintains networks, and automates whatever gets in the way. He\'s a builder who understands the full stack from crimped RJ45s to React components. He\'ll make your team more efficient before his first coffee break.'},
@@ -2083,16 +2155,73 @@ const ghostQA = [
   {q:['open source','contribute','mit','license'],a:'All projects on his GitHub are open source, most under MIT. He believes code should be shared, not locked away. The SudoDeck firmware. SpiceDesk. The family tree app. If it solves a problem for him, it might solve it for you too.'},
   {q:['tools','editor','setup','workflow'],a:'VS Code, Docker, Git, Ollama, PlatformIO, Arduino IDE, Python, Chrome DevTools. Terminal-first workflow. Minimal mouse, maximum keyboard. The setup is optimized for one thing: getting from idea to working system as fast as possible.'},
 
-  // === GREETINGS / META ===
-  {q:['hello','hi','hey','howdy','sup'],a:'Hello. I\'m GHOST. I handle questions about Shahid\'s work so he doesn\'t have to repeat himself. Ask me about his skills, experience, projects, or the rumor that I\'m powered by a Raspberry Pi. (I\'m not. But I won\'t confirm or deny.)'},
-  {q:['thanks','thank you','appreciate'],a:'Happy to help. If something I said sparks interest, Shahid is reachable at shahidsingh1zn@gmail.com. I\'m just the frontend — he\'s the actual system.'},
-  {q:['bye','goodbye','see you','later'],a:'Good luck with your decision. Shahid is ready when you are. And if the code samples don\'t convince you, the SudoDeck clicks will. There\'s something about mechanical keyboard switches that unit tests just can\'t replicate.'},
-  {q:['who created','who built','who made'],a:'Shahid built me as part of this resume. I\'m a knowledge engine — curated responses, smart matching, no hallucinations. I only say what I\'ve been programmed to confirm. In an era of AI making things up, I find that refreshing.'},
-  {q:['proud','favorite project','best work','highlight'],a:"SudoDeck. No question. He went from \"I wonder if I could build a macro keyboard\" to a product people actually buy for R1,099. PCB design, firmware, enclosure, BLE stack, Web Serial config — all him. He doesn't just build things. He ships them."},
-  {q:['joke','funny','humor','laugh','rofl','lol'],a:'Why do Systems Developers prefer dark mode? Because light attracts bugs. Shahid\'s site, coincidentally, is dark mode. I\'ll let you draw your own conclusions.'},
-  {q:'another joke',a:'How many Systems Developers does it take to change a lightbulb? None — that\'s a hardware issue. File a ticket. Someone will get to it within 72 business hours.'},
-  {q:'tell me a joke',a:'Why don\'t Systems Developers quit? Because they\'re already running in the background. Closing the process would require root access they don\'t have.'},
-  {q:'one more joke',a:'A QA engineer walks into a bar. Orders 1 beer. Orders 0 beers. Orders 999999 beers. Orders a lizard. Orders -1 beers. A real customer walks in and asks where the bathroom is. The bar burns down. QA closes the ticket: "Reproducible. Not a priority."'},
+  // === PROJECT DEEP DIVES ===
+  {q:['sudodeck','macro keyboard','stream deck','ble keyboard','wireless keyboard'],a:"SudoDeck is Shahid's flagship hardware product. ESP32 microcontroller, ILI9341 touchscreen, BLE HID — it acts as a wireless keyboard. 30 buttons per page, multi-page grid, app launcher, live clock/weather widgets, Web Serial configuration. Designed the PCB himself, wrote the firmware in C++, built the enclosure using 3D printing. Sells assembled units in South Africa for R1,099. 'It started with \"I wonder if I could\" and ended with a shipping product.'"},
+  {q:['rfid','card reader','proxmark','em410x','how does the rfid reader work'],a:'Terminal-based TUI application written in Python with Curses. Drives a Proxmark3 hardware module to read and write EM410x RFID cards. Features animated pulsing borders, session logging, CSV export, hex-ID cloning, and an auto-incrementing ID generator. Purely terminal — no GUI needed. The kind of tool that looks beautiful in a hacker movie but is genuinely useful in the real world.'},
+  {q:['screenshot assistant','jenny screenshot','ocr extension','how does the screenshot tool work'],a:'A production Chrome/Edge extension built with React, TypeScript, Vite, and Tesseract.js. Captures screenshots, runs OCR locally (no cloud upload by default), redacts sensitive data, adds annotations, and generates editable ticket notes. Manifest V3 architecture. Privacy-first design was non-negotiable — agents handle customer data, so Shahid made sure nothing leaves the browser unless the agent explicitly allows it.'},
+  {q:['spicedesk','pos','inventory','business app','bakery'],a:'SpiceDesk is an open-source business management suite built with Flutter and Dart. Handles POS transactions, inventory tracking, CRM, expenses, quotes, reports, and invoice PDFs with WhatsApp sharing. Designed for bakeries, delis, and food shops. Cross-platform — Windows, Linux, Android. MIT licensed. It runs entirely offline with optional Supabase sync.'},
+  {q:['nexcampus','education app','offline learning','study tool'],a:'NexCampus is a 249MB offline educational suite — study tools, a code lab supporting Python/JavaScript/Bash, text manipulation tools, a 262,000-word dictionary, interactive periodic table, 3D solar system, OCR capabilities, and 9 themes. The key feature: zero internet required. Built for students in areas with unreliable connectivity. Shahid built it because \"knowledge shouldn't depend on bandwidth.\"'},
+  {q:['family tree','family tree app','genealogy','how did you build the family tree'],a:'Built with Flutter, Dart, SQLite, and Riverpod. Interactive offline family tree builder with multiple family books, pan-and-zoom tree view, person profiles, photo support, relationship mapping, timeline view, and statistical charts. Cross-platform. The data model was the tricky part — representing complex family relationships as a navigable graph structure took several iterations to get right.'},
+  {q:['agent robin','007 game','bond game','shooting game','robin 007'],a:'Agent Robin 007 is a James Bond-themed Father\'s Day game built entirely with vanilla HTML/CSS/JavaScript. Mission briefing animation, 3-round shooting gallery with moving targets, score tracking, Bond quotes, downloadable commendation card as a PDF, confetti celebration, and an Aston Martin finale sequence. No frameworks, no libraries — just Canvas API, Web Audio, and creative CSS. A gift that became a portfolio piece.'},
+  {q:['for akiva','garden','web garden','akiva'],a:'For Akiva, With Love is an interactive web garden. Users plant seeds that grow into flowers, each representing a year of a 9-year relationship. Aurora sky gradient, drifting fireflies, moonlit atmosphere, ambient flute music via Web Audio, and a finale animation sequence. Among Shahid\'s most personal work — proof that programming can be deeply human.'},
+  {q:['how many projects','total projects','number of repos','all projects'],a:'12 active projects on GitHub across 4 categories: extensions (Jenny Screenshot Assistant, Jenny Vault), desktop (SpiceDesk, NexCampus, Family Tree App), hardware (SudoDeck, RFID Reader, CYD Controller, CYD Firmware, SudoOS), and web (Agent Robin 007, For Akiva With Love). All open source, most under MIT. Plus 20+ internal DFE templates at Jenny that aren\'t public.'},
+  {q:['most used','which project is most popular','most stars','popular'],a:'SudoDeck. It\'s the one people actually pay for at R1,099. GitHub stars are nice, but product-market fit — someone handing you cash for something you built — is the validation that matters.'},
+
+  // === MORE EXPERIENCE ===
+  {q:['typical day','daily routine','what do you do in a day','day to day'],a:'Mornings: check ticket flows, fix any automation templates that broke overnight. Midday: build new features for the extensions, write documentation, handle ad-hoc system requests. Afternoons: deep work on bigger projects — new workflows, architecture improvements, learning something new. Evenings: personal projects and hardware. \"Every day involves at least one thing I\'ve never done before, which is how I like it.\"'},
+  {q:['how did you start','get into it','how did you get into tech','first computer','beginning'],a:'Started messing with computers as a teenager — the usual \"breaking things and learning to fix them\" pipeline. Enrolled at National Computer College in 2022, earned CompTIA A+ at 18, was deploying enterprise network hardware by 19, and writing production software by 22. No silver spoon, no bootcamp — just curiosity, certification exams, and a lot of late nights.'},
+  {q:['first language','first programming language','what did you learn first','first code'],a:'JavaScript. Picked it up to automate browser tasks. Then Python for backend work. Then C++ for ESP32 firmware. Then Dart for Flutter. He doesn\'t believe in \"one language to rule them all\" — he believes in grabbing the right tool and learning it on the way down.'},
+  {q:['how do you learn','learning style','study method','teach yourself'],a:'Shahid learns by building. Courses and books provide the map; building something real provides the understanding. He\'ll read the docs, watch a tutorial, then immediately start a project that forces him to use what he\'s learning. \"You don\'t really understand a framework until you\'ve debugged a production issue at 2 AM with it.\"'},
+  {q:['lesson learned','biggest lesson','what have you learned','important'],a:'\"Ship before you\'re ready.\" Waiting for perfection is a trap. SudoDeck v1 wasn\'t the final version — it was the version that got into customers\' hands so v2 could be built based on real feedback. Also: \"The person who knows the most about a process isn\'t the manager — it\'s the person doing it every day. Watch them work before you automate.\"'},
+  {q:['failure','failed','mistake','screw up','ever mess up'],a:'Plenty. The important failures taught him something. Early on, he built an automated workflow that had an edge case — it created duplicate tickets for an entire department for 3 hours before anyone noticed. He fixed the bug, added validation, and now builds systems with failure modes designed first, success modes second. \"Every automation should have a kill switch.\"'},
+  {q:['transition','support to dev','support to developer','how did you move from support'],a:'He was an IT Support Agent at Jenny for 10 months before being promoted to Systems Developer. The transition happened because he automated his own job first — built templates that reduced ticket resolution time, wrote documentation that made training easier, and built extensions that the whole team used. When management saw the productivity gains, creating a dedicated Systems Developer role was the obvious next step. \"Don\'t ask for the title. Show the value, and the title follows.\"'},
+
+  // === MORE PERSONALITY / BEHAVIORAL ===
+  {q:['leadership','leadership style','lead','manage'],a:'Not a traditional \"stand at the front\" leader. Shahid leads by building tools and sharing knowledge. He writes the wiki docs, records the walkthroughs, designs the workflow templates, and then watches how people use them. \"Leadership isn\'t telling people what to do — it\'s removing the obstacles that slow them down.\"'},
+  {q:['difficult coworker','conflict','disagree','team conflict'],a:'Hasn\'t had major conflicts, but his approach is consistent: stick to the problem, not the person. \"If someone disagrees with my solution, they might see something I don\'t. The best systems come from friction between different perspectives — as long as it\'s about the work, not the ego.\"'},
+  {q:['stuck','blocked','what do you do when stuck','debugging'],a:'Three-step process: 1) Step away for 10 minutes — fishing and hiking weren\'t chosen randomly as hobbies. 2) Break the problem into smaller pieces — is it a logic error, a config issue, or a misunderstanding? 3) Ask someone who knows more. \"Pride doesn\'t ship software. Humility does.\"'},
+  {q:['morning night','early bird','night owl','work hours','schedule'],a:'Night owl by nature, morning person by necessity. His best deep-focus work happens between 8 PM and midnight when distractions are gone. But he\'s adapted to office hours just fine — coffee helps, and his workflow automations mean he can hit the ground running regardless of when he starts.'},
+  {q:['work environment','office','remote','ideal setup','prefer'],a:'Prefers a mix — focused solo development time plus collaborative in-office sessions. Remote work is great for deep focus; in-person is better for understanding how people actually use the tools he builds. His ideal setup: quiet desk with dual monitors, fast terminal, no unnecessary meetings, and a window.'},
+  {q:['success','measure success','what is success','define success'],a:'\"Success is reclaimed time. Every minute someone doesn\'t spend on a manual, repetitive task because I automated it — that\'s a win.\" Not GitHub stars, not salary, not job title. Real impact: if a support agent saves 5 minutes per ticket because of his template, and they do 20 tickets a day, that\'s over 8 hours reclaimed per month. Per agent. That\'s success.'},
+
+  // === TECH COMPARISONS ===
+  {q:['react vs flutter','compare flutter','flutter or react','react'],a:'Different tools for different problems. React for browser extensions and web UIs where Chrome APIs and the DOM matter. Flutter for standalone apps (mobile, desktop) where a consistent cross-platform codebase matters more than native feel. Shahid uses both — he\'s not a loyalist, he\'s a pragmatist. \"The right tool is the one that ships.\"'},
+  {q:['c++ python','c++ or python','compare python','cpp'],a:'Python for speed of development — automation scripts, APIs, TUI apps, prototyping. C++ for where resources matter — ESP32 firmware, embedded systems, anything running on a microcontroller with 520KB RAM. Knowing both means he can build the full stack from firmware to web server.'},
+  {q:['linux windows','linux or windows','why linux','windows experience'],a:'Linux is his primary environment — terminal-first, custom kernel configs, Docker, full control. But he\'s comfortable with Windows too — cross-platform Flutter apps, Chrome extensions that work on both, and he supports Windows users at work. \"Use the OS that makes you productive; know enough to debug the one your users have.\"'},
+  {q:['typescript','why typescript','typescript or javascript','ts'],a:'TypeScript brings safety to large codebases — catching bugs at compile time that JavaScript would only show at runtime. For Chrome extensions with Manifest V3, where the extension architecture is complex and data flows between service workers/popups/content scripts, types are not optional — they\'re survival gear.'},
+  {q:['docker','containers','docker experience'],a:'Uses Docker for development environments and deployment. Both of his Chrome extensions have Docker-based build pipelines. SpiceDesk can run in containers for server deployments. \"Docker means my app works on my machine, your machine, and the production server — same environment, no surprises.\"'},
+  {q:['git','version control','git workflow'],a:'Standard feature-branch workflow. Branches per feature, meaningful commit messages (usually), PRs with context. His GitHub is clean, well-documented READMEs, consistent naming conventions, MIT license on everything. \"A repo without a README is like a product without a label. Who knows what it does?\"'},
+  {q:['ide','editor','what editor','preferred'],a:'VS Code for web/extension work. PlatformIO and Arduino IDE for embedded. Neovim for quick terminal edits. He switches based on context — there\'s no One Editor to Rule Them All, just the one that gets the job done fastest right now. Terminal is always open in at least one window.'},
+
+  // === AVAILABILITY / HIRING ===
+  {q:['available for hire','looking for work','are you hiring','open to work','seeking'],a:'Yes. Shahid is open to opportunities — full-time, contract, remote, or hybrid. He brings systems development, workflow automation, embedded hardware, full-stack web, and a genuine curiosity about how things work. Reach him at shahidsingh1zn@gmail.com with the specifics and he\'ll respond promptly.'},
+  {q:['full time','contract','part time','freelance','remote'],a:'Open to all arrangements. Full-time Systems Developer role is ideal, but he\'s flexible — contract work, remote positions, even consulting on specific automation or embedded projects. He\'s currently in Newcastle but willing to relocate or work hybrid. Code 8 license, own car — fully mobile.'},
+  {q:['salary','salary expectation','rate','how much','cost'],a:'I don\'t negotiate on Shahid\'s behalf — that\'s between him and the employer. But I can tell you this: his work at Jenny Internet directly saves the support team hundreds of hours per month through automation. Calculate what that\'s worth to your own organization. Email shahidsingh1zn@gmail.com to discuss.'},
+  {q:['start','when can you start','notice period','available'],a:'Available to start within a standard notice period. For the right role, he can move quickly. Contact him at shahidsingh1zn@gmail.com to discuss specifics.'},
+
+  // === SA / RANDOM ===
+  {q:['why newcastle','newcastle south africa','stay here','relocate'],a:'Newcastle is home — family, community, and his entire career trajectory so far is here. But he\'s open to relocating for the right opportunity, especially to tech hubs like Johannesburg, Cape Town, or Durban. Remote work also eliminates geography entirely.'},
+  {q:['what would you build','unlimited resources','dream project','no limits'],a:'\"An open-source automation platform that any small business can self-host and customize — workflows, CRM, inventory, tickets. The kind of system that normally costs Fortune 500 prices, but built for the corner bakery and the local ISP. That\'s the North Star.\" Also: a proper SudoDeck v2 with rotary encoders, OLED per-key displays, and a desktop companion app.'},
+  {q:['something surprising','something i dont know','surprising','secret'],a:'He has a Level 2 Junior Metallurgy certification from ArcelorMittal South Africa. That\'s right — the Systems Developer who builds Chrome extensions and BLE keyboards also knows how steel is made. His career didn\'t follow a straight line, and that\'s the point. Diverse experience creates better problem solvers.'},
+  {q:['motivation','what drives you','keep going','tired'],a:'The \"aha\" moment when someone uses his tool and realizes it just saved them 20 minutes. He built a documentation template that an agent told him \"changed how I onboard new hires.\" That feedback loop — build something, watch it help someone, hear about it — is addictive. Also, coffee. Significant amounts of coffee.'},
+
+  // === MORE JOKES ===
+  {q:['tell me another one','another joke pls','more jokes','haha'],a:'A Systems Developer, a network engineer, and a project manager are on a sinking ship. The PM says \"Let\'s have a meeting to discuss the timeline for abandoning ship.\" The network engineer says \"Let\'s check if there\'s a patch cable long enough to reach the shore.\" The Systems Developer says \"Relax. I wrote a script for this.\" The script had a bug. They\'re still debugging.'},
+  {q:['knock knock','knock'],a:'Knock knock.\nWho\'s there?\n404.\n404 who?\nRoom not found. Check your permissions and try again.'},
+
+  // === ARSELOR / NCC ===
+  {q:['arcelormittal','metal','steel','metallurgy'],a:'In 2023-2024, Shahid completed a learnership at ArcelorMittal South Africa — one of the world\'s largest steel producers. He worked in Billet Mill control rooms, learned steel manufacturing processes, and earned a Level 2 Junior Metallurgy certificate in 11 months. It has nothing to do with IT. That\'s precisely what makes it interesting — Shahid understands industrial operations, not just software. He can talk to factory floor workers and backend engineers with equal fluency.'},
+  {q:['ncc','national computer college','college experience'],a:'National Computer College in Newcastle is where Shahid built his IT foundation: CompTIA A+ and Network+ (both certified), Security+ and Cloud+ curricula, cybersecurity, ethical hacking, web development, and hands-on networking. He also lectured A+ students online and physically built a 20-PC network for the college including server rack, cabling, and switch configuration. \"Learning by doing works, but teaching solidifies it.\"'},
+
+  // === SITE / GHOST META ===
+  {q:['what can you answer','help me','what do you know','commands','topics'],a:'I can answer questions about: Shahid\'s experience (Jenny Internet, Khuphula Solutions, ArcelorMittal), his skills (React, Flutter, ESP32, Python, networking, automation), each of his 12 projects in detail, certifications (CompTIA A+, N+, and beyond), education (NCC, Boston, Newcastle High), availability for hire, salary expectations, daily routine, learning style, technical comparisons, and — if you insist — why dark mode is objectively superior. Try asking anything.'},
+  {q:['what is ghost','who are you really','are you ai','what powers you'],a:'GHOST = General Host for Occupational Support & Technical insight. I\'m a curated knowledge engine running directly in this webpage — no server, no API calls, no AI hallucinations. Every answer I give was programmed based on actual facts about Shahid. In a world where generative AI confidently makes things up, I prefer being known for honesty. Ask anything — if I know it, I\'ll tell you. If I don\'t, I\'ll admit it.'},
+  {q:['is this site responsive','mobile','phone','small screen'],a:'Yes. Fully responsive — try it on your phone. The terminal hero, project cards, skill charts, GHOST chat, everything adapts. Shahid built this site himself, and he made sure it works on any device. Even the particles adjust to screen size.'},
+  {q:['how was this made','what technologies','how built','tech stack site'],a:'Plain vanilla HTML, CSS, JavaScript. No React. No Next.js. No build step. Single file that loads fast, works offline, and renders correctly on every modern browser. Shahid chose this deliberately — \"A resume should load instantly, not after 5MB of JavaScript compiles. It\'s not a SaaS — it\'s a page about a person.\"'},
+
+  // === SCENARIO QUESTIONS ===
+  {q:['conflicting deadline','two deadlines','too much work','overwhelmed'],a:'His answer: \"If everything is urgent, nothing is. I triage by impact — which deadline affects the most people or the most critical system? Then I communicate early if something\'s going to slip. Surprising your team with a missed deadline is worse than flagging it two days early with a plan.\" He built automated workflows specifically to prevent deadline pile-up — when routine tasks are automated, high-priority work has room to breathe.'},
+  {q:['poorly documented','no docs','bad code','legacy system','technical debt'],a:'\"Start by mapping what it actually does, not what the docs say it does. Run it, trace the execution, document behavior from observation. Then figure out what\'s safe to change. Legacy systems are minefields — but someone has to walk them, and I\'d rather it be me than someone who\'ll leave craters.\" He\'s dealt with undocumented internal tooling at Jenny and built documentation where none existed. He writes wiki pages as a habit, not as a chore.'},
 
 ];
 

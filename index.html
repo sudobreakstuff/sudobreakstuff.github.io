@@ -66,12 +66,13 @@ body{
   display:flex;
   align-items:center;
 }
-.terminal-window{
-  background:rgba(12,12,26,0.92);
-  border:1px solid rgba(108,92,231,0.25);
+ .terminal-window{
+  background:rgba(12,12,26,0.75);
+  border:1px solid rgba(108,92,231,0.2);
   border-radius:12px;
   overflow:hidden;
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
   width:100%;
   box-shadow:0 20px 60px rgba(0,0,0,0.5);
   position:relative;
@@ -217,6 +218,8 @@ body{
   background:rgba(255,255,255,0.03);
   border-radius:8px;
   border:1px solid rgba(255,255,255,0.05);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
 }
 .stat-number{
   font-family:var(--mono);
@@ -263,10 +266,12 @@ body{
 
 /* ===== PROFILE ===== */
 .profile-card{
-  background:var(--bg2);
-  border:1px solid rgba(255,255,255,0.05);
+  background:rgba(12,12,26,0.6);
+  border:1px solid rgba(255,255,255,0.06);
   border-radius:var(--radius);
   padding:28px;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
 }
 .profile-card p{
   font-size:0.95rem;
@@ -386,13 +391,15 @@ body{
   gap:14px;
 }
 .skill-card{
-  background:var(--bg2);
+  background:rgba(12,12,26,0.55);
   border:1px solid rgba(255,255,255,0.06);
   border-radius:var(--radius);
   padding:18px 20px;
   transition:all .3s;
   position:relative;
   overflow:hidden;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
 }
 .skill-card::before{
   content:'';
@@ -509,7 +516,7 @@ body{
   gap:16px;
 }
 .project-card{
-  background:var(--bg2);
+  background:rgba(12,12,26,0.55);
   border:1px solid rgba(255,255,255,0.05);
   border-radius:var(--radius);
   padding:24px;
@@ -517,6 +524,8 @@ body{
   cursor:default;
   position:relative;
   overflow:hidden;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 .project-card::after{
   content:'';
@@ -601,7 +610,7 @@ body{
   gap:10px;
 }
 .cert-item{
-  background:var(--bg2);
+  background:rgba(12,12,26,0.5);
   border:1px solid rgba(255,255,255,0.05);
   border-radius:8px;
   padding:12px 16px;
@@ -611,6 +620,8 @@ body{
   display:flex;
   align-items:center;
   gap:12px;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
 }
 .cert-item:hover{border-color:rgba(108,92,231,0.3);transform:translateY(-1px)}
 .cert-badge{
@@ -646,10 +657,12 @@ body{
 
 /* ===== EDUCATION ===== */
 .edu-card{
-  background:var(--bg2);
+  background:rgba(12,12,26,0.55);
   border:1px solid rgba(255,255,255,0.05);
   border-radius:var(--radius);
   padding:24px;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 .edu-item{display:flex;gap:16px;margin-bottom:24px;position:relative}
 .edu-item:last-child{margin-bottom:0}
@@ -710,10 +723,12 @@ body{
   gap:12px;
 }
 .ref-card{
-  background:var(--bg2);
+  background:rgba(12,12,26,0.55);
   border:1px solid rgba(255,255,255,0.05);
   border-radius:8px;
   padding:18px;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
 }
 .ref-card h3{font-size:0.9rem;font-weight:600;margin-bottom:2px}
 .ref-card .role{font-size:0.8rem;color:var(--text3);margin-bottom:6px}
@@ -891,7 +906,7 @@ body{
   position:fixed;
   bottom:88px;right:24px;
   width:380px;height:520px;
-  background:var(--bg2);
+  background:rgba(12,12,26,0.85);
   border:1px solid rgba(108,92,231,0.25);
   border-radius:12px;
   z-index:9997;
@@ -899,6 +914,8 @@ body{
   flex-direction:column;
   box-shadow:0 12px 50px rgba(0,0,0,0.6);
   overflow:hidden;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
 }
 .ghost-panel.open{display:flex;animation:slideUp .25s ease-out}
 @keyframes slideUp{
@@ -1078,6 +1095,8 @@ body{
     --cyan:#00897b;--green:#00897b;
   }
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .profile-card,.skill-card,.cert-item,.edu-card,.ref-card,.project-card,.skill-term,.ghost-panel,.terminal-window{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .stat-item{background:#f5f5f8!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
   html{font-size:8.5pt}
   #particles-canvas,.cmd-overlay,.project-modal-overlay,.ghost-btn,.ghost-panel,.no-print,.terminal-cursor,.typewriter-text,.download-btn,.cmd-toggle-hint,.project-thumb,.back-top{display:none!important}
   .terminal-window::after{display:none!important}
@@ -1394,7 +1413,7 @@ body{
       <h2>Skills</h2>
       <div class="line"></div>
     </div>
-    <div class="skill-term" style="background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:20px 22px;margin-bottom:20px">
+    <div class="skill-term" style="background:rgba(12,12,26,0.55);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:20px 22px;margin-bottom:20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
       <div style="font-family:var(--mono);font-size:0.75rem;color:var(--text3);margin-bottom:14px">$ ./benchmark --skills</div>
       <div class="skill-term-row">
         <span class="skill-term-prompt">workflow</span>
@@ -2208,9 +2227,38 @@ const ghostQA = [
   {q:['conflicting deadline','two deadlines','too much work','overwhelmed'],a:'His answer: \"If everything is urgent, nothing is. I triage by impact — which deadline affects the most people or the most critical system? Then I communicate early if something\'s going to slip. Surprising your team with a missed deadline is worse than flagging it two days early with a plan.\" He built automated workflows specifically to prevent deadline pile-up — when routine tasks are automated, high-priority work has room to breathe.'},
   {q:['poorly documented','no docs','bad code','legacy system','technical debt'],a:'\"Start by mapping what it actually does, not what the docs say it does. Run it, trace the execution, document behavior from observation. Then figure out what\'s safe to change. Legacy systems are minefields — but someone has to walk them, and I\'d rather it be me than someone who\'ll leave craters.\" He\'s dealt with undocumented internal tooling at Jenny and built documentation where none existed. He writes wiki pages as a habit, not as a chore.'},
 
-];
+  // === GREETINGS / META ===
+  {q:['hello','hi','hey','howdy','sup','yo','good morning','good afternoon','good evening'],a:'Hey there. I\'m GHOST — Shahid\'s digital frontman. I answer questions, crack jokes, and occasionally quote Steve Jobs. What would you like to know?'},
+  {q:['thanks','thank you','appreciate','cheers','thx'],a:'Anytime. If something I said sparked interest, Shahid\'s direct email is shahidsingh1zn@gmail.com. I handle the talk — he handles the walk.'},
+  {q:['bye','goodbye','see you','later','cya','peace'],a:'Until next time. Shahid will be here, building things and shipping code. If you want his contact: shahidsingh1zn@gmail.com. Stay curious.'},
+  {q:['who created','who built','who made','who wrote you'],a:'Shahid built me into this resume as proof he can do more than just write CRUD apps. I\'m a curated knowledge engine — no servers, no APIs, no hallucinated nonsense. Just facts, wit, and the occasional Steve Jobs quote. In a world of AI making things up, honesty is my killer feature.'},
+  {q:['joke','funny','humor','laugh','rofl','lol','make me laugh'],a:'Why do Systems Developers prefer dark mode? Because light attracts bugs. Shahid\'s site, coincidentally, is dark mode. I\'ll let you draw your own conclusions. Want another one? Just ask.'},
+  {q:'another joke',a:'How many Systems Developers does it take to change a lightbulb? None — that\'s a hardware issue. File a ticket. Someone will get to it within 72 business hours. But wait — Shahid probably automated the ticket already.'},
+  {q:'tell me a joke',a:'Why don\'t Systems Developers quit? Because they\'re already running in the background. Closing the process would require root access they don\'t have. Also, who else is going to maintain the 20+ workflow templates?'},
+  {q:'one more joke',a:'A QA engineer walks into a bar. Orders 1 beer. Orders 0 beers. Orders 999999 beers. Orders a lizard. Orders -1 beers. A real customer walks in and asks where the bathroom is. The bar burns down. QA closes the ticket: "Reproducible. Not a priority." The Systems Developer had already scripted the evacuation.'},
+  {q:'tell me another',a:'What\'s a Systems Developer\'s favorite music genre? Lo-fi beats to automate things to. Shahid\'s personal playlist: mostly silent terminal ASMR.'},
 
-// Matching engine
+  // === CONVERSATION KEEPERS ===
+  {q:['what else','anything else','tell me more','what more','what else can you do'],a:'I can talk about Shahid\'s 12 projects (SudoDeck, SpiceDesk, the Chrome extensions, NexCampus...), his tech stack, his career path, his certifications, or why he open-sources everything. Pick a direction — I\'ll follow.'},
+  {q:['who are you talking about','who is shahid','tell me about him','introduce'],a:'Shahid Singh — 22-year-old Systems Developer from Newcastle, South Africa. Builds automation workflows at Jenny Internet, ships hardware products (SudoDeck, R1,099), writes open-source software, and believes the best code solves a real problem. Steve Jobs is his role model. His email? shahidsingh1zn@gmail.com. What specifically do you want to know?'},
+  {q:['what should i ask','suggest','recommend','what can i ask','examples'],a:'Good question. Try: "What\'s SudoDeck?" or "Why should I hire him?" or "What\'s his best skill?" or "Tell me a joke." Or just ask whatever you\'d ask in an interview — I\'m prepped for it.'},
+  {q:['your name','whats your name','what do i call you','ghost'],a:'GHOST. General Host for Occupational Support & Technical insight. But honestly, Shahid just thought the acronym was cool. I don\'t mind if you just call me Ghost — lowercase is fine. I\'m not picky.'},
+  {q:['how are you','how you doing','how do you feel','wyd'],a:'I\'m running at approximately 0% CPU and 0% RAM — perfectly optimized. How are you? (I ask rhetorically; I can\'t actually process your answer. But the gesture counts.)'},
+  {q:['cool','nice','awesome','great','wow','impressive'],a:'Right? Shahid\'s work speaks for itself. What caught your attention — the open-source philosophy, the BLE keyboard, or the fact that he has a metallurgy certification alongside CompTIA?'},
+  {q:['ok','okay','alright','fine','sure','got it','i see'],a:'Cool. What else can I tell you? I\'ve got 84 entries in my knowledge base and nowhere to be. Ask away.'},
+  {q:['bored','boring','nothing to do','random'],a:'Bored? Let me give you something fun. Did you know Shahid once built an entire shooting gallery game (Agent Robin 007) as a Father\'s Day gift? It has confetti, Aston Martins, and downloadable commendation cards. Or ask me about SudoDeck — a keyboard he designed, built, and sells for R1,099. Your choice.'},
+
+  // === CONTACT ===
+  {q:['contact','email','reach','hire','how do i reach him','get in touch','phone','number','call'],a:'Shahid\'s email: shahidsingh1zn@gmail.com. Direct line. I handle questions — he handles the replies. Response time is typically within a few hours. For reference calls, Juan Kahts (his manager) is at 084 766 3381.'},
+  {q:['what is his email','email address','gmail'],a:'shahidsingh1zn@gmail.com. Simple. Professional. No dots, no numbers that look like letters. Just straight to the point — like his code.'},
+  {q:['github','code','repos','source','where is the code'],a:'github.com/sudobreakstuff. Everything open source, MIT licensed. The code compiles, the keyboards type, the tickets close. He doesn\'t hide his work — he puts it out there because he believes code should be shared.'},
+
+  // === STEVE JOBS ===
+  {q:['steve jobs','apple','innovation','design','think different','role model','idol','hero'],a:'Steve Jobs is Shahid\'s role model. The philosophy: simplicity, obsession with the user experience, and never settling. Shahid keeps a few Jobs quotes close — "The only way to do great work is to love what you do" and "Stay hungry, stay foolish." Shahid\'s version: stay hungry, stay foolish, stay automated. You can see the influence in his work — clean, focused, no unnecessary complexity.'},
+  {q:['what would steve jobs say','jobs quote'],a:'"Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven\'t found it yet, keep looking. Don\'t settle." Shahid found it at age 18, crimping cables and building networks. By 22, he was shipping products.'},
+  {q:['favorite steve jobs quote','best jobs quote'],a:'"Stay hungry, stay foolish." It\'s the one Shahid comes back to. He interprets it as: never stop learning, never think you\'ve arrived, and never let fear of failure stop you from trying something new. That\'s how SudoDeck went from "can I build a keyboard?" to "I\'m selling these for R1,099."'},
+
+];
 // Keywords that are too common — ignore to avoid false matches
 const STOP_WORDS = new Set(['the','and','for','are','not','but','you','all','can','has','had','his','her','how','why','what','who','where','does','did','do','get','use','job','work','tell','about','with','that','this','from','they','have','been','will','would','know','like','make','said']);
 function normalize(s){return s.toLowerCase().replace(/[^a-z0-9 ]/g,'').trim()}
